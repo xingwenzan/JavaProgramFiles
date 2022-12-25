@@ -5,5 +5,5 @@
 
 - 项目分别为：
   - [我的五子棋](https://github.com/xingwenzan/JavaProgramFiles/tree/master/src/BackgammonProgram)
-  - [学习版五子棋 - 全流程]
+  - [学习版五子棋 - 全流程](https://github.com/xingwenzan/JavaProgramFiles/tree/master/src/gobang)
   - [其他（不在文件夹内的）]
