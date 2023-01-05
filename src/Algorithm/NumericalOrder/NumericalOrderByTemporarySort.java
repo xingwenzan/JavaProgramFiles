@@ -5,7 +5,9 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class NumericalOrderByTemporarySort { //临时排序，现排现用版
+public class NumericalOrderByTemporarySort {
+    // 题目: 数位排序; 链接: https://www.acwing.com/problem/content/4656/
+    //临时排序，现排现用版
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class CreditGPA {
+    // 题目: 学分绩点; 链接: https://www.acwing.com/problem/content/description/3446/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int num = scanner.nextInt(); // 读取数字
@@ -14,17 +15,17 @@ public class CreditGPA {
         String credits = scanner.nextLine(); // 读取字符串
         String[] creditsByStr = credits.split(delimeter); // 字符串分割
         int[] creditsByInt = Arrays.stream(creditsByStr)
-                                    .mapToInt(Integer::parseInt)
-                                    .toArray(); // 字符串数组转数字数组
+                .mapToInt(Integer::parseInt)
+                .toArray(); // 字符串数组转数字数组
 
         String scores = scanner.nextLine(); // 读取字符串
         String[] scoresByStr = scores.split(delimeter); // 字符串分割
         int[] scoresByInt = Arrays.stream(scoresByStr)
-                                    .mapToInt(Integer::parseInt)
-                                    .toArray(); // 字符串数组转数字数组
+                .mapToInt(Integer::parseInt)
+                .toArray(); // 字符串数组转数字数组
 
         double creditGPA = 0.0;
-        for (int x = 0;x<num;x++){
+        for (int x = 0; x < num; x++) {
             creditGPA = creditGPA + creditsByInt[x] * scoreToGPa(scoresByInt[x]);
         }
         creditGPA = creditGPA / Arrays.stream(creditsByInt).sum();

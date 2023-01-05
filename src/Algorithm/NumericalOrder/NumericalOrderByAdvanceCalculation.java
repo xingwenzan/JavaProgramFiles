@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class NumericalOrderByAdvanceCalculation {
+    // 题目: 数位排序; 链接: https://www.acwing.com/problem/content/4656/
+    // 提前算好，现排现查版
     static int allNum = 1000010;
     static Integer[] s = new Integer[allNum];
 
