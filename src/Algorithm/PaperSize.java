@@ -1,8 +1,8 @@
 package Algorithm;
 
 import java.util.Scanner;
-
 public class PaperSize {
+    // 题目: 纸张尺寸; 链接: https://www.acwing.com/problem/content/4655/
     static int[] a = new int[11];
 
     public static void main(String[] args) {
