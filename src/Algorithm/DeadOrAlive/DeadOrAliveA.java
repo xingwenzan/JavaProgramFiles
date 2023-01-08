@@ -1,9 +1,9 @@
-package Algorithm;
+package Algorithm.DeadOrAlive;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DeadOrAlive {
+public class DeadOrAliveA {
     //题目：死或生；链接：https://www.acwing.com/problem/content/submission/4794/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
