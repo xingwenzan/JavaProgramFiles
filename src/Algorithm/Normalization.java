@@ -3,6 +3,7 @@ package Algorithm;
 import java.util.Scanner;
 
 public class Normalization {
+    //题目：归一化处理；链接：https://www.acwing.com/problem/content/4512/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
