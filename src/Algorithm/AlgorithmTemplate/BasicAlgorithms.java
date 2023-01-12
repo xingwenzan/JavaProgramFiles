@@ -2,8 +2,9 @@ package Algorithm.AlgorithmTemplate;
 
 // 基础算法模板/快速调用
 public class BasicAlgorithms {
+
+    // 快速排序，https://www.acwing.com/problem/content/787/
     public static void quickSort(int[] lst, int l, int r) {
-        // 快速排序，https://www.acwing.com/problem/content/787/
         if (l >= r) {
             return;
         }
@@ -27,4 +28,6 @@ public class BasicAlgorithms {
             quickSort(lst, j + 1, r);
         }
     }
+
+    //
 }
