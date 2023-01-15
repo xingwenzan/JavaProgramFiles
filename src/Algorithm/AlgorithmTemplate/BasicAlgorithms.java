@@ -12,21 +12,22 @@ public class BasicAlgorithms {
         int j = r + 1;
         int x = lst[(l + r) >> 1];
         while (i < j) {
-            do {
-                i++;
-            } while (lst[i] < x);
-            do {
-                j--;
-            } while (lst[j] > x);
+            while (lst[++i] < x) ;
+            while (lst[--j] > x) ;
+//            do {
+//                i++;
+//            } while (lst[i] < x);
+//            do {
+//                j--;
+//            } while (lst[j] > x);
             if (i < j) {
                 int k = lst[i];
                 lst[i] = lst[j];
                 lst[j] = k;
             }
-
-            quickSort(lst, l, j);
-            quickSort(lst, j + 1, r);
         }
+        quickSort(lst, l, j);
+        quickSort(lst, j + 1, r);
     }
 
     // 快速选择 O(n) https://www.acwing.com/problem/content/description/788/
@@ -38,24 +39,18 @@ public class BasicAlgorithms {
         int j = r + 1;
         int x = lst[(l + r) >> 1];
         while (i < j) {
-            do {
-                i++;
-            } while (lst[i] < x);
-            do {
-                j--;
-            } while (lst[j] > x);
+            while (lst[++i] < x) ;
+            while (lst[--j] > x) ;
             if (i < j) {
                 int z = lst[i];
                 lst[i] = lst[j];
                 lst[j] = z;
             }
-
-            if (j - l + 1 >= k) {
-                return quickChoose(lst, l, j, k);
-            } else {
-                return quickChoose(lst, j + 1, r, k - (j - l + 1));
-            }
         }
-        return 0;
+        if (j - l + 1 >= k) {
+            return quickChoose(lst, l, j, k);
+        } else {
+            return quickChoose(lst, j + 1, r, k - (j - l + 1));
+        }
     }
 }

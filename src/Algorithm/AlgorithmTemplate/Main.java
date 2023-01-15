@@ -9,7 +9,7 @@ public class Main {
 //    public static void main(String[] args) throws IOException {// 快排
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 //        String s = bufferedReader.readLine();
-//        int n = Integer.parseInt(s.charAt(0) + ""); // 读单个字符并转数字
+//        int n = Integer.parseInt(s+ ""); // 读单个字符并转数字
 //        //System.out.println(i+1);
 //        String[] strings = bufferedReader.readLine().split(" ");
 //        int[] lst = new int[n];
@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {// 快选
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String s[] = bufferedReader.readLine().split(" ");
+        String[] s = bufferedReader.readLine().split(" ");
         int[] input = new int[2];
         for (int i = 0; i < 2; i++) {
             input[i] = Integer.parseInt(s[i]);
@@ -39,4 +39,5 @@ public class Main {
         int ans = BasicAlgorithms.quickChoose(lst, 0, n - 1, k); // 快速排序
         System.out.println(ans);
     }
+
 }
