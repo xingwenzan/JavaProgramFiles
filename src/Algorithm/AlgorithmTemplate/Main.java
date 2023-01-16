@@ -17,10 +17,12 @@ public class Main {
             lst[i] = Integer.parseInt(strings[i]);
         }
         //BasicAlgorithms.quickSort(lst, 0, n - 1); // 快速排序
-        BasicAlgorithms.mergeSort(lst, 0, n - 1); // 归并排序
-        for (int i = 0; i < n; i++) {
-            System.out.print(lst[i] + " ");
-        }
+//        BasicAlgorithms.mergeSort(lst, 0, n - 1); // 归并排序
+//        for (int i = 0; i < n; i++) {
+//            System.out.print(lst[i] + " ");
+//        }
+        long res = BasicAlgorithms.numberOfReversedPairs(lst, 0, n - 1); // 逆序对计数
+        System.out.println(res);
     }
 
 //    public static void main(String[] args) throws IOException {// 快选

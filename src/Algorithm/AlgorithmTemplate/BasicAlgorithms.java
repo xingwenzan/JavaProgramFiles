@@ -83,4 +83,32 @@ public class BasicAlgorithms {
         }
     }
 
+    // 逆序对计数-归并应用 0(nlogn) https://www.acwing.com/problem/content/790/
+    public static long numberOfReversedPairs(int[] lst, int l, int r) {
+        if (l >= r) {
+            return 0;
+        }
+        int mid = l + r >> 1;
+        long res = numberOfReversedPairs(lst, l, mid) + numberOfReversedPairs(lst, mid + 1, r);
+        int i = l, j = mid + 1, k = 0;
+        int[] tmp = new int[r - l + 1];
+        while (i <= mid && j <= r) {
+            if (lst[i] <= lst[j]) {
+                tmp[k++] = lst[i++];
+            } else {
+                tmp[k++] = lst[j++];
+                res += mid - i + 1;
+            }
+        }
+        while (i <= mid) {
+            tmp[k++] = lst[i++];
+        }
+        while (j <= r) {
+            tmp[k++] = lst[j++];
+        }
+        for (int a = l, b = 0; a <= r; a++, b++) {
+            lst[a] = tmp[b];
+        }
+        return res;
+    }
 }
