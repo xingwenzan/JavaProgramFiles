@@ -111,4 +111,37 @@ public class BasicAlgorithms {
         }
         return res;
     }
+
+    // 二分 O() https://www.acwing.com/problem/content/description/791/
+    // 无法调用，思路整理
+    // 判断函数
+    public static boolean chick(int l, int r) {
+        return true;
+    }
+
+    // 二分 - 左边为 true 版本，判断右边界
+    public static int dichotomizeLeftIsTrue(int l, int r, int[] lst) {
+        int mid = l + r + 1 >> 1;
+        while (l < r) {
+            if (chick(l, r)) {
+                l = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return r;
+    }
+
+    // 二分 - 右边为 true 版本，判断左边界
+    public static int dichotomizeRightIsTrue(int l, int r, int[] lst) {
+        int mid = l + r >> 1;
+        while (l < r) {
+            if (chick(l, r)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
 }
