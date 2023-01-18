@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+    // 二分实验
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] s = bufferedReader.readLine().split(" ");
