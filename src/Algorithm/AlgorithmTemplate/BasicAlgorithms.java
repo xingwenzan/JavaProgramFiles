@@ -1,5 +1,7 @@
 package Algorithm.AlgorithmTemplate;
 
+import org.jetbrains.annotations.NotNull;
+
 // 基础算法模板/快速调用   // 未调好
 public class BasicAlgorithms {
 
@@ -151,11 +153,28 @@ public class BasicAlgorithms {
 
 
     // 高精度算法
-    // 高精度加法 O() https://www.acwing.com/problem/content/793/
-    public static String highPrecisionAddition(String a, String b) {
-        if (a.length() < b.length()) {
-            return highPrecisionAddition(b, a);
+    //判断大小
+    public static boolean ratioOfHighPrecisionAlgorithm(@NotNull String a, @NotNull String b) {
+        if (a.length() != b.length()) {
+            return a.length() > b.length();
         }
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i)) {
+                return a.charAt(i) > b.charAt(i);
+            }
+        }
+        return true;
+    }
+
+
+    // 高精度算法
+    // 高精度加法 O() https://www.acwing.com/problem/content/793/
+    public static String highPrecisionAddition(@NotNull String A, @NotNull String B) {
+        if (A.length() < B.length()) {
+            return highPrecisionAddition(B, A);
+        }
+        String a = new StringBuffer(A).reverse().toString();
+        String b = new StringBuffer(B).reverse().toString();
         String[] c = new String[a.length() + 1];
         int t = 0;
         for (int i = 0; i < b.length(); i++) {
@@ -182,5 +201,54 @@ public class BasicAlgorithms {
             }
         }
         return ans;
+    }
+
+
+    // 高精度算法
+    // 高精度减法 O() https://www.acwing.com/problem/content/description/794/
+    public static String highPrecisionSubtraction(String A, String B) {
+        if (!ratioOfHighPrecisionAlgorithm(A, B)) {
+            return "-" + highPrecisionSubtraction(B, A);
+        }
+        String a = new StringBuffer(A).reverse().toString();
+        String b = new StringBuffer(B).reverse().toString();
+        String[] c = new String[a.length()];
+        int t = 0;
+        for (int i = 0; i < b.length(); i++) {
+            if ((int) a.charAt(i) - 48 - t >= (int) b.charAt(i) - 48) {
+                c[i] = String.valueOf((int) a.charAt(i) - (int) b.charAt(i) - t);
+                t = 0;
+            } else {
+                c[i] = String.valueOf((int) a.charAt(i) - (int) b.charAt(i) - t + 10);
+                t = 1;
+            }
+        }
+        if (a.length() > b.length()) {
+            for (int i = b.length(); i < a.length(); i++) {
+                if ((int) a.charAt(i) - 48 - t >= 0) {
+                    c[i] = String.valueOf((int) a.charAt(i) - 48 - t);
+                    t = 0;
+                } else {
+                    c[i] = String.valueOf((int) a.charAt(i) - 48 - t + 10);
+                    t = 1;
+                }
+            }
+        }
+//        Collections.reverse(Collections.singletonList(c));
+//        String ans = String.join("",c);
+        StringBuilder ans = new StringBuilder();
+        int n = c.length - 1;
+        for (int i = c.length - 1; i >= 0; i--) {
+            if (c[i].equals("0")) {
+                n = i;
+            } else {
+                n = i;
+                break;
+            }
+        }
+        for (int i = n; i >= 0; i--) {
+            ans.append(c[i]);
+        }
+        return ans.toString();
     }
 }

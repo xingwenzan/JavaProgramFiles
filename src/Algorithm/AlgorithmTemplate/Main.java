@@ -49,9 +49,10 @@ public class Main {
     // 高精度算法
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String a = new StringBuffer(bufferedReader.readLine()).reverse().toString();
-        String b = new StringBuffer(bufferedReader.readLine()).reverse().toString();
-        String c = BasicAlgorithms.highPrecisionAddition(a, b);
+        String a = bufferedReader.readLine();
+        String b = bufferedReader.readLine();
+        //String c = BasicAlgorithms.highPrecisionAddition(a, b); // 高精度加法
+        String c = BasicAlgorithms.highPrecisionSubtraction(a, b); // 高精度减法
         System.out.println(c);
     }
 }
