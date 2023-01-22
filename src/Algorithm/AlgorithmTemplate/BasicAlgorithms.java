@@ -30,6 +30,7 @@ public class BasicAlgorithms {
         quickSort(lst, j + 1, r);
     }
 
+
     // 快速选择 O(n) https://www.acwing.com/problem/content/description/788/
     public static int quickChoose(int[] lst, int l, int r, int k) {
         if (l >= r) {
@@ -53,6 +54,7 @@ public class BasicAlgorithms {
             return quickChoose(lst, j + 1, r, k - (j - l + 1));
         }
     }
+
 
     // 归并排序 0(nlogn) https://www.acwing.com/problem/content/789/
     public static void mergeSort(int[] lst, int l, int r) {
@@ -83,6 +85,7 @@ public class BasicAlgorithms {
         }
     }
 
+
     // 逆序对计数-归并应用 0(nlogn) https://www.acwing.com/problem/content/790/
     public static long numberOfReversedPairs(int[] lst, int l, int r) {
         if (l >= r) {
@@ -111,6 +114,7 @@ public class BasicAlgorithms {
         }
         return res;
     }
+
 
     // 二分 O() https://www.acwing.com/problem/content/description/791/
     // 无法调用，思路整理
@@ -143,5 +147,40 @@ public class BasicAlgorithms {
             }
         }
         return l;
+    }
+
+
+    // 高精度算法
+    // 高精度加法 O() https://www.acwing.com/problem/content/793/
+    public static String highPrecisionAddition(String a, String b) {
+        if (a.length() < b.length()) {
+            return highPrecisionAddition(b, a);
+        }
+        String[] c = new String[a.length() + 1];
+        int t = 0;
+        for (int i = 0; i < b.length(); i++) {
+            t += (int) a.charAt(i) + (int) b.charAt(i) - 48 * 2; // String 直接转 int 是 ASCII 码
+            c[i] = String.valueOf(t % 10);
+            t /= 10;
+        }
+        if (a.length() > b.length()) {
+            for (int i = b.length(); i < a.length(); i++) {
+                t += (int) a.charAt(i) - 48;
+                c[i] = String.valueOf(t % 10);
+                t /= 10;
+            }
+        }
+        if (t != 0) {
+            c[a.length()] = String.valueOf(t);
+        }
+//        Collections.reverse(Collections.singletonList(c));
+//        String ans = String.join("",c);
+        String ans = "";
+        for (int i = c.length - 1; i >= 0; i--) {
+            if (c[i] != null) {
+                ans += c[i];
+            }
+        }
+        return ans;
     }
 }
