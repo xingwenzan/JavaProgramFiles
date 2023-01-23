@@ -257,7 +257,7 @@ public class BasicAlgorithms {
 
     // 高精度算法
     // 高精度乘法 O() https://www.acwing.com/problem/content/795/
-    public static String highPrecisionMultiplication(String A, String B) {
+    public static String highPrecisionMultiplication(@NotNull String A, @NotNull String B) {
         if (A.length() < B.length()) {
             return highPrecisionMultiplication(B, A);
         }
@@ -290,5 +290,35 @@ public class BasicAlgorithms {
             ans.append(c[i]);
         }
         return ans.toString();
+    }
+
+
+    // 高精度算法
+    // 高精度除法 O() https://www.acwing.com/problem/content/796/
+    public static String[] highPrecisionDivision(String A, String B) {
+        String a = A;
+        int b = Integer.parseInt(B);
+        String[] c = new String[a.length()];
+        int t = 0;
+        for (int i = 0; i < a.length(); i++) {
+            int tmp = (int) a.charAt(i) - 48 + t * 10;
+            c[i] = String.valueOf(tmp / b);
+            t = tmp % b;
+        }
+        StringBuilder ans = new StringBuilder();
+        int n = c.length - 1;
+        for (int i = 0; i < c.length; i++) {
+            if (c[i].equals("0")) {
+                n = i;
+            } else {
+                n = i;
+                break;
+            }
+        }
+        for (int i = n; i < c.length; i++) {
+            ans.append(c[i]);
+        }
+        String[] k = {ans.toString(), String.valueOf(t)};
+        return k;
     }
 }

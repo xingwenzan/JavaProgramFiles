@@ -53,7 +53,10 @@ public class Main {
         String b = bufferedReader.readLine();
         //String c = BasicAlgorithms.highPrecisionAddition(a, b); // 高精度加法
         //String c = BasicAlgorithms.highPrecisionSubtraction(a, b); // 高精度减法
-        String c = BasicAlgorithms.highPrecisionMultiplication(a, b); // 高精度乘法
-        System.out.println(c);
+        //String c = BasicAlgorithms.highPrecisionMultiplication(a, b); // 高精度乘法
+        // System.out.println(c);
+        String[] c = BasicAlgorithms.highPrecisionDivision(a, b); // 高精度除法
+        System.out.println(c[0]);
+        System.out.println(c[1]);
     }
 }
