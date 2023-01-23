@@ -2,6 +2,8 @@ package Algorithm.AlgorithmTemplate;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+
 // 基础算法模板/快速调用   // 未调好
 public class BasicAlgorithms {
 
@@ -206,7 +208,7 @@ public class BasicAlgorithms {
 
     // 高精度算法
     // 高精度减法 O() https://www.acwing.com/problem/content/description/794/
-    public static String highPrecisionSubtraction(String A, String B) {
+    public static @NotNull String highPrecisionSubtraction(String A, String B) {
         if (!ratioOfHighPrecisionAlgorithm(A, B)) {
             return "-" + highPrecisionSubtraction(B, A);
         }
@@ -236,6 +238,44 @@ public class BasicAlgorithms {
         }
 //        Collections.reverse(Collections.singletonList(c));
 //        String ans = String.join("",c);
+        StringBuilder ans = new StringBuilder();
+        int n = c.length - 1;
+        for (int i = c.length - 1; i >= 0; i--) {
+            if (c[i].equals("0")) {
+                n = i;
+            } else {
+                n = i;
+                break;
+            }
+        }
+        for (int i = n; i >= 0; i--) {
+            ans.append(c[i]);
+        }
+        return ans.toString();
+    }
+
+
+    // 高精度算法
+    // 高精度乘法 O() https://www.acwing.com/problem/content/795/
+    public static String highPrecisionMultiplication(String A, String B) {
+        if (A.length() < B.length()) {
+            return highPrecisionMultiplication(B, A);
+        }
+        String a = new StringBuffer(A).reverse().toString();
+        String b = new StringBuffer(B).reverse().toString();
+        String[] c = new String[a.length() + b.length()];
+        Arrays.fill(c, "0");
+        for (int i = 0; i < b.length(); i++) {
+            int t = 0;
+            for (int j = 0; j < a.length(); j++) {
+                t += ((int) a.charAt(j) - 48) * ((int) b.charAt(i) - 48) + Integer.parseInt(c[i + j]); // String 直接转 int 是 ASCII 码
+                c[i + j] = String.valueOf(t % 10);
+                t /= 10;
+            }
+            t += Integer.parseInt(c[i + a.length()]);
+            c[i + a.length()] = String.valueOf(t);
+        }
+
         StringBuilder ans = new StringBuilder();
         int n = c.length - 1;
         for (int i = c.length - 1; i >= 0; i--) {
