@@ -321,4 +321,15 @@ public class BasicAlgorithms {
         String[] k = {ans.toString(), String.valueOf(t)};
         return k;
     }
+
+
+    // 前缀和 O() https://www.acwing.com/problem/content/797/
+    public static int @NotNull [] prefixSum(String[] lst) {
+        int[] ints = new int[lst.length + 1];
+        ints[0] = 0;
+        for (int i = 1; i <= lst.length; i++) {
+            ints[i] = ints[i - 1] + Integer.parseInt(lst[i - 1]);
+        }
+        return ints;
+    }
 }

@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-/*  // 快排、归并
+
+
+/*
+// 快排、归并
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String s = bufferedReader.readLine();
@@ -26,7 +29,8 @@ public class Main {
     }
  */
 
-/*  // 快选
+/*
+// 快选
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] s = bufferedReader.readLine().split(" ");
@@ -46,7 +50,8 @@ public class Main {
     }
  */
 
-    // 高精度算法
+/*
+// 高精度算法
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String a = bufferedReader.readLine();
@@ -58,5 +63,22 @@ public class Main {
         String[] c = BasicAlgorithms.highPrecisionDivision(a, b); // 高精度除法
         System.out.println(c[0]);
         System.out.println(c[1]);
+    }
+ */
+
+    // 前缀和
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = bufferedReader.readLine().split(" ");
+        //int n = Integer.parseInt(s[0]);
+        int m = Integer.parseInt(s[1]);
+        String[] lst = bufferedReader.readLine().split(" ");
+        int[] ans = BasicAlgorithms.prefixSum(lst);
+        for (int i = 0; i < m; i++) {
+            s = bufferedReader.readLine().split(" ");
+            int l = Integer.parseInt(s[0]);
+            int r = Integer.parseInt(s[1]);
+            System.out.println(ans[r] - ans[l - 1]);
+        }
     }
 }
