@@ -324,12 +324,19 @@ public class BasicAlgorithms {
 
 
     // 前缀和 O() https://www.acwing.com/problem/content/797/
-    public static int @NotNull [] prefixSum(String[] lst) {
+    public static int @NotNull [] prefixSum(String @NotNull [] lst) {
         int[] ints = new int[lst.length + 1];
         ints[0] = 0;
         for (int i = 1; i <= lst.length; i++) {
             ints[i] = ints[i - 1] + Integer.parseInt(lst[i - 1]);
         }
         return ints;
+    }
+
+    // 差分 O() https://www.acwing.com/problem/content/799/
+    public static int[] finiteDifference(int[] lst, int l, int r, int n) {
+        lst[l] += n;
+        lst[r + 1] -= n;
+        return lst;
     }
 }

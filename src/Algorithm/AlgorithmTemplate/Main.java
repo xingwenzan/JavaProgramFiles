@@ -3,9 +3,37 @@ package Algorithm.AlgorithmTemplate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
 
+    // 前缀和、差分(TLE)
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]); // 差分
+        int m = Integer.parseInt(s[1]);
+        String[] lst = bufferedReader.readLine().split(" ");
+        //int[] ans = BasicAlgorithms.prefixSum(lst); // 前缀和
+        int[] add = new int[n + 1];
+        Arrays.fill(add, 0);
+        for (int i = 0; i < m; i++) {
+            s = bufferedReader.readLine().split(" ");
+            int l = Integer.parseInt(s[0]);
+            int r = Integer.parseInt(s[1]);
+            int c = Integer.parseInt(s[2]);
+            //System.out.println(ans[r] - ans[l - 1]); // 前缀和
+            add = BasicAlgorithms.finiteDifference(add, l - 1, r - 1, c);
+        }
+        int t = 0;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            t += add[i];
+            ans = Integer.parseInt(lst[i]) + t;
+            System.out.printf("%d ", ans);
+        }
+
+    }
 
 /*
 // 快排、归并
@@ -66,19 +94,4 @@ public class Main {
     }
  */
 
-    // 前缀和
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String[] s = bufferedReader.readLine().split(" ");
-        //int n = Integer.parseInt(s[0]);
-        int m = Integer.parseInt(s[1]);
-        String[] lst = bufferedReader.readLine().split(" ");
-        int[] ans = BasicAlgorithms.prefixSum(lst);
-        for (int i = 0; i < m; i++) {
-            s = bufferedReader.readLine().split(" ");
-            int l = Integer.parseInt(s[0]);
-            int r = Integer.parseInt(s[1]);
-            System.out.println(ans[r] - ans[l - 1]);
-        }
-    }
 }
