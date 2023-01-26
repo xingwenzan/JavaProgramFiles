@@ -1,10 +1,10 @@
-package Algorithm.AlgorithmTemplate.Test;
+package Algorithm.AlgorithmTemplate.Test.Dichotomize;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class DichotomizeTestAboutCubeRootOfNumber {
+public class CubeRootOfNumber {
     // 二分实验 数的三次方根 https://www.acwing.com/problem/content/792/
     public static void main(String[] args) throws IOException {
         double l = -100, r = 100;
