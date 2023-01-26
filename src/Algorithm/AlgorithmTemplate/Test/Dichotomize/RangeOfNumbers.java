@@ -1,10 +1,10 @@
-package Algorithm.AlgorithmTemplate.Test;
+package Algorithm.AlgorithmTemplate.Test.Dichotomize;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class DichotomizeTestAboutRangeOfNumbers {
+public class RangeOfNumbers {
     // 二分实验 数的范围 https://www.acwing.com/problem/content/791/
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
