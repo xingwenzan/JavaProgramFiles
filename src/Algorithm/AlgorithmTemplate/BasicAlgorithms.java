@@ -1,5 +1,6 @@
 package Algorithm.AlgorithmTemplate;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -333,10 +334,22 @@ public class BasicAlgorithms {
         return ints;
     }
 
+
     // 差分 O() https://www.acwing.com/problem/content/799/
-    public static int[] finiteDifference(int[] lst, int l, int r, int n) {
+    @Contract("_, _, _, _ -> param1")
+    public static int @NotNull [] finiteDifference(int[] lst, int l, int r, int n) {
         lst[l] += n;
         lst[r + 1] -= n;
         return lst;
     }
+
+
+    // 位运算 https://www.acwing.com/problem/content/803/
+    // 原码 x=10101…… ; 反码 ~x=01010…… ; 补码 -x=~x+1 ;
+    // https://www.acwing.com/video/246/
+    public static int lowbit(int x) { // 取最后(右)一位 1 及之后的所有位(0)
+        return x & (-x);
+    }
+
+
 }

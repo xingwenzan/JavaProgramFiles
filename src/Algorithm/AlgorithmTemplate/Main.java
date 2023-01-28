@@ -6,7 +6,28 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Main {
+    // 位运算实验
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] ans = new int[n];
+        Arrays.fill(ans, 0);
+        for (int i = 0; i < n; i++) {
+            int x = Integer.parseInt(strings[i]);
+            while (x != 0) {
+//                if ((x&1)==1){ // 暴力版
+//                    ans[i]++;
+//                }
+//                x = x>>1; // 暴力版
+                x = x - BasicAlgorithms.lowbit(x); // lowbit 版
+                ans[i]++;
+            }
+            System.out.printf("%d ", ans[i]);
+        }
+    }
 
+/*
     // 前缀和、差分(TLE)
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -34,6 +55,8 @@ public class Main {
         }
 
     }
+
+ */
 
 /*
 // 快排、归并
