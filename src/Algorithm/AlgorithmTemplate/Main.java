@@ -3,10 +3,90 @@ package Algorithm.AlgorithmTemplate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
-    // 位运算实验
+    // 离散化
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        int[] xs = new int[n];
+        int[] cs = new int[n];
+        int[] ls = new int[m];
+        int[] rs = new int[m];
+        List<Integer> tmp = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            xs[i] = Integer.parseInt(strings[0]);
+            cs[i] = Integer.parseInt(strings[1]);
+            tmp.add(Integer.parseInt(strings[0]));
+        }
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            ls[i] = Integer.parseInt(strings[0]);
+            rs[i] = Integer.parseInt(strings[1]);
+            tmp.add(Integer.parseInt(strings[0]));
+            tmp.add(Integer.parseInt(strings[1]));
+        }
+        int[] points = tmp.stream().mapToInt(Integer::valueOf).toArray();
+        points = BasicAlgorithms.discretization(points);
+        int[] lst = new int[n + 2 * m];
+        Arrays.fill(lst, 0);
+        for (int i = 0; i < n; i++) {
+            int x = BasicAlgorithms.dichotomizeLeft(xs[i], points);
+            lst[x] += cs[i];
+        }
+        lst = BasicAlgorithms.prefixSum(lst);
+        for (int i = 0; i < m; i++) {
+            int l = BasicAlgorithms.dichotomizeLeft(ls[i], points) + 1;
+            int r = BasicAlgorithms.dichotomizeLeft(rs[i], points) + 1;
+            System.out.println(lst[r] - lst[l - 1]);
+        }
+    }
+
+    /*
+    // 小数二分
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        double n = Double.parseDouble(bufferedReader.readLine());
+        String out = BasicAlgorithms.dichotomizeFloat(n,3,6);
+        System.out.println(out);
+    }
+
+     */
+
+    /*
+    // 整数二分
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]);
+        int q = Integer.parseInt(s[1]);
+        int[] lst = new int[n];
+        s = bufferedReader.readLine().split(" ");
+        for (int i = 0; i < n; i++) {
+            lst[i] = Integer.parseInt(s[i]);
+        }
+        for (int i = 0; i < q; i++) {
+            int num = Integer.parseInt(bufferedReader.readLine());
+            int l = BasicAlgorithms.dichotomizeRight(num,lst);
+            int r = BasicAlgorithms.dichotomizeLeft(num,lst);
+            if (lst[l] != num || lst[r] != num) {
+                System.out.println("-1 -1");
+            } else {
+                System.out.printf("%d %d%n", l, r);
+            }
+        }
+    }
+
+    */
+
+    /*
+    // 位运算
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bufferedReader.readLine());
@@ -27,7 +107,9 @@ public class Main {
         }
     }
 
-/*
+    */
+
+    /*
     // 前缀和、差分(TLE)
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -56,10 +138,10 @@ public class Main {
 
     }
 
- */
+    */
 
-/*
-// 快排、归并
+    /*
+    // 快排、归并
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String s = bufferedReader.readLine();
@@ -78,10 +160,10 @@ public class Main {
         long res = BasicAlgorithms.numberOfReversedPairs(lst, 0, n - 1); // 逆序对计数
         System.out.println(res);
     }
- */
+    */
 
-/*
-// 快选
+    /*
+    // 快选
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] s = bufferedReader.readLine().split(" ");
@@ -99,10 +181,10 @@ public class Main {
         int ans = BasicAlgorithms.quickChoose(lst, 0, n - 1, k); // 快速排序
         System.out.println(ans);
     }
- */
+    */
 
-/*
-// 高精度算法
+    /*
+    // 高精度算法
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String a = bufferedReader.readLine();
@@ -115,6 +197,6 @@ public class Main {
         System.out.println(c[0]);
         System.out.println(c[1]);
     }
- */
+    */
 
 }

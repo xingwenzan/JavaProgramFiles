@@ -3,7 +3,10 @@ package Algorithm.AlgorithmTemplate;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 // 基础算法模板/快速调用   // 未调好
 public class BasicAlgorithms {
@@ -122,17 +125,14 @@ public class BasicAlgorithms {
 
 
     // 二分 O() https://www.acwing.com/problem/content/description/791/
-    // 无法调用，思路整理
-    // 判断函数
-    public static boolean chick(int l, int r) {
-        return true;
-    }
-
+    // 整数二分
     // 二分 - 左边为 true 版本，判断右边界
-    public static int dichotomizeLeftIsTrue(int l, int r, int[] lst) {
-        int mid = l + r + 1 >> 1;
+    @Contract(pure = true)
+    public static int dichotomizeLeft(int x, int @NotNull [] lst) {
+        int l = 0, r = lst.length - 1;
         while (l < r) {
-            if (chick(l, r)) {
+            int mid = l + r + 1 >> 1;
+            if (lst[mid] <= x) {
                 l = mid;
             } else {
                 r = mid - 1;
@@ -141,17 +141,44 @@ public class BasicAlgorithms {
         return r;
     }
 
+
+    // 二分 O() https://www.acwing.com/problem/content/description/791/
+    // 整数二分
     // 二分 - 右边为 true 版本，判断左边界
-    public static int dichotomizeRightIsTrue(int l, int r, int[] lst) {
-        int mid = l + r >> 1;
+    @Contract(pure = true)
+    public static int dichotomizeRight(int x, int @NotNull [] lst) {
+        int l = 0, r = lst.length - 1;
         while (l < r) {
-            if (chick(l, r)) {
+            int mid = l + r >> 1;
+            if (lst[mid] >= x) {
                 r = mid;
             } else {
                 l = mid + 1;
             }
         }
         return l;
+    }
+
+
+    // 二分 O() https://www.acwing.com/activity/content/problem/content/824/
+    // 小数二分
+    public static String dichotomizeFloat(double num, int root, int digit) {
+        double l = -100, r = 100;
+        while (r - l > Math.pow(10, (-digit - 2))) {
+            double mid = (l + r) / 2;
+            if (Math.pow(mid, root) <= num) {
+                l = mid;
+            } else {
+                r = mid;
+            }
+        }
+        String model = "0.";
+        for (int i = 0; i < digit; i++) {
+            model += "0";
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(model);
+        String ans = decimalFormat.format(l);
+        return ans;
     }
 
 
@@ -325,11 +352,24 @@ public class BasicAlgorithms {
 
 
     // 前缀和 O() https://www.acwing.com/problem/content/797/
+    // String 输入版
     public static int @NotNull [] prefixSum(String @NotNull [] lst) {
         int[] ints = new int[lst.length + 1];
         ints[0] = 0;
         for (int i = 1; i <= lst.length; i++) {
             ints[i] = ints[i - 1] + Integer.parseInt(lst[i - 1]);
+        }
+        return ints;
+    }
+
+
+    // 前缀和 O() https://www.acwing.com/problem/content/797/
+    // int 输入版
+    public static int @NotNull [] prefixSum(int @NotNull [] lst) {
+        int[] ints = new int[lst.length + 1];
+        ints[0] = 0;
+        for (int i = 1; i <= lst.length; i++) {
+            ints[i] = ints[i - 1] + lst[i - 1];
         }
         return ints;
     }
@@ -352,4 +392,22 @@ public class BasicAlgorithms {
     }
 
 
+    // 离散化 O() https://www.acwing.com/problem/content/804/
+    // 本体: 排序 + 去重
+    // 查找: 二分
+    // 应用: 前缀和（本题）
+    public static int[] discretization(int[] lst) {
+        // 排序部分   Java 快排最快
+        quickSort(lst, 0, lst.length - 1); // 3364 ms
+        //mergeSort(lst,0,lst.length-1); // 3417 ms
+        //Arrays.sort(lst); // 3498 ms
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < lst.length; i++) {
+            if (i == 0 || (i != 0 && lst[i] != lst[i - 1])) {
+                list.add(lst[i]);
+            }
+        }
+        int[] out = list.stream().mapToInt(Integer::valueOf).toArray();
+        return out;
+    }
 }
