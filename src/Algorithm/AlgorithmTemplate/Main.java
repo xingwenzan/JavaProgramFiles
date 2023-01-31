@@ -3,11 +3,24 @@ package Algorithm.AlgorithmTemplate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Main {
+    // 区间合并
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[][] lst = new int[n][2];
+        String[] strings;
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            lst[i][0] = Integer.parseInt(strings[0]);
+            lst[i][1] = Integer.parseInt(strings[1]);
+        }
+        int[][] ans = BasicAlgorithms.interval_merge(lst);
+        System.out.println(ans.length);
+    }
+
+    /*
     // 离散化
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -47,6 +60,8 @@ public class Main {
             System.out.println(lst[r] - lst[l - 1]);
         }
     }
+
+     */
 
     /*
     // 小数二分

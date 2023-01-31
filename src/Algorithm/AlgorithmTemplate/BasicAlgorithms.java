@@ -377,7 +377,7 @@ public class BasicAlgorithms {
 
     // 差分 O() https://www.acwing.com/problem/content/799/
     @Contract("_, _, _, _ -> param1")
-    public static int @NotNull [] finiteDifference(int[] lst, int l, int r, int n) {
+    public static int @NotNull [] finiteDifference(int @NotNull [] lst, int l, int r, int n) {
         lst[l] += n;
         lst[r + 1] -= n;
         return lst;
@@ -401,13 +401,44 @@ public class BasicAlgorithms {
         quickSort(lst, 0, lst.length - 1); // 3364 ms
         //mergeSort(lst,0,lst.length-1); // 3417 ms
         //Arrays.sort(lst); // 3498 ms
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> ans = new ArrayList<Integer>();
         for (int i = 0; i < lst.length; i++) {
             if (i == 0 || (i != 0 && lst[i] != lst[i - 1])) {
-                list.add(lst[i]);
+                ans.add(lst[i]);
             }
         }
-        int[] out = list.stream().mapToInt(Integer::valueOf).toArray();
+        int[] out = ans.stream().mapToInt(Integer::valueOf).toArray();
+        return out;
+    }
+
+
+    // 区间合并 O() https://www.acwing.com/problem/content/805/
+    public static int[][] interval_merge(int[][] lst) {
+        Arrays.sort(lst, (e1, e2) -> (e1[0] == e2[0] ? (e1[1] - e2[1]) : (e1[0] - e2[0]))); // "->"lambda表达式符号，其将参数与实现隔开
+//        Arrays.sort(lst, new Comparator<int[]>() {
+//            // 匿名内部类
+//            @Override
+//            public int compare(int[] e1, int[] e2) {
+//
+//                // 如果第一列元素相等，则比较第二列元素
+//                if (e1[0]==e2[0]) return e1[1]-e2[1];   // e1[1]-e2[1]表示对于第二列元素进行升序排序
+//                return e1[0]-e2[0];                     // e1[0]-e2[0]表示对于第一列元素进行升序排序
+//            }
+//        });
+        List<int[]> ans = new ArrayList<>();
+        ans.add(lst[0]);
+        for (int[] x : lst) {
+            if (x[0] <= ans.get(ans.size() - 1)[1]) {
+                if (x[1] > ans.get(ans.size() - 1)[1]) {
+                    ans.get(ans.size() - 1)[1] = x[1];
+                } else {
+                    continue;
+                }
+            } else {
+                ans.add(x);
+            }
+        }
+        int[][] out = ans.toArray(new int[ans.size()][]);
         return out;
     }
 }
