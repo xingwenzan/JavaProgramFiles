@@ -1,4 +1,4 @@
-package Algorithm.AlgorithmTemplate;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // 基础算法模板/快速调用   // 未调好
-public class BasicAlgorithms {
+public class BasicAlgorithmsTemplate {
 
     // 快速排序 O(nlogn) https://www.acwing.com/problem/content/787/
     public static void quickSort(int[] lst, int l, int r) {

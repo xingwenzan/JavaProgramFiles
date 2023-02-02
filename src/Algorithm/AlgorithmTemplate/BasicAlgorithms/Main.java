@@ -1,4 +1,7 @@
-package Algorithm.AlgorithmTemplate;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms;
+/**
+ * 用于测试基础算法的类
+ */
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +19,7 @@ public class Main {
             lst[i][0] = Integer.parseInt(strings[0]);
             lst[i][1] = Integer.parseInt(strings[1]);
         }
-        int[][] ans = BasicAlgorithms.interval_merge(lst);
+        int[][] ans = BasicAlgorithmsTemplate.interval_merge(lst);
         System.out.println(ans.length);
     }
 
