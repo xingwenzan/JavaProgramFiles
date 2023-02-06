@@ -1,6 +1,8 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SingleList {
     // 单链表 https://www.acwing.com/problem/content/828/
@@ -25,11 +27,22 @@ public class SingleList {
         pointers[k] = pointers[pointers[k]];
     }
 
-    public void out() {
+    public void printOut() {
         int i = pointers[0];
         while (i != 0) {
             System.out.printf("%d ", values[i]);
             i = pointers[i];
         }
+    }
+
+    public int[] listOut() {
+        List<Integer> ans = new ArrayList<Integer>();
+        int pointer = pointers[0];
+        while (pointer != 0) {
+            ans.add(values[pointer]);
+            pointer = pointers[pointer];
+        }
+        int[] out = ans.stream().mapToInt(Integer::valueOf).toArray();
+        return out;
     }
 }
