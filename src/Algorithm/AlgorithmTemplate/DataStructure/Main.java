@@ -12,38 +12,62 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int M = Integer.parseInt(bufferedReader.readLine());
-        DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
-        doubleLinkedList.initialize();
+        Stack stack = new Stack();
         String[] strings;
         for (int i = 0; i < M; i++) {
             strings = bufferedReader.readLine().split(" ");
-            if (Objects.equals(strings[0], "L")) {
-                int k = 0;
+            if (Objects.equals(strings[0], "push")) {
                 int x = Integer.parseInt(strings[1]);
-                doubleLinkedList.add(k, x);
-            } else if (Objects.equals(strings[0], "R")) {
-                int k = doubleLinkedList.leftPointers[doubleLinkedList.N - 1];
-                int x = Integer.parseInt(strings[1]);
-                doubleLinkedList.add(k, x);
-            } else if (Objects.equals(strings[0], "IR")) {
-                int k = Integer.parseInt(strings[1]);
-                int x = Integer.parseInt(strings[2]);
-                doubleLinkedList.add(k, x);
-            } else if (Objects.equals(strings[0], "IL")) {
-                int k = doubleLinkedList.leftPointers[Integer.parseInt(strings[1])];
-                int x = Integer.parseInt(strings[2]);
-                doubleLinkedList.add(k, x);
+                stack.push(x);
+            } else if (Objects.equals(strings[0], "pop")) {
+                stack.pop();
+            } else if (Objects.equals(strings[0], "empty")) {
+                if (stack.empty()) {
+                    System.out.println("YES");
+                } else {
+                    System.out.println("NO");
+                }
             } else {
-                int k = Integer.parseInt(strings[1]);
-                doubleLinkedList.drop(k);
+                System.out.println(stack.query());
             }
         }
 
-        int[] ans = doubleLinkedList.listLTR();
-        for (int an : ans) {
-            System.out.printf("%d ", an);
-        }
 
+        // 双链表
+//        DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
+//        doubleLinkedList.initialize();
+//        String[] strings;
+//        for (int i = 0; i < M; i++) {
+//            strings = bufferedReader.readLine().split(" ");
+//            if (Objects.equals(strings[0], "L")) {
+//                int k = 0;
+//                int x = Integer.parseInt(strings[1]);
+//                doubleLinkedList.add(k, x);
+//            } else if (Objects.equals(strings[0], "R")) {
+//                int k = doubleLinkedList.leftPointers[doubleLinkedList.N - 1];
+//                int x = Integer.parseInt(strings[1]);
+//                doubleLinkedList.add(k, x);
+//            } else if (Objects.equals(strings[0], "IR")) {
+//                int k = Integer.parseInt(strings[1]);
+//                int x = Integer.parseInt(strings[2]);
+//                doubleLinkedList.add(k, x);
+//            } else if (Objects.equals(strings[0], "IL")) {
+//                int k = doubleLinkedList.leftPointers[Integer.parseInt(strings[1])];
+//                int x = Integer.parseInt(strings[2]);
+//                doubleLinkedList.add(k, x);
+//            } else {
+//                int k = Integer.parseInt(strings[1]);
+//                doubleLinkedList.drop(k);
+//            }
+//        }
+//
+//        int[] ans = doubleLinkedList.listLTR();
+//        for (int an : ans) {
+//            System.out.printf("%d ", an);
+//        }
+
+
+        // 单链表
 //        SingleList singleList = new SingleList();
 //        singleList.initialize();
 //        String[] strings;
