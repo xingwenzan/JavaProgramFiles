@@ -1,4 +1,4 @@
-package Algorithm.AlgorithmTemplate.BasicAlgorithms.DoublePointer;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms.SingleTemplate.DoublePointer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

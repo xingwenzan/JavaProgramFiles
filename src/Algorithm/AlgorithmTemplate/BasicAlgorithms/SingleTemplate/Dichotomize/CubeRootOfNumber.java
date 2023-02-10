@@ -1,4 +1,4 @@
-package Algorithm.AlgorithmTemplate.BasicAlgorithms.Dichotomize;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms.SingleTemplate.Dichotomize;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,6 +1,7 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
 public class Stack {
+    // 模拟栈 https://www.acwing.com/problem/content/830/
     int N = 100010;
     int[] values = new int[N];
     int pointer = 0;
