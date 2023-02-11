@@ -3,7 +3,7 @@ package Algorithm.AlgorithmTemplate.DataStructure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * 用于测试数据结构的类
@@ -11,7 +11,29 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        //int M = Integer.parseInt(bufferedReader.readLine());
+        int M = Integer.parseInt(bufferedReader.readLine());
+        Queue queue = new Queue();
+        String[] strings;
+        for (int i = 0; i < M; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            if (Objects.equals(strings[0], "push")) {
+                int x = Integer.parseInt(strings[1]);
+                queue.push(x);
+            } else if (Objects.equals(strings[0], "pop")) {
+                queue.pop();
+            } else if (Objects.equals(strings[0], "empty")) {
+                if (queue.empty()) {
+                    System.out.println("YES");
+                } else {
+                    System.out.println("NO");
+                }
+            } else {
+                System.out.println(queue.query());
+            }
+        }
+
+        /*
+        // 表达式求值
         String s = bufferedReader.readLine();
         SpecialStack specialStack = new SpecialStack();
         HashMap<Character, Integer> priority = new HashMap<Character, Integer>();
@@ -47,6 +69,9 @@ public class Main {
             specialStack.eval();
         }
         System.out.println(specialStack.intStack.query());
+
+         */
+
 
         /*
         // 模拟栈
