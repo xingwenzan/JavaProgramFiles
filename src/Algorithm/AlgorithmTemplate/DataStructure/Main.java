@@ -3,7 +3,6 @@ package Algorithm.AlgorithmTemplate.DataStructure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 
 /**
  * 用于测试数据结构的类
@@ -11,6 +10,15 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(bufferedReader.readLine());
+        String[] lst = bufferedReader.readLine().split(" ");
+        MonotonicStack monotonicStack = new MonotonicStack();
+        for (int i = 0; i < N; i++) {
+            System.out.printf("%d ", monotonicStack.monotonicPush(Integer.parseInt(lst[i])));
+        }
+
+
+        /*
         int M = Integer.parseInt(bufferedReader.readLine());
         Queue queue = new Queue();
         String[] strings;
@@ -31,6 +39,9 @@ public class Main {
                 System.out.println(queue.query());
             }
         }
+
+         */
+
 
         /*
         // 表达式求值
