@@ -10,12 +10,40 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] nk = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(nk[0]);
+        int k = Integer.parseInt(nk[1]);
+        SlidingWindow slidingWindow = new SlidingWindow();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] lst = new int[n];
+        for (int i = 0; i < n; i++) {
+            lst[i] = Integer.parseInt(strings[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            slidingWindow.windowMonotonicPush(lst, i, true, k);
+            if (i >= k - 1) {
+                System.out.printf("%d ", lst[slidingWindow.queryHead()]);
+            }
+        }
+        slidingWindow.init();
+        System.out.println();
+        for (int i = 0; i < n; i++) {
+            slidingWindow.windowMonotonicPush(lst, i, false, k);
+            if (i >= k - 1) {
+                System.out.printf("%d ", lst[slidingWindow.queryHead()]);
+            }
+        }
+
+
+        /*
         int N = Integer.parseInt(bufferedReader.readLine());
         String[] lst = bufferedReader.readLine().split(" ");
         MonotonicStack monotonicStack = new MonotonicStack();
         for (int i = 0; i < N; i++) {
             System.out.printf("%d ", monotonicStack.monotonicPush(Integer.parseInt(lst[i])));
         }
+
+         */
 
 
         /*
