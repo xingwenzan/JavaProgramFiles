@@ -1,8 +1,6 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * 用于测试数据结构的类
@@ -10,6 +8,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        // KMP字符串
+        KMP kmp = new KMP();
+        int N = Integer.parseInt(bufferedReader.readLine());
+        String P = bufferedReader.readLine();
+        int M = Integer.parseInt(bufferedReader.readLine());
+        String S = bufferedReader.readLine();
+        kmp.gertNextArray(P);
+        int[] ans = kmp.compare(S);
+        for (int i = 0; i < ans.length; i++) {
+            //System.out.printf("%d ",ans[i]);
+            bufferedWriter.write(ans[i] + " ");
+        }
+        bufferedWriter.flush();
+
+        /*
+        // 滑动窗口
         String[] nk = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(nk[0]);
         int k = Integer.parseInt(nk[1]);
@@ -34,8 +49,11 @@ public class Main {
             }
         }
 
+         */
+
 
         /*
+        // 单调栈
         int N = Integer.parseInt(bufferedReader.readLine());
         String[] lst = bufferedReader.readLine().split(" ");
         MonotonicStack monotonicStack = new MonotonicStack();
@@ -47,6 +65,7 @@ public class Main {
 
 
         /*
+        // 模拟队列
         int M = Integer.parseInt(bufferedReader.readLine());
         Queue queue = new Queue();
         String[] strings;
