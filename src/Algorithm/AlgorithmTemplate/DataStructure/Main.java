@@ -1,6 +1,9 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 /**
  * 用于测试数据结构的类
@@ -8,7 +11,18 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        int num = Integer.parseInt(bufferedReader.readLine());
+        Trie trie = new Trie();
+        for (int i = 0; i < num; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            if (Objects.equals(strings[0], "I")) {
+                trie.insert(strings[1]);
+            } else {
+                System.out.println(trie.query(strings[1]));
+            }
+        }
+        /*
         // KMP字符串
         KMP kmp = new KMP();
         int N = Integer.parseInt(bufferedReader.readLine());
@@ -22,6 +36,8 @@ public class Main {
             bufferedWriter.write(ans[i] + " ");
         }
         bufferedWriter.flush();
+
+         */
 
         /*
         // 滑动窗口
