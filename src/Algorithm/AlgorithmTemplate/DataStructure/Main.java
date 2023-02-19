@@ -3,7 +3,6 @@ package Algorithm.AlgorithmTemplate.DataStructure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 
 /**
  * 用于测试数据结构的类
@@ -13,6 +12,21 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         int num = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        // 最大异或对
+        MaximumXorPair maximumXorPair = new MaximumXorPair();
+        for (int i = 0; i < num; i++) {
+            maximumXorPair.insert(Integer.parseInt(strings[i]));
+        }
+        int out = 0;
+        for (int i = 0; i < num; i++) {
+            out = Math.max(out, maximumXorPair.queryMaximumXorPair(Integer.parseInt(strings[i])));
+        }
+        System.out.println(out);
+
+
+        /*
+        // Trie字符串统计
         Trie trie = new Trie();
         for (int i = 0; i < num; i++) {
             String[] strings = bufferedReader.readLine().split(" ");
@@ -22,6 +36,10 @@ public class Main {
                 System.out.println(trie.query(strings[1]));
             }
         }
+
+         */
+
+
         /*
         // KMP字符串
         KMP kmp = new KMP();
