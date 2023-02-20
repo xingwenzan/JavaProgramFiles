@@ -11,9 +11,30 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        // 合并集合
+        String[] strings = bufferedReader.readLine().split(" ");
+        int m = Integer.parseInt(strings[1]);
+        MergeCollection mergeCollection = new MergeCollection();
+        mergeCollection.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int x = Integer.parseInt(strings[1]);
+            int y = Integer.parseInt(strings[2]);
+            if (strings[0].equals("M")) {
+                mergeCollection.merge(x, y);
+            } else {
+                if (mergeCollection.DetermineSetSameOrNot(x, y)) {
+                    System.out.println("Yes");
+                } else {
+                    System.out.println("No");
+                }
+            }
+        }
+
+        /*
+        // 最大异或对
         int num = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
-        // 最大异或对
         MaximumXorPair maximumXorPair = new MaximumXorPair();
         for (int i = 0; i < num; i++) {
             maximumXorPair.insert(Integer.parseInt(strings[i]));
@@ -23,6 +44,8 @@ public class Main {
             out = Math.max(out, maximumXorPair.queryMaximumXorPair(Integer.parseInt(strings[i])));
         }
         System.out.println(out);
+
+         */
 
 
         /*
