@@ -11,23 +11,28 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-        // 合并集合
+        // 合并集合、连通块中点的数量
         String[] strings = bufferedReader.readLine().split(" ");
         int m = Integer.parseInt(strings[1]);
-        MergeCollection mergeCollection = new MergeCollection();
-        mergeCollection.init();
+        UnionFindSet unionFindSet = new UnionFindSet();
+        unionFindSet.init();
         for (int i = 0; i < m; i++) {
             strings = bufferedReader.readLine().split(" ");
-            int x = Integer.parseInt(strings[1]);
-            int y = Integer.parseInt(strings[2]);
-            if (strings[0].equals("M")) {
-                mergeCollection.merge(x, y);
-            } else {
-                if (mergeCollection.DetermineSetSameOrNot(x, y)) {
+            if (strings[0].equals("C")) {
+                int x = Integer.parseInt(strings[1]);
+                int y = Integer.parseInt(strings[2]);
+                unionFindSet.merge(x, y);
+            } else if (strings[0].equals("Q1")) {
+                int x = Integer.parseInt(strings[1]);
+                int y = Integer.parseInt(strings[2]);
+                if (unionFindSet.determineSetSameOrNot(x, y)) {
                     System.out.println("Yes");
                 } else {
                     System.out.println("No");
                 }
+            } else {
+                int x = Integer.parseInt(strings[1]);
+                System.out.println(unionFindSet.NumberOfRendezvousPoints(x));
             }
         }
 
