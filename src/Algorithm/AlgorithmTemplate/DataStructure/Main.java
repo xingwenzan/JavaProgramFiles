@@ -11,6 +11,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] strings = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(strings[0]);
+        int K = Integer.parseInt(strings[1]);
+        UnionFindSet unionFindSet = new UnionFindSet();
+        unionFindSet.init();
+        int wrong = 0;
+        for (int i = 0; i < K; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int mode = Integer.parseInt(strings[0]);
+            int X = Integer.parseInt(strings[1]);
+            int Y = Integer.parseInt(strings[2]);
+            if (X > N || Y > N) {
+                wrong++;
+            } else {
+                wrong += unionFindSet.misjudgmentOfFoodChain(X, Y, mode);
+            }
+        }
+        System.out.println(wrong);
+
+
+        /*
         // 合并集合、连通块中点的数量
         String[] strings = bufferedReader.readLine().split(" ");
         int m = Integer.parseInt(strings[1]);
@@ -35,6 +56,8 @@ public class Main {
                 System.out.println(unionFindSet.NumberOfRendezvousPoints(x));
             }
         }
+
+         */
 
         /*
         // 最大异或对
