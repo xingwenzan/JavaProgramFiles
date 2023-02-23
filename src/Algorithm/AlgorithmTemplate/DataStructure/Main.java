@@ -12,6 +12,19 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         String[] strings = bufferedReader.readLine().split(" ");
+        // 堆排序
+        int m = Integer.parseInt(strings[1]);
+        strings = bufferedReader.readLine().split(" ");
+        Heap heap = new Heap();
+        heap.init(strings);
+        for (int i = 0; i < m; i++) {
+            System.out.printf("%d ", heap.minValue());
+            heap.deleteMinValue();
+        }
+
+
+        /*
+        // 食物链
         int N = Integer.parseInt(strings[0]);
         int K = Integer.parseInt(strings[1]);
         UnionFindSet unionFindSet = new UnionFindSet();
@@ -29,6 +42,8 @@ public class Main {
             }
         }
         System.out.println(wrong);
+
+         */
 
 
         /*

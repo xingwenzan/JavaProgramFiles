@@ -20,13 +20,13 @@ public class UnionFindSet {
         Arrays.fill(childrenToRootDistance, 0);
     }
 
-    public int queryForefatherNode(int x) {
-        if (fatherNode[x] != x) {
-            int tmp = queryForefatherNode(fatherNode[x]);
-            childrenToRootDistance[x] += childrenToRootDistance[fatherNode[x]];
-            fatherNode[x] = tmp;
+    public int queryForefatherNode(int num) {
+        if (fatherNode[num] != num) {
+            int tmp = queryForefatherNode(fatherNode[num]);
+            childrenToRootDistance[num] += childrenToRootDistance[fatherNode[num]];
+            fatherNode[num] = tmp;
         }
-        return fatherNode[x];
+        return fatherNode[num];
     }
 
 
