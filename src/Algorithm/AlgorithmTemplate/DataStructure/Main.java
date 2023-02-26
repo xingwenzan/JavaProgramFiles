@@ -11,7 +11,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] strings = bufferedReader.readLine().split(" ");
+        //String[] strings = bufferedReader.readLine().split(" ");
+        // 模拟堆
+        int N = Integer.parseInt(bufferedReader.readLine());
+        Heap heap = new Heap();
+        for (int i = 0; i < N; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            if (strings[0].equals("I")) {
+                heap.insert(Integer.parseInt(strings[1]));
+            } else if (strings[0].equals("PM")) {
+                System.out.println(heap.minValue());
+            } else if (strings[0].equals("DM")) {
+                heap.deleteMinValue();
+            } else if (strings[0].equals("D")) {
+                heap.deleteValueByInputNumber(Integer.parseInt(strings[1]));
+            } else {
+                heap.updataByInputNumber(Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+            }
+        }
+
+
+        /*
         // 堆排序
         int m = Integer.parseInt(strings[1]);
         strings = bufferedReader.readLine().split(" ");
@@ -21,6 +41,8 @@ public class Main {
             System.out.printf("%d ", heap.minValue());
             heap.deleteMinValue();
         }
+
+         */
 
 
         /*
