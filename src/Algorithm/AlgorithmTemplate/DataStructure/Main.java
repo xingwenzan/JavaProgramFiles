@@ -1,5 +1,7 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
+import Algorithm.AlgorithmTemplate.DataStructure.AnalogHashTable.OpenAddressing;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,6 +14,30 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         //String[] strings = bufferedReader.readLine().split(" ");
+        // 模拟散列表
+        //ZipperMethod zipperMethod = new ZipperMethod(); // 拉链法
+        //zipperMethod.init(); // 拉链法
+        OpenAddressing openAddressing = new OpenAddressing(); // 开放寻址法
+        openAddressing.init(); // 开放寻址法
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            if (strings[0].equals("I")) {
+                //zipperMethod.insert(Integer.parseInt(strings[1]));
+                openAddressing.insert(Integer.parseInt(strings[1])); // 开放寻址法
+            } else {
+                //boolean judge = zipperMethod.query(Integer.parseInt(strings[1])); // 拉链法
+                boolean judge = openAddressing.queryExist(Integer.parseInt(strings[1])); // 开放寻址法
+                if (judge) {
+                    System.out.println("Yes");
+                } else {
+                    System.out.println("No");
+                }
+            }
+        }
+
+        /*
         // 模拟堆
         int N = Integer.parseInt(bufferedReader.readLine());
         Heap heap = new Heap();
@@ -29,6 +55,8 @@ public class Main {
                 heap.updataByInputNumber(Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
             }
         }
+
+         */
 
 
         /*
