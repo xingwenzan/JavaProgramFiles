@@ -1,7 +1,5 @@
 package Algorithm.AlgorithmTemplate.DataStructure;
 
-import Algorithm.AlgorithmTemplate.DataStructure.AnalogHashTable.OpenAddressing;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +12,26 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         //String[] strings = bufferedReader.readLine().split(" ");
+        // 字符串哈希
+        String[] strings = bufferedReader.readLine().split(" ");
+        int m = Integer.parseInt(strings[1]);
+        String s = bufferedReader.readLine();
+        StringHash stringHash = new StringHash();
+        stringHash.init(s);
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int l1 = Integer.parseInt(strings[0]);
+            int r1 = Integer.parseInt(strings[1]);
+            int l2 = Integer.parseInt(strings[2]);
+            int r2 = Integer.parseInt(strings[3]);
+            if (stringHash.stringToHashValue(l1, r1) == stringHash.stringToHashValue(l2, r2)) {
+                System.out.println("Yes");
+            } else {
+                System.out.println("No");
+            }
+        }
+
+        /*
         // 模拟散列表
         //ZipperMethod zipperMethod = new ZipperMethod(); // 拉链法
         //zipperMethod.init(); // 拉链法
@@ -36,6 +54,8 @@ public class Main {
                 }
             }
         }
+
+         */
 
         /*
         // 模拟堆
