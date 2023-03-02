@@ -9,6 +9,8 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bufferedReader.readLine());
         DFS dfs = new DFS();
-        dfs.enumOutput(1, n);
+        //dfs.enumOutput1D(1, n); // 排列数字
+        dfs.init2D(n);
+        dfs.enumOutput2D(0); // n-皇后问题
     }
 }
