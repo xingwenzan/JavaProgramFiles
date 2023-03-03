@@ -7,10 +7,27 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // BFS
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        int[][] mazeMap = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j < m; j++) {
+                mazeMap[i][j] = Integer.parseInt(strings[j]);
+            }
+        }
+        BFS bfs = new BFS();
+        System.out.println(bfs.walkMaze(mazeMap));
+        /*
+        // DFS
         int n = Integer.parseInt(bufferedReader.readLine());
         DFS dfs = new DFS();
         //dfs.enumOutput1D(1, n); // 排列数字
         dfs.init2D(n);
         dfs.enumOutput2D(0); // n-皇后问题
+
+         */
     }
 }
