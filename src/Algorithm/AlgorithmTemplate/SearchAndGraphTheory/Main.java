@@ -7,7 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // BFS
+        // BFS - 八数码
+        String[] strings = bufferedReader.readLine().split(" ");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (String s : strings) {
+            stringBuffer.append(s);
+        }
+        String start = stringBuffer.toString();
+        BFS bfs = new BFS();
+        System.out.println(bfs.eightDigits(start));
+
+
+        /*
+        // BFS - 走迷宫
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
@@ -20,6 +32,10 @@ public class Main {
         }
         BFS bfs = new BFS();
         System.out.println(bfs.walkMaze(mazeMap));
+
+         */
+
+
         /*
         // DFS
         int n = Integer.parseInt(bufferedReader.readLine());
