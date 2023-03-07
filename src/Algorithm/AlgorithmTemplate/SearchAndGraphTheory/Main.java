@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        PriorityTraversalOfTreesAndGraphs p = new PriorityTraversalOfTreesAndGraphs();
+        p.dfsInit();
+        String[] strings;
+        for (int i = 0; i < n - 1; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int father = Integer.parseInt(strings[0]);
+            int son = Integer.parseInt(strings[1]);
+            p.add(father, son);
+            p.add(son, father);
+        }
+        System.out.println(p.centerOfGravityOfTree(n));
+
+
+        /*
         // BFS - 八数码
         String[] strings = bufferedReader.readLine().split(" ");
         StringBuffer stringBuffer = new StringBuffer();
@@ -16,6 +31,8 @@ public class Main {
         String start = stringBuffer.toString();
         BFS bfs = new BFS();
         System.out.println(bfs.eightDigits(start));
+
+         */
 
 
         /*
