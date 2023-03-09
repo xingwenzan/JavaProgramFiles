@@ -7,6 +7,29 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 有向图的拓扑序列
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        TopologicalSort topologicalSort = new TopologicalSort();
+        topologicalSort.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int father = Integer.parseInt(strings[0]);
+            int son = Integer.parseInt(strings[1]);
+            topologicalSort.add(father, son);
+        }
+        if (topologicalSort.topology(n)) {
+            for (int i = 0; i < n; i++) {
+                System.out.printf("%d ", topologicalSort.queue[i]);
+            }
+        } else {
+            System.out.println(-1);
+        }
+
+
+
+        /*
         // 树与图的广度优先遍历 图中点的层次
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -20,6 +43,8 @@ public class Main {
             p.add(father, son);
         }
         System.out.println(p.bfs(1, n));
+
+         */
 
         /*
         // 树与图的深度优先遍历 树的重心
