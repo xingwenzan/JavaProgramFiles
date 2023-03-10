@@ -7,6 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // Dijkstra求最短路 I
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        Dijkstra dijkstra = new Dijkstra();
+        dijkstra.initI();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            int length = Integer.parseInt(strings[2]);
+            dijkstra.add(start, end, length);
+        }
+        System.out.println(dijkstra.dijkstraI(n));
+
+
+        /*
         // 有向图的拓扑序列
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -26,6 +43,8 @@ public class Main {
         } else {
             System.out.println(-1);
         }
+
+         */
 
 
 
