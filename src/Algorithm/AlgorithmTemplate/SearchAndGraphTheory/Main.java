@@ -7,20 +7,24 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // Dijkstra求最短路 I
+        // Dijkstra求最短路 I\II
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
         Dijkstra dijkstra = new Dijkstra();
-        dijkstra.initI();
+        //dijkstra.initI(); // Dijkstra求最短路 I
+        dijkstra.initII(); // Dijkstra求最短路 II
         for (int i = 0; i < m; i++) {
             strings = bufferedReader.readLine().split(" ");
             int start = Integer.parseInt(strings[0]);
             int end = Integer.parseInt(strings[1]);
             int length = Integer.parseInt(strings[2]);
-            dijkstra.add(start, end, length);
+            //dijkstra.addI(start, end, length); // Dijkstra求最短路 I
+            dijkstra.addII(start, end, length); // Dijkstra求最短路 II
         }
-        System.out.println(dijkstra.dijkstraI(n));
+        //int ans = dijkstra.dijkstraI(n); // Dijkstra求最短路 I
+        int ans = dijkstra.dijkstraII(n); // Dijkstra求最短路 II
+        System.out.println(ans);
 
 
         /*
