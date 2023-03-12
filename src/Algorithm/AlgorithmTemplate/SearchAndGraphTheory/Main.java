@@ -7,6 +7,28 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 有边数限制的最短路
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        int k = Integer.parseInt(strings[2]);
+        BellmanFord bellmanFord = new BellmanFord();
+        bellmanFord.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            int lenght = Integer.parseInt(strings[2]);
+            bellmanFord.add(start, end, lenght);
+        }
+        if (bellmanFord.bellmanFord(n, m, k)) {
+            System.out.println(bellmanFord.edge(n));
+        } else {
+            System.out.println("impossible");
+        }
+
+
+        /*
         // Dijkstra求最短路 I\II
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -25,6 +47,8 @@ public class Main {
         //int ans = dijkstra.dijkstraI(n); // Dijkstra求最短路 I
         int ans = dijkstra.dijkstraII(n); // Dijkstra求最短路 II
         System.out.println(ans);
+
+         */
 
 
         /*
