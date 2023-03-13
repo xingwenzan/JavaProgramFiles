@@ -8,8 +8,8 @@ public class Dijkstra {
     // Dijkstra求最短路 II 堆优化版 https://www.acwing.com/problem/content/852/
     int NI = 510; // Dijkstra求最短路 I
     int NII = 2 * ((int) 1e5 + 10); // Dijkstra求最短路 II
-    int infI = 1 << 29;
-    int infII = 1 << 30;
+
+    int inf = (int) 1e9 + 10;
     int[][] adjacencyMatrix = new int[NI][NI]; // Dijkstra求最短路 I
     int[] distance;
     boolean[] state;
@@ -22,20 +22,20 @@ public class Dijkstra {
     public void initI() { // Dijkstra求最短路 I
         distance = new int[NI];
         state = new boolean[NI];
-        Arrays.fill(distance, infI);
+        Arrays.fill(distance, inf);
         Arrays.fill(state, false);
         for (int i = 0; i < NI; i++) {
-            Arrays.fill(adjacencyMatrix[i], infI);
+            Arrays.fill(adjacencyMatrix[i], inf);
         }
     }
 
     public void initII() { // Dijkstra求最短路 II
         distance = new int[NII];
         state = new boolean[NII];
-        Arrays.fill(distance, infII);
+        Arrays.fill(distance, inf);
         Arrays.fill(state, false);
         Arrays.fill(head, -1);
-        Arrays.fill(weight, infII);
+        Arrays.fill(weight, inf);
         distance[1] = 0;
     }
 

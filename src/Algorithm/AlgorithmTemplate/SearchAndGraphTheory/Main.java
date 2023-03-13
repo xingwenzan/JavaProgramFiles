@@ -7,22 +7,27 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 有边数限制的最短路
+        // 有边数限制的最短路\spfa求最短路
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
-        int k = Integer.parseInt(strings[2]);
-        BellmanFord bellmanFord = new BellmanFord();
-        bellmanFord.init();
+//        int k = Integer.parseInt(strings[2]);
+        SPFA spfa = new SPFA(); // spfa求最短路
+        spfa.init(); // spfa求最短路
+//        BellmanFord bellmanFord = new BellmanFord(); // 有边数限制的最短路
+//        bellmanFord.init(); // 有边数限制的最短路
         for (int i = 0; i < m; i++) {
             strings = bufferedReader.readLine().split(" ");
             int start = Integer.parseInt(strings[0]);
             int end = Integer.parseInt(strings[1]);
             int lenght = Integer.parseInt(strings[2]);
-            bellmanFord.add(start, end, lenght);
+//            bellmanFord.add(start, end, lenght); // 有边数限制的最短路
+            spfa.add(start, end, lenght); // spfa求最短路
         }
-        if (bellmanFord.bellmanFord(n, m, k)) {
-            System.out.println(bellmanFord.edge(n));
+//        if (bellmanFord.bellmanFord(n, m, k)) { // 有边数限制的最短路
+//            System.out.println(bellmanFord.edge(n));
+        if (spfa.spfaI(1, n)) { // spfa求最短路
+            System.out.println(spfa.findShortestPath(n));
         } else {
             System.out.println("impossible");
         }
