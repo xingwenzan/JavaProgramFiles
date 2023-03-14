@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 有边数限制的最短路\spfa求最短路
+        // 有边数限制的最短路\spfa求最短路\spfa判断负环
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
 //        int k = Integer.parseInt(strings[2]);
-        SPFA spfa = new SPFA(); // spfa求最短路
+        SPFA spfa = new SPFA(); // spfa求最短路\spfa判断负环
         spfa.init(); // spfa求最短路
 //        BellmanFord bellmanFord = new BellmanFord(); // 有边数限制的最短路
 //        bellmanFord.init(); // 有边数限制的最短路
@@ -22,14 +22,19 @@ public class Main {
             int end = Integer.parseInt(strings[1]);
             int lenght = Integer.parseInt(strings[2]);
 //            bellmanFord.add(start, end, lenght); // 有边数限制的最短路
-            spfa.add(start, end, lenght); // spfa求最短路
+            spfa.add(start, end, lenght); // spfa求最短路\spfa判断负环
         }
 //        if (bellmanFord.bellmanFord(n, m, k)) { // 有边数限制的最短路
 //            System.out.println(bellmanFord.edge(n));
-        if (spfa.spfaI(1, n)) { // spfa求最短路
-            System.out.println(spfa.findShortestPath(n));
+//        if (spfa.spfa(1, n)) { // spfa求最短路
+//            System.out.println(spfa.findShortestPath(n));
+//        } else { // 有边数限制的最短路\spfa求最短路
+//            System.out.println("impossible");
+//        }
+        if (spfa.JudgmentNegativeRing(1, n)) { // spfa判断负环
+            System.out.println("Yes");
         } else {
-            System.out.println("impossible");
+            System.out.println("No");
         }
 
 

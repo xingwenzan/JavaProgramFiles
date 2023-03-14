@@ -6,8 +6,9 @@ import java.util.Queue;
 
 public class SPFA {
     // spfa求最短路 https://www.acwing.com/problem/content/853/
+    // spfa判断负环 https://www.acwing.com/problem/content/854/
     int N = (int) 1e5 + 10, inf = (int) 1e9 + 10, pointer = 0;
-    int[] head = new int[N], value = new int[N], nextPointer = new int[N], weight = new int[N], distance = new int[N];
+    int[] head = new int[N], value = new int[N], nextPointer = new int[N], weight = new int[N], distance = new int[N], sizeNum = new int[N];
     boolean[] state = new boolean[N];
     Queue<Integer> queue = new LinkedList<Integer>();
 
@@ -25,7 +26,7 @@ public class SPFA {
         head[father] = pointer++;
     }
 
-    public boolean spfaI(int start, int end) {
+    public boolean spfa(int start, int end) {
         distance[start] = 0;
         queue.offer(start);
         state[start] = true;
@@ -49,5 +50,33 @@ public class SPFA {
 
     public int findShortestPath(int num) {
         return distance[num];
+    }
+
+    public boolean JudgmentNegativeRing(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            distance[i] = 0;
+            queue.offer(i);
+            state[i] = true;
+        }
+        Integer fatherValue;
+        while (queue.peek() != null) {
+            fatherValue = queue.poll();
+            state[fatherValue] = false;
+            for (int nextSonPointer = head[fatherValue]; nextSonPointer != -1; nextSonPointer = nextPointer[nextSonPointer]) {
+                int sonValue = value[nextSonPointer];
+                if (distance[sonValue] > distance[fatherValue] + weight[nextSonPointer]) {
+                    distance[sonValue] = distance[fatherValue] + weight[nextSonPointer];
+                    sizeNum[sonValue] = sizeNum[fatherValue] + 1;
+                    if (sizeNum[sonValue] >= end - start + 1) {
+                        return true;
+                    }
+                    if (!state[sonValue]) {
+                        state[sonValue] = true;
+                        queue.offer(sonValue);
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
