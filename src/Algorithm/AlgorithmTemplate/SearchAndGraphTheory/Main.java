@@ -7,6 +7,35 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // Floyd求最短路
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        int k = Integer.parseInt(strings[2]);
+        Floyd floyd = new Floyd();
+        floyd.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            int lenght = Integer.parseInt(strings[2]);
+            floyd.add(start, end, lenght);
+        }
+        floyd.floyd(n);
+        for (int i = 0; i < k; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            int ans = floyd.find(start, end);
+            if (ans > 1e9 / 2) {
+                System.out.println("impossible");
+            } else {
+                System.out.println(ans);
+            }
+        }
+
+
+        /*
         // 有边数限制的最短路\spfa求最短路\spfa判断负环
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -36,6 +65,8 @@ public class Main {
         } else {
             System.out.println("No");
         }
+
+         */
 
 
         /*
