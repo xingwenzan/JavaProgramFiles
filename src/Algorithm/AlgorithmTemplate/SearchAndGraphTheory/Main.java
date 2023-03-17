@@ -7,6 +7,28 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // Prim算法求最小生成树
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        Prim prim = new Prim();
+        prim.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            int lenght = Integer.parseInt(strings[2]);
+            prim.add(start, end, lenght);
+        }
+        int out = prim.prim(n);
+        if (out == prim.inf) {
+            System.out.println("impossible");
+        } else {
+            System.out.println(out);
+        }
+
+
+        /*
         // Floyd求最短路
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -33,6 +55,8 @@ public class Main {
                 System.out.println(ans);
             }
         }
+
+         */
 
 
         /*
