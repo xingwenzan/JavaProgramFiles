@@ -17,8 +17,8 @@ public class Prim {
         }
     }
 
-    public void add(int start, int end, int lenght) {
-        adjacencyMatrix[start][end] = adjacencyMatrix[end][start] = Math.min(adjacencyMatrix[start][end], lenght);
+    public void add(int start, int end, int length) {
+        adjacencyMatrix[start][end] = adjacencyMatrix[end][start] = Math.min(adjacencyMatrix[start][end], length);
     }
 
     public int prim(int num) {
