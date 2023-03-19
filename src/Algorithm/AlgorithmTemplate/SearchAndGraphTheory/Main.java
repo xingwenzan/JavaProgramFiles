@@ -7,6 +7,28 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 染色法判定二分图
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]);
+        int m = Integer.parseInt(strings[1]);
+        StainingMethod stainingMethod = new StainingMethod();
+        stainingMethod.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            stainingMethod.add(start, end);
+            stainingMethod.add(end, start);
+        }
+        boolean judge = stainingMethod.judge(n);
+        if (judge) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+
+        /*
         // Kruskal算法求最小生成树
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -22,6 +44,8 @@ public class Main {
         }
         int out = kruskal.kruskal(n, m);
         System.out.println(out != kruskal.inf ? out : "impossible");
+
+         */
 
 
         /*
