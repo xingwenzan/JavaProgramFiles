@@ -7,6 +7,29 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] strings = bufferedReader.readLine().split(" ");
+        int manNum = Integer.parseInt(strings[0]);
+        int womanNum = Integer.parseInt(strings[1]);
+        int m = Integer.parseInt(strings[2]);
+        HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm();
+        hungarianAlgorithm.init();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int start = Integer.parseInt(strings[0]);
+            int end = Integer.parseInt(strings[1]);
+            hungarianAlgorithm.add(start, end);
+        }
+        int ans = 0;
+        for (int i = 1; i <= manNum; i++) {
+            hungarianAlgorithm.refresh();
+            if (hungarianAlgorithm.find(i)) {
+                ans++;
+            }
+        }
+        System.out.println(ans);
+
+
+        /*
         // 染色法判定二分图
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -26,6 +49,8 @@ public class Main {
         } else {
             System.out.println("No");
         }
+
+         */
 
 
         /*
