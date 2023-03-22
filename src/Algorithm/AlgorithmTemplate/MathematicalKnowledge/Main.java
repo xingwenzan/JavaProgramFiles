@@ -7,17 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 试除法判定质数
+        // 试除法判定质数、分解质因数
         PrimeNumber primeNumber = new PrimeNumber();
         int n = Integer.parseInt(bufferedReader.readLine());
         int x;
         for (int i = 0; i < n; i++) {
             x = Integer.parseInt(bufferedReader.readLine());
-            if (primeNumber.isPrime(x)) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+            // 分解质因数
+            primeNumber.primeFactor(x);
+            // 试除法判定质数
+//            if (primeNumber.isPrime(x)) {
+//                System.out.println("Yes");
+//            } else {
+//                System.out.println("No");
+//            }
         }
     }
 }
