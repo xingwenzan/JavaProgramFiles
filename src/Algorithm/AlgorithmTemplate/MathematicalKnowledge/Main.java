@@ -3,13 +3,23 @@ package Algorithm.AlgorithmTemplate.MathematicalKnowledge;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringJoiner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 约数个数、约数之和
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[] lst = new int[n];
+        for (int i = 0; i < n; i++) {
+            lst[i] = Integer.parseInt(bufferedReader.readLine());
+        }
+        ApproximateNumber approximateNumber = new ApproximateNumber();
+        System.out.println(approximateNumber.approximateCount(lst));   // 约数个数
+        System.out.println(approximateNumber.approximateSum(lst));   // 约数之和
+
+
+
+        /*
         // 筛质数、试除法求约数
 //        PrimeNumber primeNumber = new PrimeNumber();   // 筛质数
         ApproximateNumber approximateNumber = new ApproximateNumber();   // 试除法求约数
@@ -38,6 +48,9 @@ public class Main {
             }
             System.out.println();
         }
+
+         */
+
 
         /*
         // 试除法判定质数、分解质因数
