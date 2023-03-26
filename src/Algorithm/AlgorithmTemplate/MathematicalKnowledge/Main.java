@@ -7,13 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 约数个数、约数之和
+        // 约数个数、约数之和、最大公约数
         int n = Integer.parseInt(bufferedReader.readLine());
-        int[] lst = new int[n];
-        for (int i = 0; i < n; i++) {
-            lst[i] = Integer.parseInt(bufferedReader.readLine());
-        }
         ApproximateNumber approximateNumber = new ApproximateNumber();
+        int[] lst = new int[n];   // 约数个数、约数之和
+        String[] strings;   // 最大公约数
+        for (int i = 0; i < n; i++) {
+            lst[i] = Integer.parseInt(bufferedReader.readLine());   // 约数个数、约数之和
+            strings = bufferedReader.readLine().split(" ");   // 最大公约数
+            int a = Integer.parseInt(strings[0]);   // 最大公约数
+            int b = Integer.parseInt(strings[1]);   // 最大公约数
+            System.out.println(approximateNumber.greatestCommonDivisor(a, b));   // 最大公约数
+        }
         System.out.println(approximateNumber.approximateCount(lst));   // 约数个数
         System.out.println(approximateNumber.approximateSum(lst));   // 约数之和
 

@@ -6,6 +6,7 @@ public class ApproximateNumber {
     // 试除法求约数 https://www.acwing.com/problem/content/871/
     // 约数个数 https://www.acwing.com/problem/content/872/
     // 约数之和 https://www.acwing.com/problem/content/873/
+    // 最大公约数 https://www.acwing.com/problem/content/874/
 
     int mod = (int) 1e9 + 7;
 
@@ -90,5 +91,10 @@ public class ApproximateNumber {
             ans = ans * tmp % mod;
         }
         return ans;
+    }
+
+
+    public int greatestCommonDivisor(int a, int b) {
+        return b != 0 ? greatestCommonDivisor(b, a % b) : a;
     }
 }
