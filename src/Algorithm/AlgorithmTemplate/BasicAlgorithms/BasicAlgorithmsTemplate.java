@@ -173,13 +173,14 @@ public class BasicAlgorithmsTemplate {
                 r = mid;
             }
         }
-        String model = "0.";
-        for (int i = 0; i < digit; i++) {
-            model += "0";
-        }
-        DecimalFormat decimalFormat = new DecimalFormat(model);
-        String ans = decimalFormat.format(l);
-        return ans;
+//        与下行代码相同
+//        String model = "0.";
+//        for (int i = 0; i < digit; i++) {
+//            model += "0";
+//        }
+//        DecimalFormat decimalFormat = new DecimalFormat(model);
+        DecimalFormat decimalFormat = new DecimalFormat("0." + "0".repeat(Math.max(0, digit)));
+        return decimalFormat.format(l);
     }
 
 
@@ -225,13 +226,13 @@ public class BasicAlgorithmsTemplate {
         }
 //        Collections.reverse(Collections.singletonList(c));
 //        String ans = String.join("",c);
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for (int i = c.length - 1; i >= 0; i--) {
             if (c[i] != null) {
-                ans += c[i];
+                ans.append(c[i]);
             }
         }
-        return ans;
+        return ans.toString();
     }
 
 
@@ -324,13 +325,13 @@ public class BasicAlgorithmsTemplate {
 
     // 高精度算法
     // 高精度除法 O() https://www.acwing.com/problem/content/796/
-    public static String[] highPrecisionDivision(String A, String B) {
-        String a = A;
+    @Contract("_, _ -> new")
+    public static String @NotNull [] highPrecisionDivision(@NotNull String A, String B) {
         int b = Integer.parseInt(B);
-        String[] c = new String[a.length()];
+        String[] c = new String[A.length()];
         int t = 0;
-        for (int i = 0; i < a.length(); i++) {
-            int tmp = (int) a.charAt(i) - 48 + t * 10;
+        for (int i = 0; i < A.length(); i++) {
+            int tmp = (int) A.charAt(i) - 48 + t * 10;
             c[i] = String.valueOf(tmp / b);
             t = tmp % b;
         }
@@ -347,8 +348,7 @@ public class BasicAlgorithmsTemplate {
         for (int i = n; i < c.length; i++) {
             ans.append(c[i]);
         }
-        String[] k = {ans.toString(), String.valueOf(t)};
-        return k;
+        return new String[]{ans.toString(), String.valueOf(t)};
     }
 
 
@@ -402,14 +402,13 @@ public class BasicAlgorithmsTemplate {
         quickSort(lst, 0, lst.length - 1); // 3364 ms
         //mergeSort(lst,0,lst.length-1); // 3417 ms
         //Arrays.sort(lst); // 3498 ms
-        List<Integer> ans = new ArrayList<Integer>();
+        List<Integer> ans = new ArrayList<>();
         for (int i = 0; i < lst.length; i++) {
             if (i == 0 || (i != 0 && lst[i] != lst[i - 1])) {
                 ans.add(lst[i]);
             }
         }
-        int[] out = ans.stream().mapToInt(Integer::valueOf).toArray();
-        return out;
+        return ans.stream().mapToInt(Integer::valueOf).toArray();
     }
 
 
@@ -432,14 +431,11 @@ public class BasicAlgorithmsTemplate {
             if (x[0] <= ans.get(ans.size() - 1)[1]) {
                 if (x[1] > ans.get(ans.size() - 1)[1]) {
                     ans.get(ans.size() - 1)[1] = x[1];
-                } else {
-                    continue;
                 }
             } else {
                 ans.add(x);
             }
         }
-        int[][] out = ans.toArray(new int[ans.size()][]);
-        return out;
+        return ans.toArray(new int[ans.size()][]);
     }
 }
