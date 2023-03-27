@@ -12,6 +12,7 @@ import java.util.List;
 public class BasicAlgorithmsTemplate {
 
     // 快速排序 O(nlogn) https://www.acwing.com/problem/content/787/
+    // https://www.acwing.com/activity/content/code/content/5198516/
     public static void quickSort(int[] lst, int l, int r) {
         if (l >= r) {
             return;

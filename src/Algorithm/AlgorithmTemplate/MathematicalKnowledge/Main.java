@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        EulerFunction eulerFunction = new EulerFunction();
+        for (int i = 0; i < n; i++) {
+            int x = Integer.parseInt(bufferedReader.readLine());
+            System.out.println(eulerFunction.eulerFunction(x));
+        }
+
+
+        /*
         // 约数个数、约数之和、最大公约数
         int n = Integer.parseInt(bufferedReader.readLine());
         ApproximateNumber approximateNumber = new ApproximateNumber();
@@ -21,6 +30,8 @@ public class Main {
         }
         System.out.println(approximateNumber.approximateCount(lst));   // 约数个数
         System.out.println(approximateNumber.approximateSum(lst));   // 约数之和
+
+         */
 
 
 
