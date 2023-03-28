@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 欧拉函数、筛法求欧拉函数
         int n = Integer.parseInt(bufferedReader.readLine());
         EulerFunction eulerFunction = new EulerFunction();
-        for (int i = 0; i < n; i++) {
+        System.out.println(eulerFunction.sumEuler(n));   // 筛法求欧拉函数
+        for (int i = 0; i < n; i++) {   // 欧拉函数
             int x = Integer.parseInt(bufferedReader.readLine());
             System.out.println(eulerFunction.eulerFunction(x));
         }
