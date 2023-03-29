@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        //
+        int n = Integer.parseInt(bufferedReader.readLine());
+        FastPower fastPower = new FastPower();
+        String[] strings;
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), p = Integer.parseInt(strings[2]);
+            System.out.println(fastPower.fastPower(a, b, p));
+        }
+
+
+        /*
         // 欧拉函数、筛法求欧拉函数
         int n = Integer.parseInt(bufferedReader.readLine());
         EulerFunction eulerFunction = new EulerFunction();
@@ -15,6 +27,8 @@ public class Main {
             int x = Integer.parseInt(bufferedReader.readLine());
             System.out.println(eulerFunction.eulerFunction(x));
         }
+
+         */
 
 
         /*
@@ -34,7 +48,6 @@ public class Main {
         System.out.println(approximateNumber.approximateSum(lst));   // 约数之和
 
          */
-
 
 
         /*
