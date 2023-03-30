@@ -7,14 +7,22 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        //
+        // 快速幂、快速幂求逆元
         int n = Integer.parseInt(bufferedReader.readLine());
         FastPower fastPower = new FastPower();
         String[] strings;
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
-            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), p = Integer.parseInt(strings[2]);
-            System.out.println(fastPower.fastPower(a, b, p));
+            // 快速幂
+//            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), p = Integer.parseInt(strings[2]);
+//            System.out.println(fastPower.fastPower(a, b, p));
+            // 快速幂求逆元
+            int a = Integer.parseInt(strings[0]), p = Integer.parseInt(strings[1]);
+            if (a % p != 0) {
+                System.out.println(fastPower.fastPower(a, p - 2, p));
+            } else {
+                System.out.println("impossible");
+            }
         }
 
 
