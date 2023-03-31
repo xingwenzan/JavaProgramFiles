@@ -94,6 +94,7 @@ public class ApproximateNumber {
     }
 
 
+    // 欧几里得算法、辗转相除法、求最大公约数
     public int greatestCommonDivisor(int a, int b) {
         return b != 0 ? greatestCommonDivisor(b, a % b) : a;
     }
