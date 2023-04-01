@@ -2,10 +2,15 @@ package Algorithm.AlgorithmTemplate.MathematicalKnowledge;
 
 public class ExtendedEuclidean {
     // 扩展欧几里得算法 https://www.acwing.com/problem/content/879/
+    // 线性同余方程 https://www.acwing.com/problem/content/880/
 
     /*
      扩展辗转相除法、求最大公约数算法扩展
      https://blog.csdn.net/destiny1507/article/details/81750874
+     */
+
+    /*
+    ax ≡ b(mod m)   等价于   ax%m = b   等价于   ax = my+b   等价于   ax+(my') = b
      */
 
     private int x, y;

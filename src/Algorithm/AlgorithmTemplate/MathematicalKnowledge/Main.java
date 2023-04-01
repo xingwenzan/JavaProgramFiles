@@ -7,14 +7,24 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 扩展欧几里得算法、线性同余方程
         int n = Integer.parseInt(bufferedReader.readLine());
-        ExtendedEuclidean extendedEuclidean = new ExtendedEuclidean();
+        ExtendedEuclidean extendedEuclidean = new ExtendedEuclidean();   // 扩展欧几里得算法、线性同余方程
         String[] strings;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {   // 扩展欧几里得算法
             strings = bufferedReader.readLine().split(" ");
             int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]);
             extendedEuclidean.exgcd(a, b);
             System.out.printf("%d %d\n", extendedEuclidean.getX(), extendedEuclidean.getY());
+        }
+        for (int i = 0; i < n; i++) {   // 线性同余方程
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), m = Integer.parseInt(strings[2]), gcd = extendedEuclidean.exgcd(a, m);
+            if (b % gcd != 0) {
+                System.out.println("impossible");
+            } else {
+                System.out.println((long) b / gcd * extendedEuclidean.getX() % m);
+            }
         }
 
         /*

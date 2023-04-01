@@ -8,6 +8,12 @@ public class ApproximateNumber {
     // 约数之和 https://www.acwing.com/problem/content/873/
     // 最大公约数 https://www.acwing.com/problem/content/874/
 
+    /*
+     N = p1^a1 * p2^a2 * …… * pk^ak
+     count = (a1+1)*(a2+1)*……*(ak+1)
+     sum = (p1^0+p1^1+……+p1^a1)*(p2^0+p2^1+……+p2^a2)*……*(pk^0+pk^1+……+pk^ak)
+     */
+
     int mod = (int) 1e9 + 7;
 
     public List<Integer> approximationList(int x) {   // 试除法求约数
