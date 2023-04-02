@@ -7,6 +7,39 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 表达整数的奇怪方式
+        int n = Integer.parseInt(bufferedReader.readLine());
+        ChineseRemainderTheorem crt = new ChineseRemainderTheorem();
+        String[] strings = bufferedReader.readLine().split(" ");
+        long a1 = Integer.parseInt(strings[0]), m1 = Integer.parseInt(strings[1]), a2, m2;
+        crt.setA(a1);
+        crt.setM(m1);
+//        for (int i = 0; i < n - 1; i++) {
+//            strings = bufferedReader.readLine().split(" ");
+//            long a2 = Integer.parseInt(strings[0]), m2 = Integer.parseInt(strings[1]);
+//            crt.formulaMerge(a2, m2);
+//            a1 = crt.getA();
+//            m1 = crt.getM();
+//            if (m1 == -1) {
+//                break;
+//            }
+//        }
+        while (m1 != -1 && --n > 0) {
+            strings = bufferedReader.readLine().split(" ");
+            a2 = Integer.parseInt(strings[0]);
+            m2 = Integer.parseInt(strings[1]);
+            crt.formulaMerge(a2, m2);
+            a1 = crt.getA();
+            m1 = crt.getM();
+        }
+        if (m1 == -1) {
+            System.out.println(-1);
+        } else {
+            System.out.println((m1 % a1 + a1) % a1);
+        }
+
+
+        /*
         // 扩展欧几里得算法、线性同余方程
         int n = Integer.parseInt(bufferedReader.readLine());
         ExtendedEuclidean extendedEuclidean = new ExtendedEuclidean();   // 扩展欧几里得算法、线性同余方程
@@ -26,6 +59,9 @@ public class Main {
                 System.out.println((long) b / gcd * extendedEuclidean.getX() % m);
             }
         }
+
+         */
+
 
         /*
         // 快速幂、快速幂求逆元
