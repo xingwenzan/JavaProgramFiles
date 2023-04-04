@@ -7,6 +7,28 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        GaussianElimination gaussianElimination = new GaussianElimination();
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j <= n; j++) {
+                gaussianElimination.init(i, j, Double.parseDouble(strings[j]));
+            }
+        }
+        int judge = gaussianElimination.SolvingSystemsOfLinearEquations(n);
+        if (judge == 0) {
+            for (double i : gaussianElimination.solution()) {
+                System.out.printf("%.2f\n", i);
+            }
+        } else if (judge == 1) {
+            System.out.println("Infinite group solutions");
+        } else if (judge == 2) {
+            System.out.println("No solution");
+        }
+
+
+        /*
         // 表达整数的奇怪方式
         int n = Integer.parseInt(bufferedReader.readLine());
         ChineseRemainderTheorem crt = new ChineseRemainderTheorem();
@@ -37,6 +59,8 @@ public class Main {
         } else {
             System.out.println((m1 % a1 + a1) % a1);
         }
+
+         */
 
 
         /*
