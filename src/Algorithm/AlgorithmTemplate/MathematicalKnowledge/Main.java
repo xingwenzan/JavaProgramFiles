@@ -7,22 +7,25 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 高斯消元解线性方程组、高斯消元解异或线性方程组
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
         GaussianElimination gaussianElimination = new GaussianElimination();
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
             for (int j = 0; j <= n; j++) {
-                gaussianElimination.init(i, j, Double.parseDouble(strings[j]));
+//                gaussianElimination.init(i, j, Double.parseDouble(strings[j]));   // 高斯消元解线性方程组
+                gaussianElimination.init(i, j, Integer.parseInt(strings[j]));   // 高斯消元解异或线性方程组
             }
         }
-        int judge = gaussianElimination.SolvingSystemsOfLinearEquations(n);
+//        int judge = gaussianElimination.SolvingSystemsOfLinearEquations(n);
+        int judge = gaussianElimination.SolvingXORLinearEquations(n);
         if (judge == 0) {
-            for (double i : gaussianElimination.solution()) {
-                System.out.printf("%.2f\n", i);
+            for (int i : gaussianElimination.solutionXOR()) {
+                System.out.printf("%d\n", i);
             }
         } else if (judge == 1) {
-            System.out.println("Infinite group solutions");
+            System.out.println("Multiple sets of solutions");
         } else if (judge == 2) {
             System.out.println("No solution");
         }
