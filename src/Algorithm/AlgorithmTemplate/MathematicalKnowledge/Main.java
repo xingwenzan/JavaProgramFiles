@@ -7,6 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 求组合数 I
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        CombinatorialNumbers combinatorialNumbers = new CombinatorialNumbers();
+        combinatorialNumbers.initI();
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]);
+            System.out.println(combinatorialNumbers.findI(a, b));
+        }
+
+
+        /*
         // 高斯消元解线性方程组、高斯消元解异或线性方程组
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
@@ -29,6 +42,8 @@ public class Main {
         } else if (judge == 2) {
             System.out.println("No solution");
         }
+
+         */
 
 
         /*
