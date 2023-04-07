@@ -1,4 +1,4 @@
-package Algorithm.OtherProblemSolving;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms.PrefixSumAndDifference;
 
 import Algorithm.AlgorithmTemplate.BasicAlgorithms.BasicAlgorithmsTemplate;
 

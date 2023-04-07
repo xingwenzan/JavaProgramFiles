@@ -1,29 +1,27 @@
-package Algorithm.AlgorithmTemplate.BasicAlgorithms.SingleTemplate.DoublePointer;
+package Algorithm.AlgorithmTemplate.BasicAlgorithms.DoublePointer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class JudgmentSubsequence {
-    // 双指针实验 判断子序列 https://www.acwing.com/problem/content/2818/
+public class TargetOfArrayElementsAnd {
+    // 双指针实验 数组元素的目标和 https://www.acwing.com/problem/content/802/
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
+        int x = Integer.parseInt(strings[2]);
         String[] a = bufferedReader.readLine().split(" ");
         String[] b = bufferedReader.readLine().split(" ");
-        int i = 0, j = 0;
-        while (i < n && j < m) {
-            if (a[i].equals(b[j])) {
-                i++;
+        for (int i = 0, j = m - 1; i < n; i++) {
+            while (Integer.parseInt(a[i]) + Integer.parseInt(b[j]) > x) {
+                j--;
             }
-            j++;
-        }
-        if (i == n) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
+            if (Integer.parseInt(a[i]) + Integer.parseInt(b[j]) == x && j >= 0) {
+                System.out.printf("%d %d", i, j);
+                break;
+            }
         }
     }
 }
