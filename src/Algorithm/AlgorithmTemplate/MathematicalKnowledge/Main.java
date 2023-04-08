@@ -7,15 +7,17 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 求组合数 I
+        // 求组合数 I、求组合数 II
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
         CombinatorialNumbers combinatorialNumbers = new CombinatorialNumbers();
-        combinatorialNumbers.initI();
+        combinatorialNumbers.initI();   // 求组合数 I
+        combinatorialNumbers.initII();   // 求组合数 II
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
             int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]);
-            System.out.println(combinatorialNumbers.findI(a, b));
+            System.out.println(combinatorialNumbers.findI(a, b));   // 求组合数 I
+            System.out.println(combinatorialNumbers.findII(a, b));   // 求组合数 II
         }
 
 
