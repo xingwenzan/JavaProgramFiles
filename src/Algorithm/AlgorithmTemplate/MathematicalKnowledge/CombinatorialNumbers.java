@@ -4,6 +4,7 @@ public class CombinatorialNumbers {
     // 组合数 C_a^b 四种方法区别在于适合的数据范围不同
     // 求组合数 I https://www.acwing.com/problem/content/887/   本模板是先预处理出来所有情况，再直接选
     // 求组合数 II https://www.acwing.com/problem/content/888/   C_a^b = a!/[(a-b)!*b!] 预处理出 i! 和 (i!)^(-1) (i! 的逆元）
+    // 求组合数 III https://www.acwing.com/problem/content/889/   C_a^b ≡ C_{a%p}^{b%p} * C_{a//p}^{b//p}
 
     private final int NI = 2010, NII = (int) 1e5 + 10, mod = (int) 1e9 + 7;
     private final int[][] CabI = new int[NI][NI];
@@ -36,5 +37,25 @@ public class CombinatorialNumbers {
 
     public long findII(int a, int b) {
         return fact[a] * infact[a - b] % mod * infact[b] % mod;
+    }
+
+    public long Cab(int a, int b, int mod) {
+        if (b > a) {
+            return 0;
+        }
+        long ans = 1;
+        FastPower fastPower = new FastPower();
+        for (int i = 1, j = a; i <= b; i++, j--) {
+            ans = ans * j % mod;
+            ans = ans * fastPower.fastPower(i, mod - 2, mod) % mod;
+        }
+        return ans;
+    }
+
+    public long lucas(long a, long b, int mod) {
+        if (a < mod && b < mod) {
+            return Cab((int) a, (int) b, mod);
+        }
+        return Cab((int) (a % mod), (int) (b % mod), mod) * lucas(a / mod, b / mod, mod) % mod;
     }
 }
