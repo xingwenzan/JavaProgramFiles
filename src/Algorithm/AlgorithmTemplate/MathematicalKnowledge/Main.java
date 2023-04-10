@@ -3,10 +3,21 @@ package Algorithm.AlgorithmTemplate.MathematicalKnowledge;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 求组合数 IV
+        String[] strings = bufferedReader.readLine().split(" ");
+        int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]);
+        CombinatorialNumbers cn = new CombinatorialNumbers();
+        ArrayList<Integer> ans = cn.findIV(a, b);
+        for (int i = ans.size() - 1; i >= 0; i--) {
+            System.out.printf("%d", ans.get(i));
+        }
+
+        /*
         // 求组合数 I、求组合数 II、求组合数 III
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
@@ -22,6 +33,8 @@ public class Main {
 //            System.out.println(combinatorialNumbers.findII(a, b));   // 求组合数 II
             System.out.println(combinatorialNumbers.lucas(a, b, p));
         }
+
+         */
 
 
         /*
