@@ -8,10 +8,14 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 求组合数 IV、满足条件的01序列
+        CombinatorialNumbers cn = new CombinatorialNumbers();
+        // 满足条件的01序列
+        int n = Integer.parseInt(bufferedReader.readLine());
+        System.out.println(cn.cattelan(n));
         // 求组合数 IV
         String[] strings = bufferedReader.readLine().split(" ");
         int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]);
-        CombinatorialNumbers cn = new CombinatorialNumbers();
         ArrayList<Integer> ans = cn.findIV(a, b);
         for (int i = ans.size() - 1; i >= 0; i--) {
             System.out.printf("%d", ans.get(i));

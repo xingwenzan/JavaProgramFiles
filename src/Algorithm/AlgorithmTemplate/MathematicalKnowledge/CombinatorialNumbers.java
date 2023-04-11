@@ -1,5 +1,7 @@
 package Algorithm.AlgorithmTemplate.MathematicalKnowledge;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class CombinatorialNumbers {
@@ -8,6 +10,7 @@ public class CombinatorialNumbers {
     // 求组合数 II https://www.acwing.com/problem/content/888/   C_a^b = a!/[(a-b)!*b!] 预处理出 i! 和 (i!)^(-1) (i! 的逆元）
     // 求组合数 III https://www.acwing.com/problem/content/889/   C_a^b ≡ C_{a%p}^{b%p} * C_{a//p}^{b//p}
     // 求组合数 IV https://www.acwing.com/problem/content/890/   筛质数 - a!分解 - 高精度计算
+    // 满足条件的01序列 https://www.acwing.com/problem/content/891/   n 的卡特兰数 C_2n^n -C_2n^{n-1} = (C_2n^n)/(n+1)
 
     private final int NI = 2010, NII = (int) 1e5 + 10, mod = (int) 1e9 + 7, NIV = 5010;
     private int pointer = 0;
@@ -90,7 +93,7 @@ public class CombinatorialNumbers {
         return cnt;
     }
 
-    public ArrayList<Integer> mul(ArrayList<Integer> ints, int num) {   // 高精度乘法
+    public ArrayList<Integer> mul(@NotNull ArrayList<Integer> ints, int num) {   // 高精度乘法
         int tmp = 0;
         for (int i = 0; i < ints.size(); i++) {
             tmp += ints.get(i) * num;
@@ -118,5 +121,10 @@ public class CombinatorialNumbers {
             }
         }
         return ans;
+    }
+
+    public long cattelan(int num) {
+        FastPower fastPower = new FastPower();
+        return Cab(2 * num, num, mod) * fastPower.fastPower(num + 1, mod - 2, mod) % mod;
     }
 }
