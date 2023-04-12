@@ -3,11 +3,23 @@ package Algorithm.AlgorithmTemplate.MathematicalKnowledge;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 容斥原理 能被整除的数
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        strings = bufferedReader.readLine().split(" ");
+        int[] ints = new int[m];
+        for (int i = 0; i < m; i++) {
+            ints[i] = Integer.parseInt(strings[i]);
+        }
+        InclusionExclusionPrinciple iep = new InclusionExclusionPrinciple();
+        System.out.println(iep.divisibleNumber(n, m, ints));
+
+
+        /*
         // 求组合数 IV、满足条件的01序列
         CombinatorialNumbers cn = new CombinatorialNumbers();
         // 满足条件的01序列
@@ -20,6 +32,9 @@ public class Main {
         for (int i = ans.size() - 1; i >= 0; i--) {
             System.out.printf("%d", ans.get(i));
         }
+
+         */
+
 
         /*
         // 求组合数 I、求组合数 II、求组合数 III
