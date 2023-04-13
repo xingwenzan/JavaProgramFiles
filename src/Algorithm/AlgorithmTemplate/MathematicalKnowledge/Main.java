@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] ints = new int[n];
+        for (int i = 0; i < n; i++) {
+            ints[i] = Integer.parseInt(strings[i]);
+        }
+        GameTheory gameTheory = new GameTheory();
+        if (gameTheory.NimGame(ints, n)) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+
+        /*
         // 容斥原理 能被整除的数
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -17,6 +32,8 @@ public class Main {
         }
         InclusionExclusionPrinciple iep = new InclusionExclusionPrinciple();
         System.out.println(iep.divisibleNumber(n, m, ints));
+
+         */
 
 
         /*
