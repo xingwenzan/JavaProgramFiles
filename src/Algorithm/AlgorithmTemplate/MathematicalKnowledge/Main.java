@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // Nim游戏、台阶-Nim游戏
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         int[] ints = new int[n];
@@ -14,7 +15,9 @@ public class Main {
             ints[i] = Integer.parseInt(strings[i]);
         }
         GameTheory gameTheory = new GameTheory();
-        if (gameTheory.NimGame(ints, n)) {
+//        boolean judge = gameTheory.NimGame(ints, n);   // Nim游戏
+        boolean judge = gameTheory.StepsNimGame(ints, n);   // 台阶-Nim游戏
+        if (judge) {
             System.out.println("Yes");
         } else {
             System.out.println("No");
