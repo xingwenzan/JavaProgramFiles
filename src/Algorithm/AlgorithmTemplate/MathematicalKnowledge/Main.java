@@ -7,6 +7,29 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 集合-Nim游戏
+        int k = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] s = new int[k];
+        for (int i = 0; i < k; i++) {
+            s[i] = Integer.parseInt(strings[i]);
+        }
+        int n = Integer.parseInt(bufferedReader.readLine());
+        strings = bufferedReader.readLine().split(" ");
+        int[] h = new int[n];
+        for (int i = 0; i < n; i++) {
+            h[i] = Integer.parseInt(strings[i]);
+        }
+        GameTheory gameTheory = new GameTheory();
+        boolean judge = gameTheory.CollectionNimGames(h, s);
+        if (judge) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+
+        /*
         // Nim游戏、台阶-Nim游戏
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -22,6 +45,8 @@ public class Main {
         } else {
             System.out.println("No");
         }
+
+         */
 
 
         /*
