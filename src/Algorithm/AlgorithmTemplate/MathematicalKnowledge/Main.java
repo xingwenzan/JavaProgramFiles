@@ -7,6 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 拆分-Nim游戏
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(strings[i]);
+        }
+        GameTheory gameTheory = new GameTheory();
+        boolean judge = gameTheory.SplitNimGame(a);
+        if (judge) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+
+        /*
         // 集合-Nim游戏
         int k = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -27,6 +44,8 @@ public class Main {
         } else {
             System.out.println("No");
         }
+
+         */
 
 
         /*
