@@ -18,5 +18,7 @@ public class Main {
         }
         System.out.println(knapsackProblem.naive01(n, v));
         System.out.println(knapsackProblem.optimization01(n, v));
+        System.out.println(knapsackProblem.naiveCompletely(n, v));
+        System.out.println(knapsackProblem.optimizationCompletely(n, v));
     }
 }
