@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 01背包问题
+        // 01背包问题、完全背包问题、多重背包问题 I
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
         int v = Integer.parseInt(strings[1]);
@@ -15,10 +15,12 @@ public class Main {
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
             knapsackProblem.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
+            knapsackProblem.adds(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
         }
         System.out.println(knapsackProblem.naive01(n, v));
         System.out.println(knapsackProblem.optimization01(n, v));
         System.out.println(knapsackProblem.naiveCompletely(n, v));
         System.out.println(knapsackProblem.optimizationCompletely(n, v));
+        System.out.println(knapsackProblem.naiveMultiple(n, v));
     }
 }
