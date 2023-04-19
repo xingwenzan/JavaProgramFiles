@@ -14,13 +14,18 @@ public class Main {
         KnapsackProblem knapsackProblem = new KnapsackProblem();
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
+            // 01、完全
             knapsackProblem.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
-            knapsackProblem.adds(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+            // 多重 I
+            knapsackProblem.addsI(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+            // 多重 II
+            knapsackProblem.addsII(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
         }
         System.out.println(knapsackProblem.naive01(n, v));
         System.out.println(knapsackProblem.optimization01(n, v));
         System.out.println(knapsackProblem.naiveCompletely(n, v));
         System.out.println(knapsackProblem.optimizationCompletely(n, v));
         System.out.println(knapsackProblem.naiveMultiple(n, v));
+        System.out.println(knapsackProblem.optimizationMultiple(v));
     }
 }
