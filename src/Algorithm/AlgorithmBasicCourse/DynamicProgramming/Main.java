@@ -7,6 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        LinearDP linearDP = new LinearDP();
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j <= i; j++) {
+                linearDP.addNT(Integer.parseInt(strings[j]));
+            }
+        }
+        System.out.println(linearDP.numberTriangleDP(n));
+
+
+        /*
         // 分组背包问题
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]);
@@ -23,6 +36,8 @@ public class Main {
         }
         System.out.println(knapsackProblem.naiveGroup(n, v));
         System.out.println(knapsackProblem.optimizationGroup(n, v));
+
+         */
 
 
         /*
