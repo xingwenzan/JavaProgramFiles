@@ -7,13 +7,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最长上升子序列; 最长上升子序列 II
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         LinearDP linearDP = new LinearDP();
         for (int i = 0; i < n; i++) {
             linearDP.addLAS(Integer.parseInt(strings[i]));
         }
-        System.out.println(linearDP.longestAscendingSubsequenceDP());
+        System.out.println(linearDP.longestAscendingSubsequenceDP());   // 最长上升子序列
+        System.out.println(linearDP.longestAscendingSubsequenceII());   // 最长上升子序列 II
 
 
         /*

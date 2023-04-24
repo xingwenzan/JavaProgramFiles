@@ -10,18 +10,23 @@ public class LinearDP {
 
     /*
     最长上升子序列 https://www.acwing.com/problem/content/897/
+    最长上升子序列 II https://www.acwing.com/problem/content/898/
      */
 
-    // 数字三角形 510; 最长上升子序列 1010
-    private final int N = 1010;
+    // 数字三角形 510; 最长上升子序列 1010; 最长上升子序列 II 1e5+10
+    private final int N = (int) 1e5 + 10;
 
     // 数字三角形
     private final int[][] numberTriangle = new int[N][N];
     private int row = 0, col = 0;
 
-    // 最长上升子序列
+    // 最长上升子序列; 最长上升子序列 II
     private final int[] lst = new int[N];
     private int idx = 0;
+
+    // 最长上升子序列 II
+    private final int[] monotony = new int[N];
+    private int length = 0;
 
     // 数字三角形
     public void addNT(int num) {
@@ -32,7 +37,7 @@ public class LinearDP {
         }
     }
 
-    // 最长上升子序列
+    // 最长上升子序列; 最长上升子序列 II
     public void addLAS(int num) {
         lst[idx++] = num;
     }
@@ -63,5 +68,29 @@ public class LinearDP {
             ans = Math.max(ans, length[i]);
         }
         return ans;
+    }
+
+    // 最长上升子序列 II 二分查找 monotony 中小于 x 的最大值的索引
+    private int find(int x) {
+        int l = 0, r = length;
+        while (l < r) {
+            int mid = (l + r + 1) >> 1;
+            if (monotony[mid] < x) {
+                l = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+
+    public int longestAscendingSubsequenceII() {
+        int tmp;
+        for (int i : lst) {
+            tmp = find(i);
+            length = Math.max(length, tmp + 1);
+            monotony[tmp + 1] = i;
+        }
+        return length;
     }
 }
