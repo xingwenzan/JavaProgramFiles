@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最长公共子序列
+        bufferedReader.readLine();
+        String A = bufferedReader.readLine(), B = bufferedReader.readLine();
+        LinearDP linearDP = new LinearDP();
+        System.out.println(linearDP.LongestCommonSubsequence(A, B));
+
+
+        /*
         // 最长上升子序列; 最长上升子序列 II
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -16,6 +24,8 @@ public class Main {
         }
         System.out.println(linearDP.longestAscendingSubsequenceDP());   // 最长上升子序列
         System.out.println(linearDP.longestAscendingSubsequenceII());   // 最长上升子序列 II
+
+         */
 
 
         /*

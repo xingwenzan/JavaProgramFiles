@@ -11,9 +11,10 @@ public class LinearDP {
     /*
     最长上升子序列 https://www.acwing.com/problem/content/897/
     最长上升子序列 II https://www.acwing.com/problem/content/898/
+    最长公共子序列 https://www.acwing.com/problem/content/899/
      */
 
-    // 数字三角形 510; 最长上升子序列 1010; 最长上升子序列 II 1e5+10
+    // 数字三角形 510; 最长上升子序列、最长公共子序列 1010; 最长上升子序列 II 1e5+10
     private final int N = (int) 1e5 + 10;
 
     // 数字三角形
@@ -92,5 +93,24 @@ public class LinearDP {
             monotony[tmp + 1] = i;
         }
         return length;
+    }
+
+
+    // 最长公共子序列
+    public int LongestCommonSubsequence(String strA, String strB) {
+        int[][] sub = new int[N][N];
+        int lenA = strA.length(), lenB = strB.length();
+        strA = " " + strA;
+        strB = " " + strB;
+        for (int i = 1; i <= lenA; i++) {
+            for (int j = 1; j <= lenB; j++) {
+                sub[i][j] = Math.max(sub[i - 1][j], sub[i][j - 1]);
+                if (strA.charAt(i) == strB.charAt(j)) {
+                    sub[i][j] = Math.max(sub[i][j], sub[i - 1][j - 1] + 1);
+//                    sub[i][j] = sub[i-1][j-1]+1;
+                }
+            }
+        }
+        return sub[lenA][lenB];
     }
 }
