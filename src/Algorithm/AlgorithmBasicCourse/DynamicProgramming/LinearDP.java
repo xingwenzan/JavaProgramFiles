@@ -1,5 +1,7 @@
 package Algorithm.AlgorithmBasicCourse.DynamicProgramming;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 
 public class LinearDP {
@@ -14,8 +16,14 @@ public class LinearDP {
     最长公共子序列 https://www.acwing.com/problem/content/899/
      */
 
-    // 数字三角形 510; 最长上升子序列、最长公共子序列 1010; 最长上升子序列 II 1e5+10
-    private final int N = (int) 1e5 + 10;
+    /*
+    最短编辑距离 https://www.acwing.com/activity/content/problem/content/1094/
+    https://www.acwing.com/video/334/
+     */
+
+
+    // 数字三角形 510; 最长上升子序列、最长公共子序列、最短编辑距离 1010; 最长上升子序列 II 1e5+10
+    private final int N = 1010;
 
     // 数字三角形
     private final int[][] numberTriangle = new int[N][N];
@@ -28,6 +36,7 @@ public class LinearDP {
     // 最长上升子序列 II
     private final int[] monotony = new int[N];
     private int length = 0;
+
 
     // 数字三角形
     public void addNT(int num) {
@@ -42,6 +51,7 @@ public class LinearDP {
     public void addLAS(int num) {
         lst[idx++] = num;
     }
+
 
     // 数字三角形
     public int numberTriangleDP(int num) {   // 最上面的是 (0,0)，num 是行数，故最下面一行是 num-1，从倒数第二行更新
@@ -97,7 +107,7 @@ public class LinearDP {
 
 
     // 最长公共子序列
-    public int LongestCommonSubsequence(String strA, String strB) {
+    public int LongestCommonSubsequence(@NotNull String strA, @NotNull String strB) {
         int[][] sub = new int[N][N];
         int lenA = strA.length(), lenB = strB.length();
         strA = " " + strA;
@@ -108,6 +118,33 @@ public class LinearDP {
                 if (strA.charAt(i) == strB.charAt(j)) {
                     sub[i][j] = Math.max(sub[i][j], sub[i - 1][j - 1] + 1);
 //                    sub[i][j] = sub[i-1][j-1]+1;
+                }
+            }
+        }
+        return sub[lenA][lenB];
+    }
+
+    // 最短编辑距离
+    public int ShortestEditDistance(@NotNull String strA, @NotNull String strB) {
+        int[][] sub = new int[N][N];
+        int lenA = strA.length(), lenB = strB.length();
+        strA = " " + strA;
+        strB = " " + strB;
+
+        for (int i = 0; i <= lenA; i++) {
+            sub[i][0] = i;
+        }
+        for (int i = 0; i <= lenB; i++) {
+            sub[0][i] = i;
+        }
+
+        for (int i = 1; i <= lenA; i++) {
+            for (int j = 1; j <= lenB; j++) {
+                sub[i][j] = Math.min(sub[i - 1][j] + 1, sub[i][j - 1] + 1);
+                if (strA.charAt(i) == strB.charAt(j)) {
+                    sub[i][j] = Math.min(sub[i][j], sub[i - 1][j - 1]);
+                } else {
+                    sub[i][j] = Math.min(sub[i][j], sub[i - 1][j - 1] + 1);
                 }
             }
         }

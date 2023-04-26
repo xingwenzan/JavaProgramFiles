@@ -7,11 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最短编辑距离
+        bufferedReader.readLine();
+        String A = bufferedReader.readLine();
+        bufferedReader.readLine();
+        String B = bufferedReader.readLine();
+        LinearDP linearDP = new LinearDP();
+        System.out.println(linearDP.ShortestEditDistance(A, B));
+
+
+        /*
         // 最长公共子序列
         bufferedReader.readLine();
         String A = bufferedReader.readLine(), B = bufferedReader.readLine();
         LinearDP linearDP = new LinearDP();
         System.out.println(linearDP.LongestCommonSubsequence(A, B));
+
+         */
 
 
         /*
