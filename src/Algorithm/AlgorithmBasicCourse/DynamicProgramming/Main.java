@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] raedString = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(raedString[0]);
+        int m = Integer.parseInt(raedString[1]);
+        String[] strings = new String[n];
+        LinearDP linearDP = new LinearDP();
+        for (int i = 0; i < n; i++) {
+            strings[i] = bufferedReader.readLine();
+        }
+        for (int i = 0; i < m; i++) {
+            raedString = bufferedReader.readLine().split(" ");
+            System.out.println(linearDP.EditDistance(raedString[0], Integer.parseInt(raedString[1]), strings, n));
+        }
+
+
+        /*
         // 最短编辑距离
         bufferedReader.readLine();
         String A = bufferedReader.readLine();
@@ -14,6 +29,8 @@ public class Main {
         String B = bufferedReader.readLine();
         LinearDP linearDP = new LinearDP();
         System.out.println(linearDP.ShortestEditDistance(A, B));
+
+         */
 
 
         /*

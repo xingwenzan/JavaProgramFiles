@@ -19,10 +19,11 @@ public class LinearDP {
     /*
     最短编辑距离 https://www.acwing.com/activity/content/problem/content/1094/
     https://www.acwing.com/video/334/
+    编辑距离 https://www.acwing.com/problem/content/901/
      */
 
 
-    // 数字三角形 510; 最长上升子序列、最长公共子序列、最短编辑距离 1010; 最长上升子序列 II 1e5+10
+    // 数字三角形 510; 最长上升子序列、最长公共子序列、最短编辑距离、编辑距离 1010; 最长上升子序列 II 1e5+10
     private final int N = 1010;
 
     // 数字三角形
@@ -126,7 +127,7 @@ public class LinearDP {
 
     // 最短编辑距离
     public int ShortestEditDistance(@NotNull String strA, @NotNull String strB) {
-        int[][] sub = new int[N][N];
+        int[][] sub = new int[N][N];   // 最短编辑距离 N; 编辑距离 15
         int lenA = strA.length(), lenB = strB.length();
         strA = " " + strA;
         strB = " " + strB;
@@ -149,5 +150,17 @@ public class LinearDP {
             }
         }
         return sub[lenA][lenB];
+    }
+
+
+    // 编辑距离
+    public int EditDistance(String str, int length, String[] strings, int num) {
+        int ans = 0;
+        for (int i = 0; i < num; i++) {
+            if (ShortestEditDistance(str, strings[i]) <= length) {
+                ans++;
+            }
+        }
+        return ans;
     }
 }
