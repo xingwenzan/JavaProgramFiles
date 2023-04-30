@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 石子合并
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        IntervalDP intervalDP = new IntervalDP();
+        System.out.println(intervalDP.stonesMerge(strings, n));
+
+
+        /*
+        // 编辑距离
         String[] raedString = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(raedString[0]);
         int m = Integer.parseInt(raedString[1]);
@@ -19,6 +28,8 @@ public class Main {
             raedString = bufferedReader.readLine().split(" ");
             System.out.println(linearDP.EditDistance(raedString[0], Integer.parseInt(raedString[1]), strings, n));
         }
+
+         */
 
 
         /*
