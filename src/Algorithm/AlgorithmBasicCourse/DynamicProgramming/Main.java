@@ -7,11 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 整数划分
+        int n = Integer.parseInt(bufferedReader.readLine());
+        CountingDP countingDP = new CountingDP();
+        System.out.println(countingDP.bag(n));
+        System.out.println(countingDP.other(n));
+
+
+        /*
         // 石子合并
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         IntervalDP intervalDP = new IntervalDP();
         System.out.println(intervalDP.stonesMerge(strings, n));
+
+         */
 
 
         /*
