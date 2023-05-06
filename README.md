@@ -20,4 +20,5 @@
         - [动态规划](src/Algorithm/AlgorithmBasicCourse/DynamicProgramming) &#x2002;
           包括背包问题，线性DP，区间DP，计数类DP，数位统计DP，状态压缩DP，树形DP，记忆化搜索等内容。
             - [`数位统计DP`](https://www.acwing.com/activity/content/problem/content/1009/) &#x2002; 写起来太麻烦，没写
+            - [状态压缩DP](src/Algorithm/AlgorithmBasicCourse/DynamicProgramming/StateCompressedDP.java)
     - [其他题解](src/Algorithm/OtherProblemSolving) &#x2002; 非系统性学习的题目

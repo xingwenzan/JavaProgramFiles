@@ -7,11 +7,27 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 蒙德里安的梦想
+        String[] strings;
+        StateCompressedDP stateCompressedDP = new StateCompressedDP();
+        while (true) {
+            strings = bufferedReader.readLine().split(" ");
+            int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+            if (n == 0 && m == 0) {
+                break;
+            }
+            System.out.println(stateCompressedDP.MondrianDream(n, m));
+        }
+
+
+        /*
         // 整数划分
         int n = Integer.parseInt(bufferedReader.readLine());
         CountingDP countingDP = new CountingDP();
         System.out.println(countingDP.bag(n));
         System.out.println(countingDP.other(n));
+
+         */
 
 
         /*
