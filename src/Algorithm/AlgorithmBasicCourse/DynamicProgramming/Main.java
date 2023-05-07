@@ -7,6 +7,16 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[][] w = new String[n][n];
+        for (int i = 0; i < n; i++) {
+            w[i] = bufferedReader.readLine().split(" ");
+        }
+        StateCompressedDP stateCompressedDP = new StateCompressedDP();
+        System.out.println(stateCompressedDP.ShortestHamiltonPath(n, w));
+
+
+        /*
         // 蒙德里安的梦想
         String[] strings;
         StateCompressedDP stateCompressedDP = new StateCompressedDP();
@@ -18,6 +28,8 @@ public class Main {
             }
             System.out.println(stateCompressedDP.MondrianDream(n, m));
         }
+
+         */
 
 
         /*

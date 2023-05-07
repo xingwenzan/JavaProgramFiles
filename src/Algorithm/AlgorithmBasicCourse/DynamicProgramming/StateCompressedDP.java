@@ -5,21 +5,21 @@ import java.util.Arrays;
 
 public class StateCompressedDP {
     // 蒙德里安的梦想 https://www.acwing.com/problem/content/293/
-    private final int N = 12;   // 最多 12 列(0 - 11 号)
+    // 最短Hamilton路径 https://www.acwing.com/problem/content/93/
+    private final int N = 20;   // 蒙德里安的梦想 12 最多 12 列(0 - 11 号); 最短Hamilton路径 20
     private final int M = 1 << N;   // 单列最多 M 钟状态
+    // 蒙德里安的梦想 f[i][j] 代表到 i 号列之前(不含 i 号)所有列已经摆好，且按 j 的二进制表示凸出(1 凸出 0 不凸出)到 i 号列的状态
+    // 最短Hamilton路径 f[i][j] 表示 i 对应状态且最后一个点为 j 的状态的最短路径
     private long[][] f;
-    // f[i][j] 代表到 i 号列之前(不含 i 号)所有列已经摆好，且按 j 的二进制表示凸出(1 凸出 0 不凸出)到 i 号列的状态
-    private boolean[] st;
-    // 单列状态可行性，st[j] 是 j 号状态下是否不存在连续奇数个空格，true 为不存在 - 状态合法
-    private ArrayList<Integer>[] state;
-    // 记录状态可行性，state[j] 代表 i 号列状态为 j 时所有合法的 i-1 号列的合法状态
 
     public long MondrianDream(int row, int col) {   // row 行 col 列棋盘
         // 初始化
-        st = new boolean[M];
-        state = new ArrayList[M];
+        // 单列状态可行性，st[j] 是 j 号状态下是否不存在连续奇数个空格，true 为不存在 - 状态合法
+        boolean[] st = new boolean[M];
+        // 记录状态可行性，state[j] 代表 i 号列状态为 j 时所有合法的 i-1 号列的合法状态
+        ArrayList<Integer>[] state = new ArrayList[M];
         for (int i = 0; i < state.length; i++) {
-            state[i] = new ArrayList<Integer>();
+            state[i] = new ArrayList<>();
         }
         f = new long[N][M];
         for (int i = 0; i < N; i++) {
@@ -71,5 +71,25 @@ public class StateCompressedDP {
         // f[m][0]表示 前m-1列都处理完，并且第m-1列没有伸出来的所有方案数。
         // 即整个棋盘处理完的方案数
         return f[col][0];
+    }
+
+    public long ShortestHamiltonPath(int num, String[][] weight) {
+        f = new long[M][N];
+        for (int i = 0; i < M; i++) {
+            Arrays.fill(f[i], (int) 1e9);
+        }
+        f[1][0] = 0;   // 只经过 0 号位置且终点为 0 的距离一定为 0
+        for (int i = 1; i < (1 << num); i += 2) {   // 从 0 号位开始且无论如何必须经过 0 号位
+            for (int j = 0; j < num; j++) {   // 遍历所有点做终点
+                if (((i >> j) & 1) == 1) {   // 该状态下经过 j 号点
+                    for (int k = 0; k < num; k++) {   // 遍历所有点做倒数第二点
+                        if (((i >> k) & 1) == 1) {   // 该状态下经过 k 号点
+                            f[i][j] = Math.min(f[i][j], f[i - (1 << j)][k] + Integer.parseInt(weight[k][j]));
+                        }
+                    }
+                }
+            }
+        }
+        return f[(1 << num) - 1][num - 1];
     }
 }
