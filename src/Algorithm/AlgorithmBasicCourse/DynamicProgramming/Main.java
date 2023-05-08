@@ -8,12 +8,33 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bufferedReader.readLine());
+        TreeDP treeDP = new TreeDP();
+        treeDP.init();
+        for (int i = 1; i <= n; i++) {
+            int x = Integer.parseInt(bufferedReader.readLine());
+            treeDP.setHappy(x, i);
+        }
+        String[] strings;
+        for (int i = 0; i < n - 1; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int son = Integer.parseInt(strings[0]);
+            int father = Integer.parseInt(strings[1]);
+            treeDP.add(father, son);
+        }
+        System.out.println(treeDP.promWithoutBoss());
+
+
+        /*
+        // 最短Hamilton路径
+        int n = Integer.parseInt(bufferedReader.readLine());
         String[][] w = new String[n][n];
         for (int i = 0; i < n; i++) {
             w[i] = bufferedReader.readLine().split(" ");
         }
         StateCompressedDP stateCompressedDP = new StateCompressedDP();
         System.out.println(stateCompressedDP.ShortestHamiltonPath(n, w));
+
+         */
 
 
         /*
