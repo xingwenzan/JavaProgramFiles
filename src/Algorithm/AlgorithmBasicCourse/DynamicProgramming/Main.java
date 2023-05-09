@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        MemorySearch memorySearch = new MemorySearch();
+        memorySearch.init(n, m);
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j < m; j++) {
+                memorySearch.add(i, j, Integer.parseInt(strings[j]));
+            }
+        }
+        System.out.println(memorySearch.skiing());
+
+
+        /*
+        // 没有上司的舞会
         int n = Integer.parseInt(bufferedReader.readLine());
         TreeDP treeDP = new TreeDP();
         treeDP.init();
@@ -22,6 +37,8 @@ public class Main {
             treeDP.add(father, son);
         }
         System.out.println(treeDP.promWithoutBoss());
+
+         */
 
 
         /*
