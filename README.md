@@ -23,4 +23,6 @@
             - [状态压缩DP](src/Algorithm/AlgorithmBasicCourse/DynamicProgramming/StateCompressedDP.java)
             - [树形DP](src/Algorithm/AlgorithmBasicCourse/DynamicProgramming/TreeDP.java)
             - [记忆化搜索](src/Algorithm/AlgorithmBasicCourse/DynamicProgramming/MemorySearch.java)
+        - [贪心](src/Algorithm/AlgorithmBasicCourse/Greed) &#x2002; 包括区间问题，Huffman树，排序不等式，绝对值不等式，推公式等内容。
+            - [区间问题](src/Algorithm/AlgorithmBasicCourse/Greed/IntervalProblem.java)
     - [其他题解](src/Algorithm/OtherProblemSolving) &#x2002; 非系统性学习的题目
