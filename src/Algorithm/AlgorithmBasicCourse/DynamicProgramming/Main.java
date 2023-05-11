@@ -15,7 +15,7 @@ public class Main {
             String[] strings = bufferedReader.readLine().split(" ");
             intervalProblem.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
         }
-        System.out.println(intervalProblem.intervalPointSelection());
+        System.out.println(intervalProblem.intervalSelection());
 
 
         /*

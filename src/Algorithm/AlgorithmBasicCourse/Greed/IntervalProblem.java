@@ -5,15 +5,16 @@ import java.util.Comparator;
 
 public class IntervalProblem {
     // 区间选点 https://www.acwing.com/problem/content/907/\
+    // 最大不相交区间数量 https://www.acwing.com/problem/content/910/
     ArrayList<int[]> interregional = new ArrayList<>();
 
-    // 区间选点
+    // 区间选点、最大不相交区间数量
     public void add(int l, int r) {
         interregional.add(new int[]{l, r});
     }
 
-    // 区间选点
-    public int intervalPointSelection() {
+    // 区间选点、最大不相交区间数量
+    public int intervalSelection() {
 
         interregional.sort(Comparator.comparingInt(o -> o[1]));
         // 排序 2
