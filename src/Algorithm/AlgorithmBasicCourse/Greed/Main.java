@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 合并果子
+        bufferedReader.readLine();
+        String[] strings = bufferedReader.readLine().split(" ");
+        HuffmanTree huffmanTree = new HuffmanTree();
+        System.out.println(huffmanTree.mergeFruit(strings));
+
+
+        /*
         // 区间覆盖
         String[] strings = bufferedReader.readLine().split(" ");
         int st = Integer.parseInt(strings[0]), ed = Integer.parseInt(strings[1]);
@@ -20,5 +28,7 @@ public class Main {
         System.out.println(intervalProblem.intervalSelection());   // 区间选点、最大不相交区间数量
         System.out.println(intervalProblem.intervalGrouping());   // 区间分组
         System.out.println(intervalProblem.IntervalCoverage(st, ed));   // 区间覆盖
+
+         */
     }
 }
