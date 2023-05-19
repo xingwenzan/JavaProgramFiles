@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 耍杂技的牛
+        PushFormula pushFormula = new PushFormula();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            pushFormula.add(strings);
+        }
+        System.out.println(pushFormula.jugglingCow(n));
+
+
+        /*
         // 排队打水、货仓选址
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -14,6 +26,8 @@ public class Main {
         System.out.println(orderingInequality.lineUpForWater(strings, n));
         AbsoluteValueInequality absoluteValueInequality = new AbsoluteValueInequality();
         System.out.println(absoluteValueInequality.warehouseLocation(strings, n));
+
+         */
 
 
         /*

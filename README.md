@@ -28,4 +28,5 @@
             - [Haffman 树](src/Algorithm/AlgorithmBasicCourse/Greed/HuffmanTree.java)
             - [排序不等式](src/Algorithm/AlgorithmBasicCourse/Greed/OrderingInequality.java)
             - [绝对值不等式](src/Algorithm/AlgorithmBasicCourse/Greed/AbsoluteValueInequality.java)
+            - [推公式](src/Algorithm/AlgorithmBasicCourse/Greed/PushFormula.java)
     - [其他题解](src/Algorithm/OtherProblemSolving) &#x2002; 非系统性学习的题目
