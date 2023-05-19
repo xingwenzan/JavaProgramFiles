@@ -7,11 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 排队打水
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        OrderingInequality orderingInequality = new OrderingInequality();
+        System.out.println(orderingInequality.lineUpForWater(strings, n));
+
+
+        /*
         // 合并果子
         bufferedReader.readLine();
         String[] strings = bufferedReader.readLine().split(" ");
         HuffmanTree huffmanTree = new HuffmanTree();
         System.out.println(huffmanTree.mergeFruit(strings));
+
+         */
 
 
         /*
