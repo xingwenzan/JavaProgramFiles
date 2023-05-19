@@ -26,4 +26,6 @@
         - [贪心](src/Algorithm/AlgorithmBasicCourse/Greed) &#x2002; 包括区间问题，Huffman树，排序不等式，绝对值不等式，推公式等内容。
             - [区间问题](src/Algorithm/AlgorithmBasicCourse/Greed/IntervalProblem.java)
             - [Haffman 树](src/Algorithm/AlgorithmBasicCourse/Greed/HuffmanTree.java)
+            - [排序不等式](src/Algorithm/AlgorithmBasicCourse/Greed/OrderingInequality.java)
+            - [绝对值不等式](src/Algorithm/AlgorithmBasicCourse/Greed/AbsoluteValueInequality.java)
     - [其他题解](src/Algorithm/OtherProblemSolving) &#x2002; 非系统性学习的题目

@@ -7,11 +7,13 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 排队打水
+        // 排队打水、货仓选址
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         OrderingInequality orderingInequality = new OrderingInequality();
         System.out.println(orderingInequality.lineUpForWater(strings, n));
+        AbsoluteValueInequality absoluteValueInequality = new AbsoluteValueInequality();
+        System.out.println(absoluteValueInequality.warehouseLocation(strings, n));
 
 
         /*
