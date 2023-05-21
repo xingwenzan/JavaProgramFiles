@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Other;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class SoFreeShipping {
         int sum = 0;
         for (int i = 0; i < n; i++) {
             String s1 = bufferedReader.readLine();
-            a[i] = Integer.parseInt(s1 + "");
+            a[i] = Integer.parseInt(s1);
             sum += a[i];
         }
         int m = sum - x;

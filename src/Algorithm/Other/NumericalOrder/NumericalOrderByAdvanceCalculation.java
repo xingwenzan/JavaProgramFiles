@@ -1,4 +1,4 @@
-package Algorithm.NumericalOrder;
+package Algorithm.Other.NumericalOrder;
 
 import java.util.Arrays;
 import java.util.Comparator;

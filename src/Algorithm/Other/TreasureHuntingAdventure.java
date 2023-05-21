@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Other;
 
 import java.io.BufferedReader;
 import java.io.IOException;

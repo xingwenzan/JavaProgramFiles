@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Other;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class Exercise {
         String[] out = {"chest", "biceps", "back"};
         int[] sportTime = {0, 0, 0};
         for (int i = 0; i < n; i++) {
-            int time = Integer.parseInt(s[i] + "");
+            int time = Integer.parseInt(s[i]);
             sportTime[i % 3] += time;
         }
         int ans = sportTime[0];

@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Other;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class PaperSize {
         }
         Scanner scanner = new Scanner(System.in);
         String n0 = scanner.nextLine();
-        int n = Integer.parseInt(n0.charAt(1) + "");
+        int n = Integer.parseInt(String.valueOf(n0.charAt(1)));
         System.out.println(a[n]);
         System.out.println(a[n + 1]);
     }

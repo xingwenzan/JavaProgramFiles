@@ -1,4 +1,4 @@
-package Algorithm.UninitializedWarning;
+package Algorithm.Other.UninitializedWarning;
 
 import java.io.BufferedReader;
 import java.io.IOException;

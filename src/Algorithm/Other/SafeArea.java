@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Other;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +9,8 @@ public class SafeArea {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] s = bufferedReader.readLine().split(" ");
-        int n = Integer.parseInt(s[0] + "");
-        int m = Integer.parseInt(s[1] + "");
+        int n = Integer.parseInt(s[0]);
+        int m = Integer.parseInt(s[1]);
         long[] out = new long[m];
         boolean[] row = new boolean[n];
         boolean[] col = new boolean[n];
@@ -18,8 +18,8 @@ public class SafeArea {
         int c = 0;
         for (int i = 0; i < m; i++) {
             s = bufferedReader.readLine().split(" ");
-            int x = Integer.parseInt(s[0] + "");
-            int y = Integer.parseInt(s[1] + "");
+            int x = Integer.parseInt(s[0]);
+            int y = Integer.parseInt(s[1]);
             if (!row[x - 1]) {
                 r++;
                 row[x - 1] = true;
