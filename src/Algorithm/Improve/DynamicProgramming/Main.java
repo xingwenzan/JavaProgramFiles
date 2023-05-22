@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最低通行费
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        DigitalTriangleModel digitalTriangleModel = new DigitalTriangleModel();
+        for (int r = 0; r < n; r++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int c = 0; c < n; c++) {
+                digitalTriangleModel.add(r, c, Integer.parseInt(strings[c]));
+            }
+        }
+        System.out.println(digitalTriangleModel.minimumToll(n));
+
+
+        /*
         // 摘花生
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
@@ -22,5 +36,7 @@ public class Main {
             }
             System.out.println(digitalTriangleModel.pickingPeanuts(R, C));
         }
+
+         */
     }
 }
