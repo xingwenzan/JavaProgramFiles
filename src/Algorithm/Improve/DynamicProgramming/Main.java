@@ -7,6 +7,22 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 方格取数
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        DigitalTriangleModel digitalTriangleModel = new DigitalTriangleModel();
+        while (true) {
+            strings = bufferedReader.readLine().split(" ");
+            int r = Integer.parseInt(strings[0]), c = Integer.parseInt(strings[1]), x = Integer.parseInt(strings[2]);
+            if (r == 0 && c == 0 && x == 0) {
+                break;
+            }
+            digitalTriangleModel.add(r, c, x);
+        }
+        System.out.println(digitalTriangleModel.squareAccess(n));
+
+
+        /*
         // 最低通行费
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
@@ -18,6 +34,8 @@ public class Main {
             }
         }
         System.out.println(digitalTriangleModel.minimumToll(n));
+
+         */
 
 
         /*
