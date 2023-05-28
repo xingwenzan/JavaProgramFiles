@@ -7,6 +7,16 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 怪盗基德的滑翔翼
+        int k = Integer.parseInt(bufferedReader.readLine());
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        for (int i = 0; i < k; i++) {
+            int n = Integer.parseInt(bufferedReader.readLine());
+            String[] strings = bufferedReader.readLine().split(" ");
+            System.out.println(LIS.HangGliding(strings, n));
+        }
+
+        /*
         // 方格取数
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings;
@@ -20,6 +30,8 @@ public class Main {
             digitalTriangleModel.add(r, c, x);
         }
         System.out.println(digitalTriangleModel.squareAccess(n));
+
+         */
 
 
         /*

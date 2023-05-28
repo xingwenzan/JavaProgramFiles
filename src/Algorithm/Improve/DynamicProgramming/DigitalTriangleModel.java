@@ -6,6 +6,7 @@ public class DigitalTriangleModel {
     // 摘花生 https://www.acwing.com/problem/content/1017/
     // 最低通行费 https://www.acwing.com/problem/content/1020/
     // 方格取数 https://www.acwing.com/problem/content/1029/
+    // 传纸条 https://www.acwing.com/problem/content/277/   （使用`方格取数`可过）
 
     private final int T = 15;   // 摘花生、最低通行费 110 方格取数 15
     private final int[][] w = new int[T][T], f = new int[T][T];   // f 摘花生、最低通行费 w 摘花生、最低通行费、方格取数

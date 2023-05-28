@@ -34,6 +34,7 @@
         - [动态规划](src/Algorithm/Improve/DynamicProgramming) &#x2002;
           包括数字三角形模型、最长上升子序列模型、背包模型、状态机、状态压缩DP、区间DP、树形DP、数位DP、单调队列优化DP、斜率优化DP等内容
             - [数字三角形模型](src/Algorithm/Improve/DynamicProgramming/DigitalTriangleModel.java)
+            - [最长上升子序列模型](src/Algorithm/Improve/DynamicProgramming/LongestAscendingSubsequence.java)
         - [搜索](src/Algorithm/Improve/Search) &#x2002; 包括Flood
           Fill、最短路模型、多源BFS、最小步数模型、双端队列广搜、双向广搜、A*
           、DFS之连通性模型、DFS之搜索顺序、DFS之剪枝与优化、迭代加深、双向DFS、IDA*等内容
