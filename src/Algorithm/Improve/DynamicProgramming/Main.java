@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 登山
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        System.out.println(LIS.Mountaineering(strings, n));
+
+
+        /*
         // 怪盗基德的滑翔翼
         int k = Integer.parseInt(bufferedReader.readLine());
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
@@ -15,6 +23,9 @@ public class Main {
             String[] strings = bufferedReader.readLine().split(" ");
             System.out.println(LIS.HangGliding(strings, n));
         }
+
+         */
+
 
         /*
         // 方格取数
