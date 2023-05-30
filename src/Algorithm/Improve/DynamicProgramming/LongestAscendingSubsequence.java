@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class LongestAscendingSubsequence {
     // 怪盗基德的滑翔翼 https://www.acwing.com/problem/content/1019/
     // 登山 https://www.acwing.com/problem/content/1016/
-    private final int N = 1010;   // 怪盗基德的滑翔翼 110 登山 1010
+    // 合唱队形 https://www.acwing.com/problem/content/484/
+    private final int N = 110;   // 怪盗基德的滑翔翼、合唱队形 110 登山 1010
     private final int[] e = new int[N];
 
     private void add(String[] strings, int length) {
@@ -64,5 +65,9 @@ public class LongestAscendingSubsequence {
             ans = Math.max(ans, up[k] + down[k] - 1);
         }
         return ans;
+    }
+
+    public int ChorusFormation(String[] strings, int length) {
+        return length - Mountaineering(strings, length);
     }
 }

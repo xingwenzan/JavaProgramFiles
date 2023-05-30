@@ -7,11 +7,12 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 登山
+        // 登山、合唱队形
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
-        System.out.println(LIS.Mountaineering(strings, n));
+        System.out.println(LIS.Mountaineering(strings, n));   // 登山
+        System.out.println(LIS.ChorusFormation(strings, n));   // 合唱队形
 
 
         /*
