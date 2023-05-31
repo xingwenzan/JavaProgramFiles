@@ -7,12 +7,25 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 友好城市
+        int n = Integer.parseInt(bufferedReader.readLine());
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        for (int i = 0; i < n; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            LIS.add(strings);
+        }
+        System.out.println(LIS.SisterCity(n));
+
+
+        /*
         // 登山、合唱队形
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
         System.out.println(LIS.Mountaineering(strings, n));   // 登山
         System.out.println(LIS.ChorusFormation(strings, n));   // 合唱队形
+
+         */
 
 
         /*
