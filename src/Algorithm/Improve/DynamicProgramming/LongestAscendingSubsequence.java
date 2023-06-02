@@ -1,5 +1,7 @@
 package Algorithm.Improve.DynamicProgramming;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -9,14 +11,15 @@ public class LongestAscendingSubsequence {
     // 登山 https://www.acwing.com/problem/content/1016/
     // 合唱队形 https://www.acwing.com/problem/content/484/
     // 友好城市 https://www.acwing.com/problem/content/1014/
+    // 最大上升子序列和 https://www.acwing.com/problem/content/1018/
 
 
-    private final int N = 5010;   // 怪盗基德的滑翔翼、合唱队形 110   登山 1010   友好城市 5010
+    private final int N = 1010;   // 怪盗基德的滑翔翼、合唱队形 110   登山、最大上升子序列和 1010   友好城市 5010
     private final int[] e = new int[N];   // 怪盗基德的滑翔翼、合唱队形、登山
     private final ArrayList<int[]> e2 = new ArrayList<>();   // 友好城市
 
 
-    // 怪盗基德的滑翔翼、合唱队形、登山
+    // 怪盗基德的滑翔翼、合唱队形、登山、最大上升子序列和
     private void add(String[] strings, int length) {
         for (int i = 0; i < length; i++) {
             e[i] = Integer.parseInt(strings[i]);
@@ -24,7 +27,7 @@ public class LongestAscendingSubsequence {
     }
 
     // 友好城市
-    public void add(String[] strings) {
+    public void add(String @NotNull [] strings) {
         e2.add(new int[]{Integer.parseInt(strings[0]), Integer.parseInt(strings[1])});
     }
 
@@ -93,6 +96,22 @@ public class LongestAscendingSubsequence {
             for (int j = 0; j < i; j++) {
                 if (e2.get(i)[1] > e2.get(j)[1]) {
                     f[i] = Math.max(f[i], f[j] + 1);
+                }
+            }
+            ans = Math.max(ans, f[i]);
+        }
+        return ans;
+    }
+
+    public int ToSum(String[] strings, int length) {
+        add(strings, length);
+        int[] f = new int[N];
+        int ans = 0;
+        for (int i = 0; i < length; i++) {
+            f[i] = e[i];
+            for (int j = 0; j < i; j++) {
+                if (e[i] > e[j]) {
+                    f[i] = Math.max(f[i], f[j] + e[i]);
                 }
             }
             ans = Math.max(ans, f[i]);
