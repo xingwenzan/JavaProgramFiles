@@ -7,6 +7,10 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] strings = bufferedReader.readLine().split(" ");
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        int[] ans = LIS.InterceptorMissile(strings);
+        System.out.printf("%d\n%d", ans[0], ans[1]);
 
 
         /*
@@ -15,13 +19,14 @@ public class Main {
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
         for (int i = 0; i < n; i++) {
             String[] strings = bufferedReader.readLine().split(" ");
-            LIS.add(strings);
+            LIS.addList(strings);
         }
         System.out.println(LIS.SisterCity(n));
 
          */
 
 
+        /*
         // 登山、合唱队形、最大上升子序列和
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -29,6 +34,8 @@ public class Main {
         System.out.println(LIS.Mountaineering(strings, n));   // 登山
         System.out.println(LIS.ChorusFormation(strings, n));   // 合唱队形
         System.out.println(LIS.ToSum(strings, n));   // 最大上升子序列和
+
+         */
 
 
         /*

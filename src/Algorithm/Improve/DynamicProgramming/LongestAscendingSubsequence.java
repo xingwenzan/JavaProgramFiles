@@ -12,20 +12,20 @@ public class LongestAscendingSubsequence {
     // 合唱队形 https://www.acwing.com/problem/content/484/
     // 友好城市 https://www.acwing.com/problem/content/1014/
     // 最大上升子序列和 https://www.acwing.com/problem/content/1018/
+    // 拦截导弹 https://www.acwing.com/problem/content/1012/
 
 
-    private final int N = 1010;   // 怪盗基德的滑翔翼、合唱队形 110   登山、最大上升子序列和 1010   友好城市 5010
+    private final int N = 1010;   // 怪盗基德的滑翔翼、合唱队形 110   登山、最大上升子序列和、拦截导弹 1010   友好城市 5010
     private final int[] e = new int[N];   // 怪盗基德的滑翔翼、合唱队形、登山
     private final ArrayList<int[]> e2 = new ArrayList<>();   // 友好城市
 
 
-    // 怪盗基德的滑翔翼、合唱队形、登山、最大上升子序列和
+    // 怪盗基德的滑翔翼、合唱队形、登山、最大上升子序列和、拦截导弹
     private void add(String[] strings, int length) {
         for (int i = 0; i < length; i++) {
             e[i] = Integer.parseInt(strings[i]);
         }
     }
-
     // 友好城市
     public void add(String @NotNull [] strings) {
         e2.add(new int[]{Integer.parseInt(strings[0]), Integer.parseInt(strings[1])});
@@ -115,6 +115,34 @@ public class LongestAscendingSubsequence {
                 }
             }
             ans = Math.max(ans, f[i]);
+        }
+        return ans;
+    }
+
+    public int[] InterceptorMissile(String[] strings) {
+        int length = strings.length;
+        add(strings, length);
+        // f 最长上升子序列   g 贪心 各子序列最小的值   ans 返回值，前者是最长上升子序列长度，后者是贪心的最小子序列数
+        int[] f = new int[length], g = new int[length], ans = new int[2];
+        Arrays.fill(f, 1);
+        Arrays.fill(g, (int) 1e9);
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (e[i] <= e[j]) {
+                    f[i] = Math.max(f[i], f[j] + 1);
+                }
+            }
+            ans[0] = Math.max(ans[0], f[i]);
+
+            int tmp = 0;
+            while (tmp < ans[1] && e[i] > g[tmp]) {
+                tmp++;
+            }
+            if (tmp == ans[1]) {
+                g[ans[1]++] = e[i];
+            } else {
+                g[tmp] = e[i];
+            }
         }
         return ans;
     }
