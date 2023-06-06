@@ -7,10 +7,24 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 导弹防御系统
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        while (n > 0) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            System.out.println(LIS.MissileDefenseSystem(strings, n));
+            n = Integer.parseInt(bufferedReader.readLine());
+        }
+
+
+        /*
+        // 拦截导弹
         String[] strings = bufferedReader.readLine().split(" ");
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
         int[] ans = LIS.InterceptorMissile(strings);
         System.out.printf("%d\n%d", ans[0], ans[1]);
+
+         */
 
 
         /*
