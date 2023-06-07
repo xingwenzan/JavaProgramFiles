@@ -14,13 +14,14 @@ public class LongestAscendingSubsequence {
     // 最大上升子序列和 https://www.acwing.com/problem/content/1018/
     // 拦截导弹 https://www.acwing.com/problem/content/1012/
     // 导弹防御系统 https://www.acwing.com/problem/content/description/189/   暴搜
+    // 最长公共上升子序列 https://www.acwing.com/problem/content/274/
 
 
-    // 怪盗基德的滑翔翼、合唱队形 110   登山、最大上升子序列和、拦截导弹 1010   友好城市 5010   导弹防御系统 55
-    private final int N = 55;
+    // 怪盗基德的滑翔翼、合唱队形 110   登山、最大上升子序列和、拦截导弹 1010   友好城市 5010   导弹防御系统 55   最长公共上升子序列 3010
+    private final int N = 3010;
     private final int[] e = new int[N];   // 怪盗基德的滑翔翼、合唱队形、登山
     private final ArrayList<int[]> e2 = new ArrayList<>();   // 友好城市
-    private final int[] up = new int[N], down = new int[N];   // 导弹防御系统
+    private final int[] up = new int[N], down = new int[N];   // 导弹防御系统   最长公共上升子序列（此时数组名无意义）
     private int ans;   // 导弹防御系统
 
 
@@ -28,6 +29,14 @@ public class LongestAscendingSubsequence {
     private void add(String[] strings, int length) {
         for (int i = 0; i < length; i++) {
             e[i] = Integer.parseInt(strings[i]);
+        }
+    }
+
+    // 最长公共上升子序列
+    private void add(String[] strA, String[] strB, int length) {
+        for (int i = 1; i <= length; i++) {
+            up[i] = Integer.parseInt(strA[i - 1]);
+            down[i] = Integer.parseInt(strB[i - 1]);
         }
     }
 
@@ -196,6 +205,28 @@ public class LongestAscendingSubsequence {
         add(strings, length);
         ans = length;
         dfs(0, 0, 0, length);
+        return ans;
+    }
+
+    public int Common(String[] strA, String[] strB, int length) {
+        int[][] f = new int[N][N];
+        add(strA, strB, length);
+        for (int i = 1; i <= length; i++) {
+            int tmp = 0;
+            for (int j = 1; j <= length; j++) {
+                f[i][j] = f[i - 1][j];
+                if (up[i] == down[j]) {
+                    f[i][j] = Math.max(f[i][j], tmp + 1);
+                }
+                if (up[i] > down[j]) {
+                    tmp = Math.max(tmp, f[i - 1][j]);
+                }
+            }
+        }
+        int ans = 0;
+        for (int i = 1; i <= length; i++) {
+            ans = Math.max(ans, f[length][i]);
+        }
         return ans;
     }
 }

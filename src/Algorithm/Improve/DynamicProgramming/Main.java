@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最长公共上升子序列
+        LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strA = bufferedReader.readLine().split(" ");
+        String[] strB = bufferedReader.readLine().split(" ");
+        System.out.println(LIS.Common(strA, strB, n));
+
+
+        /*
         // 导弹防御系统
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
         int n = Integer.parseInt(bufferedReader.readLine());
@@ -15,6 +24,8 @@ public class Main {
             System.out.println(LIS.MissileDefenseSystem(strings, n));
             n = Integer.parseInt(bufferedReader.readLine());
         }
+
+         */
 
 
         /*
