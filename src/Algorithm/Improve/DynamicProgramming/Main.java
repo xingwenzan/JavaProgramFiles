@@ -7,12 +7,26 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 采药
+        String[] strings = bufferedReader.readLine().split(" ");
+        int t = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
+        }
+        System.out.println(bp.CollectHerbs(t));
+
+
+        /*
         // 最长公共上升子序列
         LongestAscendingSubsequence LIS = new LongestAscendingSubsequence();
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strA = bufferedReader.readLine().split(" ");
         String[] strB = bufferedReader.readLine().split(" ");
         System.out.println(LIS.Common(strA, strB, n));
+
+         */
 
 
         /*
