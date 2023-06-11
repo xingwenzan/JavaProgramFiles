@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 装箱问题
+        int V = Integer.parseInt(bufferedReader.readLine());
+        int n = Integer.parseInt(bufferedReader.readLine());
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < n; i++) {
+            int tmp = Integer.parseInt(bufferedReader.readLine());
+            bp.add(tmp, tmp);
+        }
+        System.out.println(bp.PackingProblem(V));
+
+
+        /*
         // 采药
         String[] strings = bufferedReader.readLine().split(" ");
         int t = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -16,6 +28,8 @@ public class Main {
             bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
         }
         System.out.println(bp.CollectHerbs(t));
+
+         */
 
 
         /*

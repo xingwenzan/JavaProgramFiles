@@ -2,8 +2,9 @@ package Algorithm.Improve.DynamicProgramming;
 
 public class BackpackModel {
     // 采药 https://www.acwing.com/activity/content/problem/content/1267/
+    // 装箱问题 https://www.acwing.com/problem/content/1026/
 
-    private final int N = 1010;   // 采药 1010
+    private final int N = 20010;   // 采药 1010   装箱问题 20010
     private final int[] f = new int[N], vs = new int[N], ws = new int[N];
     private int idx = 0;
 
@@ -23,5 +24,9 @@ public class BackpackModel {
             }
         }
         return f[V];
+    }
+
+    public int PackingProblem(int V) {
+        return V - CollectHerbs(V);
     }
 }
