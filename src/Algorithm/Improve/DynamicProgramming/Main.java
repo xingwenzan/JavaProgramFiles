@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 宠物小精灵之收服
+        String[] strings = bufferedReader.readLine().split(" ");
+        BackpackModel bp = new BackpackModel();
+        int K = Integer.parseInt(strings[2]), M = Integer.parseInt(strings[1]), N = Integer.parseInt(strings[0]);
+        for (int i = 0; i < K; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), 1);
+        }
+        int[] ans = bp.PokemonConquer(N, M);
+        System.out.printf("%d %d", ans[0], ans[1]);
+
+
+
+        /*
         // 装箱问题
         int V = Integer.parseInt(bufferedReader.readLine());
         int n = Integer.parseInt(bufferedReader.readLine());
@@ -16,6 +30,8 @@ public class Main {
             bp.add(tmp, tmp);
         }
         System.out.println(bp.PackingProblem(V));
+
+         */
 
 
         /*
