@@ -1,17 +1,26 @@
 package Algorithm.Improve.DynamicProgramming;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class BackpackModel {
     // 采药 https://www.acwing.com/activity/content/problem/content/1267/
     // 装箱问题 https://www.acwing.com/problem/content/1026/
     // 宠物小精灵之收服 https://www.acwing.com/problem/content/1024/
+    // 数字组合 https://www.acwing.com/problem/content/280/
 
-    private final int N = 20010;   // 采药 1010   装箱问题 20010
-    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题
+    private final int N = 110;   // 采药 1010   装箱问题 20010   数字组合 110
+    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合
     private final ArrayList<int[]> vw = new ArrayList<>();   // 宠物小精灵之收服
     private int idx = 0;
 
+
+    private void add(String @NotNull [] V) {
+        for (String v : V) {
+            vs[idx++] = Integer.parseInt(v);
+        }
+    }
 
     public void add(int V, int W) {
         vs[idx] = V;
@@ -58,5 +67,17 @@ public class BackpackModel {
         }
         ans[1] = HP - tmp;
         return ans;
+    }
+
+    public int NumberCombinations(String[] strings, int V) {
+        add(strings);
+        int[] f = new int[V + 10];
+        f[0] = 1;
+        for (int i = 0; i < idx; i++) {
+            for (int j = V; j >= vs[i]; j--) {
+                f[j] += f[j - vs[i]];
+            }
+        }
+        return f[V];
     }
 }

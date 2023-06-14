@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 数字组合
+        String[] strings = bufferedReader.readLine().split(" ");
+        int M = Integer.parseInt(strings[1]);
+        strings = bufferedReader.readLine().split(" ");
+        BackpackModel bp = new BackpackModel();
+        System.out.println(bp.NumberCombinations(strings, M));
+
+
+        /*
         // 宠物小精灵之收服
         String[] strings = bufferedReader.readLine().split(" ");
         BackpackModel bp = new BackpackModel();
@@ -17,6 +26,8 @@ public class Main {
         }
         int[] ans = bp.PokemonConquer(N, M);
         System.out.printf("%d %d", ans[0], ans[1]);
+
+         */
 
 
 
