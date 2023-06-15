@@ -7,12 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 买书
+        int n = Integer.parseInt(bufferedReader.readLine());
+        BackpackModel bp = new BackpackModel();
+        System.out.println(bp.BuyBooks(n));
+
+
+        /*
         // 数字组合
         String[] strings = bufferedReader.readLine().split(" ");
         int M = Integer.parseInt(strings[1]);
         strings = bufferedReader.readLine().split(" ");
         BackpackModel bp = new BackpackModel();
         System.out.println(bp.NumberCombinations(strings, M));
+
+         */
 
 
         /*

@@ -9,6 +9,7 @@ public class BackpackModel {
     // 装箱问题 https://www.acwing.com/problem/content/1026/
     // 宠物小精灵之收服 https://www.acwing.com/problem/content/1024/
     // 数字组合 https://www.acwing.com/problem/content/280/
+    // 买书 https://www.acwing.com/problem/content/1025/
 
     private final int N = 110;   // 采药 1010   装箱问题 20010   数字组合 110
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合
@@ -76,6 +77,17 @@ public class BackpackModel {
         for (int i = 0; i < idx; i++) {
             for (int j = V; j >= vs[i]; j--) {
                 f[j] += f[j - vs[i]];
+            }
+        }
+        return f[V];
+    }
+
+    public int BuyBooks(int V) {
+        int[] v = {10, 20, 50, 100}, f = new int[V + 10];
+        f[0] = 1;
+        for (int i = 0; i < 4; i++) {
+            for (int j = v[i]; j <= V; j++) {
+                f[j] += f[j - v[i]];
             }
         }
         return f[V];
