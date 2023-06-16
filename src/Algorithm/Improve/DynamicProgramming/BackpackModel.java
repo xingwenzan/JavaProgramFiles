@@ -10,9 +10,10 @@ public class BackpackModel {
     // 宠物小精灵之收服 https://www.acwing.com/problem/content/1024/
     // 数字组合 https://www.acwing.com/problem/content/280/
     // 买书 https://www.acwing.com/problem/content/1025/
+    // 货币系统 https://www.acwing.com/problem/content/1023/
 
-    private final int N = 110;   // 采药 1010   装箱问题 20010   数字组合 110
-    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合
+    private final int N = 3010;   // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010
+    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
     private final ArrayList<int[]> vw = new ArrayList<>();   // 宠物小精灵之收服
     private int idx = 0;
 
@@ -21,6 +22,11 @@ public class BackpackModel {
         for (String v : V) {
             vs[idx++] = Integer.parseInt(v);
         }
+    }
+
+    public void add(int V) {
+        vs[idx] = V;
+        idx++;
     }
 
     public void add(int V, int W) {
@@ -88,6 +94,18 @@ public class BackpackModel {
         for (int i = 0; i < 4; i++) {
             for (int j = v[i]; j <= V; j++) {
                 f[j] += f[j - v[i]];
+            }
+        }
+        return f[V];
+    }
+
+    public long MonetarySystem(int V) {
+        long[] f = new long[V + 10];
+        f[0] = 1;
+        for (int i = 0; i < idx; i++) {
+            int v = vs[i];
+            for (int j = v; j <= V; j++) {
+                f[j] += f[j - v];
             }
         }
         return f[V];

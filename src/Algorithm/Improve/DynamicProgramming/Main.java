@@ -7,10 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 货币系统
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < n; i++) {
+            bp.add(Integer.parseInt(bufferedReader.readLine()));
+        }
+        System.out.println(bp.MonetarySystem(m));
+
+
+        /*
         // 买书
         int n = Integer.parseInt(bufferedReader.readLine());
         BackpackModel bp = new BackpackModel();
         System.out.println(bp.BuyBooks(n));
+
+         */
 
 
         /*
