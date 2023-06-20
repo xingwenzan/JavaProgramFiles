@@ -3,6 +3,7 @@ package Algorithm.Improve.DynamicProgramming;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BackpackModel {
     // 采药 https://www.acwing.com/activity/content/problem/content/1267/
@@ -11,8 +12,10 @@ public class BackpackModel {
     // 数字组合 https://www.acwing.com/problem/content/280/
     // 买书 https://www.acwing.com/problem/content/1025/
     // 货币系统 https://www.acwing.com/problem/content/1023/
+    // 货币系统-NOIP https://www.acwing.com/problem/content/534/
 
-    private final int N = 3010;   // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010
+    // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
+    private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
     private final ArrayList<int[]> vw = new ArrayList<>();   // 宠物小精灵之收服
     private int idx = 0;
@@ -109,5 +112,26 @@ public class BackpackModel {
             }
         }
         return f[V];
+    }
+
+    public int MonetarySystemNOIP(String[] strings) {
+        idx = 0;
+        add(strings);
+        Arrays.sort(vs, 0, idx);
+        int maxNum = vs[idx - 1];
+        boolean[] f = new boolean[maxNum + 10];
+        Arrays.fill(f, false);
+        f[0] = true;
+        int ans = 0;
+        for (int i = 0; i < idx; i++) {
+            int v = vs[i];
+            if (!f[v]) {
+                ans++;
+            }
+            for (int j = v; j <= maxNum; j++) {
+                f[j] |= f[j - v];
+            }
+        }
+        return ans;
     }
 }
