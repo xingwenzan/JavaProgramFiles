@@ -13,11 +13,19 @@ public class BackpackModel {
     // 买书 https://www.acwing.com/problem/content/1025/
     // 货币系统 https://www.acwing.com/problem/content/1023/
     // 货币系统-NOIP https://www.acwing.com/problem/content/534/
+    // 多重背包问题 III https://www.acwing.com/problem/content/6/
+
+    /*多重背包问题 III
+    多重背包的单调队列优化方法
+    https://www.acwing.com/solution/content/6500/
+    https://www.acwing.com/solution/content/53507/
+    https://www.acwing.com/activity/content/code/content/117236/
+     */
 
     // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
-    private final ArrayList<int[]> vw = new ArrayList<>();   // 宠物小精灵之收服
+    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III
     private int idx = 0;
 
 
@@ -38,8 +46,12 @@ public class BackpackModel {
         idx++;
     }
 
-    public void add(int V1, int V2, int W) {
-        vw.add(new int[]{V1, V2, W});
+    /*
+    宠物小精灵之收服   V HP W
+    多重背包问题 III   V W S
+     */
+    public void add(int V, int P1, int P2) {
+        vws.add(new int[]{V, P1, P2});
         idx++;
     }
 
@@ -63,7 +75,7 @@ public class BackpackModel {
         int[][] f = new int[V + 10][HP + 10];
         int[] ans = new int[2];
         for (int i = 0; i < idx; i++) {
-            int v = vw.get(i)[0], hp = vw.get(i)[1], w = vw.get(i)[2];
+            int v = vws.get(i)[0], hp = vws.get(i)[1], w = vws.get(i)[2];
             for (int j = V; j >= v; j--) {
                 for (int k = HP; k >= hp; k--) {
                     f[j][k] = Math.max(f[j][k], f[j - v][k - hp] + w);
@@ -133,5 +145,28 @@ public class BackpackModel {
             }
         }
         return ans;
+    }
+
+    public int MultipleKnapsackIII(int V) {
+        int[] f = new int[V + 10];
+        for (int o = 0; o < idx; o++) {
+            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            int[] cf = f.clone();   // copy f
+            for (int i = 0; i < v; i++) {   // 模 v 的余数
+                int[] ids = new int[V + 10];   // 用于记录单调队列窗口中留下的数的索引 —— 索引数组
+                int hh = 0, tt = -1;   // 单调队列索引数组窗口的头索引、尾索引，用于框住窗口
+                for (int j = i; j <= V; j += v) {
+                    if (hh <= tt && ids[hh] < j - s * v) {   // 单调队列窗口不空且头在窗口外，砍头
+                        hh++;
+                    }
+                    while (hh <= tt && cf[ids[tt]] - (ids[tt] - i) / v * w <= cf[j] - (j - i) / v * w) {   // 保证窗口单调递减，否则断尾
+                        tt--;
+                    }
+                    ids[++tt] = j;
+                    f[j] = cf[ids[hh]] + (j - ids[hh]) / v * w;   // 更新 f[j] 最大值
+                }
+            }
+        }
+        return f[V];
     }
 }

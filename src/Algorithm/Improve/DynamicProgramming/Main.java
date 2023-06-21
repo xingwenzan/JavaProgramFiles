@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 多重背包问题 III
+        String[] strings = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < N; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+        }
+        System.out.println(bp.MultipleKnapsackIII(V));
+
+
+        /*
         // 货币系统-NOPI
         int t = Integer.parseInt(bufferedReader.readLine());
         BackpackModel bp = new BackpackModel();
@@ -16,6 +28,8 @@ public class Main {
             String[] strings = bufferedReader.readLine().split(" ");
             System.out.println(bp.MonetarySystemNOIP(strings));
         }
+
+         */
 
 
 
