@@ -14,6 +14,7 @@ public class BackpackModel {
     // 货币系统 https://www.acwing.com/problem/content/1023/
     // 货币系统-NOIP https://www.acwing.com/problem/content/534/
     // 多重背包问题 III https://www.acwing.com/problem/content/6/
+    // 庆功会 https://www.acwing.com/problem/content/1021/
 
     /*多重背包问题 III
     多重背包的单调队列优化方法
@@ -25,7 +26,7 @@ public class BackpackModel {
     // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
-    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III
+    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会
     private int idx = 0;
 
 
@@ -48,7 +49,7 @@ public class BackpackModel {
 
     /*
     宠物小精灵之收服   V HP W
-    多重背包问题 III   V W S
+    多重背包问题 III、庆功会   V W S
      */
     public void add(int V, int P1, int P2) {
         vws.add(new int[]{V, P1, P2});
@@ -164,6 +165,19 @@ public class BackpackModel {
                     }
                     ids[++tt] = j;
                     f[j] = cf[ids[hh]] + (j - ids[hh]) / v * w;   // 更新 f[j] 最大值
+                }
+            }
+        }
+        return f[V];
+    }
+
+    public int VictoryMeeting(int V) {
+        int[] f = new int[V + 10];
+        for (int o = 0; o < idx; o++) {
+            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            for (int i = V; i >= 0; i--) {
+                for (int j = 0; j <= s && j * v <= i; j++) {
+                    f[i] = Math.max(f[i], f[i - j * v] + j * w);
                 }
             }
         }

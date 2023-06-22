@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 多重背包问题 III
+        // 多重背包问题 III、庆功会
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
         BackpackModel bp = new BackpackModel();
@@ -15,7 +15,8 @@ public class Main {
             strings = bufferedReader.readLine().split(" ");
             bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
         }
-        System.out.println(bp.MultipleKnapsackIII(V));
+        System.out.println(bp.MultipleKnapsackIII(V));   // 多重背包问题 III
+        System.out.println(bp.VictoryMeeting(V));   // 庆功会
 
 
         /*
