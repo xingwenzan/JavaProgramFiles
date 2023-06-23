@@ -15,18 +15,23 @@ public class BackpackModel {
     // 货币系统-NOIP https://www.acwing.com/problem/content/534/
     // 多重背包问题 III https://www.acwing.com/problem/content/6/
     // 庆功会 https://www.acwing.com/problem/content/1021/
+    // 混合背包问题 https://www.acwing.com/problem/content/7/
 
-    /*多重背包问题 III
+    /* 多重背包问题 III
     多重背包的单调队列优化方法
     https://www.acwing.com/solution/content/6500/
     https://www.acwing.com/solution/content/53507/
     https://www.acwing.com/activity/content/code/content/117236/
      */
 
+    /* 混合背包问题
+    先判断是否完全，否则使用二进制优化多重解决
+     */
+
     // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
-    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会
+    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
     private int idx = 0;
 
 
@@ -49,7 +54,7 @@ public class BackpackModel {
 
     /*
     宠物小精灵之收服   V HP W
-    多重背包问题 III、庆功会   V W S
+    多重背包问题 III、庆功会、混合背包问题   V W S
      */
     public void add(int V, int P1, int P2) {
         vws.add(new int[]{V, P1, P2});
@@ -178,6 +183,34 @@ public class BackpackModel {
             for (int i = V; i >= 0; i--) {
                 for (int j = 0; j <= s && j * v <= i; j++) {
                     f[i] = Math.max(f[i], f[i - j * v] + j * w);
+                }
+            }
+        }
+        return f[V];
+    }
+
+    public int MixedKnapsack(int V) {
+        int[] f = new int[V + 10];
+        for (int o = 0; o < idx; o++) {
+            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            if (s == 0) {   // 完全
+                for (int i = v; i <= V; i++) {
+                    f[i] = Math.max(f[i], f[i - v] + w);
+                }
+            } else {
+                if (s == -1) {
+                    s = 1;
+                }
+                for (int k = 1; k <= s; k *= 2) {
+                    for (int i = V; i >= k * v; i--) {
+                        f[i] = Math.max(f[i], f[i - k * v] + k * w);
+                    }
+                    s -= k;
+                }
+                if (s > 0) {
+                    for (int i = V; i >= s * v; i--) {
+                        f[i] = Math.max(f[i], f[i - s * v] + s * w);
+                    }
                 }
             }
         }
