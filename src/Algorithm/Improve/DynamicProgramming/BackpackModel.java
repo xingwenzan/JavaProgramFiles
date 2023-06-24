@@ -16,6 +16,7 @@ public class BackpackModel {
     // 多重背包问题 III https://www.acwing.com/problem/content/6/
     // 庆功会 https://www.acwing.com/problem/content/1021/
     // 混合背包问题 https://www.acwing.com/problem/content/7/
+    // 二维费用的背包问题 https://www.acwing.com/problem/content/8/
 
     /* 多重背包问题 III
     多重背包的单调队列优化方法
@@ -31,7 +32,7 @@ public class BackpackModel {
     // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
-    private final ArrayList<int[]> vws = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
+    private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
     private int idx = 0;
 
 
@@ -55,9 +56,10 @@ public class BackpackModel {
     /*
     宠物小精灵之收服   V HP W
     多重背包问题 III、庆功会、混合背包问题   V W S
+    二维费用的背包问题   V M W
      */
     public void add(int V, int P1, int P2) {
-        vws.add(new int[]{V, P1, P2});
+        parameter.add(new int[]{V, P1, P2});
         idx++;
     }
 
@@ -81,7 +83,7 @@ public class BackpackModel {
         int[][] f = new int[V + 10][HP + 10];
         int[] ans = new int[2];
         for (int i = 0; i < idx; i++) {
-            int v = vws.get(i)[0], hp = vws.get(i)[1], w = vws.get(i)[2];
+            int v = parameter.get(i)[0], hp = parameter.get(i)[1], w = parameter.get(i)[2];
             for (int j = V; j >= v; j--) {
                 for (int k = HP; k >= hp; k--) {
                     f[j][k] = Math.max(f[j][k], f[j - v][k - hp] + w);
@@ -156,7 +158,7 @@ public class BackpackModel {
     public int MultipleKnapsackIII(int V) {
         int[] f = new int[V + 10];
         for (int o = 0; o < idx; o++) {
-            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            int v = parameter.get(o)[0], w = parameter.get(o)[1], s = parameter.get(o)[2];
             int[] cf = f.clone();   // copy f
             for (int i = 0; i < v; i++) {   // 模 v 的余数
                 int[] ids = new int[V + 10];   // 用于记录单调队列窗口中留下的数的索引 —— 索引数组
@@ -179,7 +181,7 @@ public class BackpackModel {
     public int VictoryMeeting(int V) {
         int[] f = new int[V + 10];
         for (int o = 0; o < idx; o++) {
-            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            int v = parameter.get(o)[0], w = parameter.get(o)[1], s = parameter.get(o)[2];
             for (int i = V; i >= 0; i--) {
                 for (int j = 0; j <= s && j * v <= i; j++) {
                     f[i] = Math.max(f[i], f[i - j * v] + j * w);
@@ -192,7 +194,7 @@ public class BackpackModel {
     public int MixedKnapsack(int V) {
         int[] f = new int[V + 10];
         for (int o = 0; o < idx; o++) {
-            int v = vws.get(o)[0], w = vws.get(o)[1], s = vws.get(o)[2];
+            int v = parameter.get(o)[0], w = parameter.get(o)[1], s = parameter.get(o)[2];
             if (s == 0) {   // 完全
                 for (int i = v; i <= V; i++) {
                     f[i] = Math.max(f[i], f[i - v] + w);
@@ -215,5 +217,21 @@ public class BackpackModel {
             }
         }
         return f[V];
+    }
+
+    public int TwoDimensionalCost(int V, int M) {
+        int[][] f = new int[V + 10][M + 10];
+        for (int i = 0; i < V + 10; i++) {
+            Arrays.fill(f[i], 0);
+        }
+        for (int o = 0; o < idx; o++) {
+            int v = parameter.get(o)[0], m = parameter.get(o)[1], w = parameter.get(o)[2];
+            for (int i = V; i >= v; i--) {
+                for (int j = M; j >= m; j--) {
+                    f[i][j] = Math.max(f[i][j], f[i - v][j - m] + w);
+                }
+            }
+        }
+        return f[V][M];
     }
 }

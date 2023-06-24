@@ -7,7 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 多重背包问题 III、庆功会、混合背包问题
+        // 二维费用的背包问题
+        String[] strings = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]), M = Integer.parseInt(strings[2]);
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < N; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+        }
+        System.out.println(bp.TwoDimensionalCost(V, M));
+
+
+        /*
+        // 多重背包问题 III、庆功会、混合背包问题、二维费用的背包问题
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
         BackpackModel bp = new BackpackModel();
@@ -18,6 +30,8 @@ public class Main {
         System.out.println(bp.MultipleKnapsackIII(V));   // 多重背包问题 III
         System.out.println(bp.VictoryMeeting(V));   // 庆功会
         System.out.println(bp.MixedKnapsack(V));   // 混合背包问题
+
+         */
 
 
         /*
