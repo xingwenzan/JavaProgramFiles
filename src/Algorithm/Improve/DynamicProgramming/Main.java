@@ -7,6 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 潜水员
+        String[] strings = bufferedReader.readLine().split(" ");
+        int M = Integer.parseInt(strings[0]), N = Integer.parseInt(strings[1]);
+        int K = Integer.parseInt(bufferedReader.readLine());
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < K; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+        }
+        System.out.println(bp.Diver(M, N));
+
+
+        /*
         // 二维费用的背包问题
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]), M = Integer.parseInt(strings[2]);
@@ -16,6 +29,8 @@ public class Main {
             bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
         }
         System.out.println(bp.TwoDimensionalCost(V, M));
+
+         */
 
 
         /*

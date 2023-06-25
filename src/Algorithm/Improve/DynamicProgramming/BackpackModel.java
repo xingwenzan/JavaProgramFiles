@@ -17,6 +17,7 @@ public class BackpackModel {
     // 庆功会 https://www.acwing.com/problem/content/1021/
     // 混合背包问题 https://www.acwing.com/problem/content/7/
     // 二维费用的背包问题 https://www.acwing.com/problem/content/8/
+    // 潜水员 https://www.acwing.com/problem/content/1022/
 
     /* 多重背包问题 III
     多重背包的单调队列优化方法
@@ -57,6 +58,7 @@ public class BackpackModel {
     宠物小精灵之收服   V HP W
     多重背包问题 III、庆功会、混合背包问题   V W S
     二维费用的背包问题   V M W
+    潜水员   V1 V2 W
      */
     public void add(int V, int P1, int P2) {
         parameter.add(new int[]{V, P1, P2});
@@ -233,5 +235,22 @@ public class BackpackModel {
             }
         }
         return f[V][M];
+    }
+
+    public int Diver(int V1, int V2) {
+        int[][] f = new int[V1 + 10][V2 + 10];
+        for (int i = 0; i < V1 + 10; i++) {
+            Arrays.fill(f[i], (int) 1e9);
+        }
+        f[0][0] = 0;
+        for (int o = 0; o < idx; o++) {
+            int v1 = parameter.get(o)[0], v2 = parameter.get(o)[1], w = parameter.get(o)[2];
+            for (int i = V1; i >= 0; i--) {
+                for (int j = V2; j >= 0; j--) {
+                    f[i][j] = Math.min(f[i][j], f[Math.max(0, i - v1)][Math.max(0, j - v2)] + w);
+                }
+            }
+        }
+        return f[V1][V2];
     }
 }
