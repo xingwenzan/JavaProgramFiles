@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 机器分配
+        String[] strings = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(strings[0]), M = Integer.parseInt(strings[1]);
+        BackpackModel bp = new BackpackModel();
+        for (int i = 0; i < N; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            bp.add(strings, M);
+        }
+        bp.MachineDistributionOut(N, M);
+
+
+        /*
         // 潜水员
         String[] strings = bufferedReader.readLine().split(" ");
         int M = Integer.parseInt(strings[0]), N = Integer.parseInt(strings[1]);
@@ -17,6 +29,8 @@ public class Main {
             bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
         }
         System.out.println(bp.Diver(M, N));
+
+         */
 
 
         /*

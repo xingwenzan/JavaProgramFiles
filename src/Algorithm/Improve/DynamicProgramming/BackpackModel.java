@@ -18,6 +18,7 @@ public class BackpackModel {
     // 混合背包问题 https://www.acwing.com/problem/content/7/
     // 二维费用的背包问题 https://www.acwing.com/problem/content/8/
     // 潜水员 https://www.acwing.com/problem/content/1022/
+    // 机器分配 https://www.acwing.com/problem/content/1015/
 
     /* 多重背包问题 III
     多重背包的单调队列优化方法
@@ -62,6 +63,19 @@ public class BackpackModel {
      */
     public void add(int V, int P1, int P2) {
         parameter.add(new int[]{V, P1, P2});
+        idx++;
+    }
+
+    /*
+    机器分配   该公司性质不同数量机器带来的价值   最多机器数量
+     */
+    public void add(String[] strings, int num) {
+        int[] tmp = new int[num + 1];
+        tmp[0] = 0;
+        for (int i = 1; i <= num; i++) {
+            tmp[i] = Integer.parseInt(strings[i - 1]);
+        }
+        parameter.add(tmp);
         idx++;
     }
 
@@ -252,5 +266,41 @@ public class BackpackModel {
             }
         }
         return f[V1][V2];
+    }
+
+    private int[][] MachineDistribution(int companyNum, int machineNum) {
+        int[][] f = new int[companyNum + 1][machineNum + 1];
+        for (int i = 0; i < companyNum; i++) {
+            Arrays.fill(f[i], 0);
+        }
+        for (int i = 1; i <= companyNum; i++) {   // 公司
+            int[] w = parameter.get(i - 1);
+            for (int j = 1; j <= machineNum; j++) {   // 体积（最多 j 个机器的情况）
+                for (int k = 0; k <= j; k++) {   //  i 号 公司 k 个机器的价值
+                    f[i][j] = Math.max(f[i][j], f[i - 1][j - k] + w[k]);
+                }
+            }
+        }
+        return f;
+    }
+
+    public void MachineDistributionOut(int companyNum, int machineNum) {
+        int[][] f = MachineDistribution(companyNum, machineNum);
+        System.out.println(f[companyNum][machineNum]);
+        int[] num = new int[companyNum + 1];   // 每个公司的个数
+        int j = machineNum;
+        for (int i = companyNum; i > 0; i--) {
+            int[] w = parameter.get(i - 1);
+            for (int k = 0; k <= j; k++) {
+                if (f[i][j] == f[i - 1][j - k] + w[k]) {
+                    num[i] = k;
+                    j -= k;
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i <= companyNum; i++) {
+            System.out.printf("%d %d\n", i, num[i]);
+        }
     }
 }
