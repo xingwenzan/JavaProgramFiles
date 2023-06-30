@@ -77,7 +77,6 @@ public class Main {
          */
 
 
-
         /*
         // 货币系统
         String[] strings = bufferedReader.readLine().split(" ");
@@ -124,7 +123,6 @@ public class Main {
         System.out.printf("%d %d", ans[0], ans[1]);
 
          */
-
 
 
         /*

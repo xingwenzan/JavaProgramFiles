@@ -19,6 +19,7 @@ public class BackpackModel {
     // 二维费用的背包问题 https://www.acwing.com/problem/content/8/
     // 潜水员 https://www.acwing.com/problem/content/1022/
     // 机器分配 https://www.acwing.com/problem/content/1015/
+    // 开心的金明 https://www.acwing.com/problem/content/428/
 
     /* 多重背包问题 III
     多重背包的单调队列优化方法
@@ -31,7 +32,11 @@ public class BackpackModel {
     先判断是否完全，否则使用二进制优化多重解决
      */
 
-    // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110
+    /*开心的金明
+    做法同采药，就不花费时间精力了
+     */
+
+    // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110   开心的金明 30010
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
     private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
