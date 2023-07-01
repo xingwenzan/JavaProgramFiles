@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 有依赖的背包问题
+        String[] strings = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
+        BackpackModel bp = new BackpackModel();
+        bp.dependentInit();
+        for (int i = 1; i <= N; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int v = Integer.parseInt(strings[0]), w = Integer.parseInt(strings[1]), p = Integer.parseInt(strings[2]);
+            bp.add(i, p, v, w);
+        }
+        System.out.println(bp.Dependent(V));
+
+
+        /*
         // 机器分配
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), M = Integer.parseInt(strings[1]);
@@ -16,6 +30,8 @@ public class Main {
             bp.add(strings, M);
         }
         bp.MachineDistributionOut(N, M);
+
+         */
 
 
         /*

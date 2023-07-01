@@ -6,20 +6,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BackpackModel {
-    // 采药 https://www.acwing.com/activity/content/problem/content/1267/
-    // 装箱问题 https://www.acwing.com/problem/content/1026/
-    // 宠物小精灵之收服 https://www.acwing.com/problem/content/1024/
-    // 数字组合 https://www.acwing.com/problem/content/280/
-    // 买书 https://www.acwing.com/problem/content/1025/
-    // 货币系统 https://www.acwing.com/problem/content/1023/
-    // 货币系统-NOIP https://www.acwing.com/problem/content/534/
-    // 多重背包问题 III https://www.acwing.com/problem/content/6/
-    // 庆功会 https://www.acwing.com/problem/content/1021/
-    // 混合背包问题 https://www.acwing.com/problem/content/7/
-    // 二维费用的背包问题 https://www.acwing.com/problem/content/8/
-    // 潜水员 https://www.acwing.com/problem/content/1022/
-    // 机器分配 https://www.acwing.com/problem/content/1015/
-    // 开心的金明 https://www.acwing.com/problem/content/428/
+    /*题目及链接
+        采药 https://www.acwing.com/activity/content/problem/content/1267/
+        装箱问题 https://www.acwing.com/problem/content/1026/
+        宠物小精灵之收服 https://www.acwing.com/problem/content/1024/
+        数字组合 https://www.acwing.com/problem/content/280/
+        买书 https://www.acwing.com/problem/content/1025/
+        货币系统 https://www.acwing.com/problem/content/1023/
+        货币系统-NOIP https://www.acwing.com/problem/content/534/
+        多重背包问题 III https://www.acwing.com/problem/content/6/
+        庆功会 https://www.acwing.com/problem/content/1021/
+        混合背包问题 https://www.acwing.com/problem/content/7/
+        二维费用的背包问题 https://www.acwing.com/problem/content/8/
+        潜水员 https://www.acwing.com/problem/content/1022/
+        机器分配 https://www.acwing.com/problem/content/1015/
+        开心的金明 https://www.acwing.com/problem/content/428/
+        有依赖的背包问题 https://www.acwing.com/problem/content/10/
+     */
 
     /* 多重背包问题 III
     多重背包的单调队列优化方法
@@ -36,11 +39,24 @@ public class BackpackModel {
     做法同采药，就不花费时间精力了
      */
 
-    // 采药 1010   装箱问题 20010   数字组合 110   货币系统 3010   货币系统-NOIP 110   开心的金明 30010
+    /*有依赖的背包问题
+    树形 DP --(发现)--> 分组背包辅组解决，减少复杂度
+     */
+
+    // 采药 1010   装箱问题 20010   数字组合、有依赖的背包问题、货币系统-NOIP 110   货币系统 3010   开心的金明 30010
     private final int N = 110;
-    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统
+    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统、有依赖的背包问题
     private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
-    private int idx = 0;
+    private final int[] h = new int[N], e = new int[N], p = new int[N];   // 有依赖的背包问题
+    private final int[][] fdb = new int[N][N];   // f of Dependent Backpack
+    /*
+    idx
+        采药、装箱问题、数字组合、货币系统   第 i 个物品的 v、w
+        有依赖的背包问题   树中存放的第 i 个节点
+    root
+        有依赖的背包问题   根节点
+     */
+    private int idx = 0, root = 0;
 
 
     private void add(String @NotNull [] V) {
@@ -82,6 +98,18 @@ public class BackpackModel {
         }
         parameter.add(tmp);
         idx++;
+    }
+
+    public void add(int x, int father, int vx, int wx) {
+        vs[x] = vx;
+        ws[x] = wx;
+        if (father == -1) {
+            root = x;
+        } else {
+            e[idx] = x;
+            p[idx] = h[father];
+            h[father] = idx++;
+        }
     }
 
 
@@ -307,5 +335,36 @@ public class BackpackModel {
         for (int i = 1; i <= companyNum; i++) {
             System.out.printf("%d %d\n", i, num[i]);
         }
+    }
+
+    private void dfs(int u, int V) {
+        // 分组背包选择子树（此时仅管子树体积情况，需后续添加 u 节点）
+        for (int i = h[u]; i != -1; i = p[i]) {   // 遍历该节点的每一个子节点
+            int son = e[i];
+            dfs(son, V);
+            for (int j = V - vs[u]; j >= 0; j--) {   // 遍历体积（子树及 u 总共占用体积），留不出 u 体积的不需要考虑
+                for (int k = 0; k <= j; k++) {   // 遍历剩余体积（子树占用体积）
+                    fdb[u][j] = Math.max(fdb[u][j], fdb[u][j - k] + fdb[son][k]);
+                }
+            }
+        }
+        // 添加 u 节点
+        for (int i = V; i >= vs[u]; i--) {
+            // 可存下 u 的加上 u
+            fdb[u][i] = fdb[u][i - vs[u]] + ws[u];
+        }
+        for (int i = 0; i < vs[u]; i++) {
+            // 放不下 u 的全清零
+            fdb[u][i] = 0;
+        }
+    }
+
+    public void dependentInit() {
+        Arrays.fill(h, -1);
+    }
+
+    public int Dependent(int V) {
+        dfs(root, V);
+        return fdb[root][V];
     }
 }
