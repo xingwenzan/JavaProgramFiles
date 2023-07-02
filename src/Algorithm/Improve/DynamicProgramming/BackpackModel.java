@@ -22,6 +22,7 @@ public class BackpackModel {
         机器分配 https://www.acwing.com/problem/content/1015/
         开心的金明 https://www.acwing.com/problem/content/428/
         有依赖的背包问题 https://www.acwing.com/problem/content/10/
+        背包问题求方案数 https://www.acwing.com/problem/content/11/
      */
 
     /* 多重背包问题 III
@@ -43,7 +44,7 @@ public class BackpackModel {
     树形 DP --(发现)--> 分组背包辅组解决，减少复杂度
      */
 
-    // 采药 1010   装箱问题 20010   数字组合、有依赖的背包问题、货币系统-NOIP 110   货币系统 3010   开心的金明 30010
+    // 采药、背包问题求方案数 1010   装箱问题 20010   数字组合、有依赖的背包问题、货币系统-NOIP 110   货币系统 3010   开心的金明 30010
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统、有依赖的背包问题
     private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
@@ -366,5 +367,26 @@ public class BackpackModel {
     public int Dependent(int V) {
         dfs(root, V);
         return fdb[root][V];
+    }
+
+    public long PlanNumber(int V) {
+        int mod = (int) 1e9 + 7;
+        int[] f = new int[V + 10];
+        Arrays.fill(f, 0);
+        long[] g = new long[V + 10];
+        Arrays.fill(g, 1);
+        for (int i = 0; i < idx; i++) {
+            int v = vs[i], w = ws[i];
+            for (int j = V; j >= v; j--) {
+                int newW = f[j - v] + w;
+                if (f[j] < newW) {
+                    f[j] = newW;
+                    g[j] = g[j - v];
+                } else if (f[j] == newW) {
+                    g[j] = (g[j] + g[j - v]) % mod;
+                }
+            }
+        }
+        return g[V];
     }
 }

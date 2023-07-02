@@ -7,17 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 有依赖的背包问题
+        // 有依赖的背包问题、背包问题求方案数
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
         BackpackModel bp = new BackpackModel();
-        bp.dependentInit();
+//        bp.dependentInit();   // 有依赖的背包问题
         for (int i = 1; i <= N; i++) {
             strings = bufferedReader.readLine().split(" ");
-            int v = Integer.parseInt(strings[0]), w = Integer.parseInt(strings[1]), p = Integer.parseInt(strings[2]);
-            bp.add(i, p, v, w);
+            int v = Integer.parseInt(strings[0]), w = Integer.parseInt(strings[1]);   // 有依赖的背包问题、背包问题求方案数
+//            int p = Integer.parseInt(strings[2]);   // 有依赖的背包问题
+//            bp.add(i, p, v, w);   // 有依赖的背包问题
+            bp.add(v, w);   // 背包问题求方案数
         }
-        System.out.println(bp.Dependent(V));
+//        System.out.println(bp.Dependent(V));   // 有依赖的背包问题
+        System.out.println(bp.PlanNumber(V));   // 背包问题求方案数
 
 
         /*
