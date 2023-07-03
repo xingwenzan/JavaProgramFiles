@@ -23,6 +23,7 @@ public class BackpackModel {
         开心的金明 https://www.acwing.com/problem/content/428/
         有依赖的背包问题 https://www.acwing.com/problem/content/10/
         背包问题求方案数 https://www.acwing.com/problem/content/11/
+        背包问题求具体方案 https://www.acwing.com/problem/content/12/
      */
 
     /* 多重背包问题 III
@@ -44,7 +45,13 @@ public class BackpackModel {
     树形 DP --(发现)--> 分组背包辅组解决，减少复杂度
      */
 
-    // 采药、背包问题求方案数 1010   装箱问题 20010   数字组合、有依赖的背包问题、货币系统-NOIP 110   货币系统 3010   开心的金明 30010
+    /*N
+        采药、背包问题求方案数、背包问题求具体方案   1010
+        装箱问题   20010
+        数字组合、有依赖的背包问题、货币系统-NOIP   110
+        货币系统   3010
+        开心的金明   30010
+     */
     private final int N = 110;
     private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统、有依赖的背包问题
     private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
@@ -388,5 +395,32 @@ public class BackpackModel {
             }
         }
         return g[V];
+    }
+
+    private int[][] SpecificPlan(int V) {
+        int[][] f = new int[idx + 10][V + 10];
+        for (int i = 0; i < idx + 10; i++) {
+            Arrays.fill(f[i], 0);
+        }
+        for (int i = idx - 1; i >= 0; i--) {
+            for (int j = 0; j <= V; j++) {
+                f[i][j] = f[i + 1][j];
+                if (j >= vs[i]) {
+                    f[i][j] = Math.max(f[i][j], f[i + 1][j - vs[i]] + ws[i]);
+                }
+            }
+        }
+        return f;
+    }
+
+    public void SpecificPlanOut(int V) {
+        int[][] f = SpecificPlan(V);
+        int j = V;
+        for (int i = 0; i < idx; i++) {
+            if (j >= vs[i] && f[i][j] == f[i + 1][j - vs[i]] + ws[i]) {
+                System.out.printf("%d ", i + 1);
+                j -= vs[i];
+            }
+        }
     }
 }
