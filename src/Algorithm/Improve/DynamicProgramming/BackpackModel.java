@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class BackpackModel {
     /*题目及链接
@@ -24,6 +25,7 @@ public class BackpackModel {
         有依赖的背包问题 https://www.acwing.com/problem/content/10/
         背包问题求方案数 https://www.acwing.com/problem/content/11/
         背包问题求具体方案 https://www.acwing.com/problem/content/12/
+        能量石 https://www.acwing.com/problem/content/736/
      */
 
     /* 多重背包问题 III
@@ -53,13 +55,15 @@ public class BackpackModel {
         开心的金明   30010
      */
     private final int N = 110;
-    private final int[] vs = new int[N], ws = new int[N];   // 采药、装箱问题、数字组合、货币系统、有依赖的背包问题
-    private final ArrayList<int[]> parameter = new ArrayList<>();   // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题
+    // 采药、装箱问题、数字组合、货币系统、有依赖的背包问题
+    private final int[] vs = new int[N], ws = new int[N];
+    // 宠物小精灵之收服、多重背包问题 III、庆功会、混合背包问题、能量石
+    private final ArrayList<int[]> parameter = new ArrayList<>();
     private final int[] h = new int[N], e = new int[N], p = new int[N];   // 有依赖的背包问题
     private final int[][] fdb = new int[N][N];   // f of Dependent Backpack
     /*
     idx
-        采药、装箱问题、数字组合、货币系统   第 i 个物品的 v、w
+        采药、装箱问题、数字组合、货币系统、能量石   第 i 个物品的 v、w
         有依赖的背包问题   树中存放的第 i 个节点
     root
         有依赖的背包问题   根节点
@@ -89,8 +93,12 @@ public class BackpackModel {
     多重背包问题 III、庆功会、混合背包问题   V W S
     二维费用的背包问题   V M W
     潜水员   V1 V2 W
+    能量石   S E L
      */
     public void add(int V, int P1, int P2) {
+        if (idx == 0) {
+            parameter.clear();
+        }
         parameter.add(new int[]{V, P1, P2});
         idx++;
     }
@@ -422,5 +430,35 @@ public class BackpackModel {
                 j -= vs[i];
             }
         }
+    }
+
+    public int EnergyStone() {
+        parameter.sort(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                double tmp = (o1[0] / (o1[2] + 1e-10) - o2[0] / (o2[2] + 1e-10));
+                if (tmp > 0) {
+                    return 1;
+                } else if (tmp < 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        int V = (int) 1e4;
+        int[] f = new int[V + 10];
+        Arrays.fill(f, 0);
+        for (int i = 0; i < idx; i++) {
+            int s = parameter.get(i)[0], e = parameter.get(i)[1], l = parameter.get(i)[2];
+            for (int j = V; j >= s; j--) {
+                f[j] = Math.max(f[j], f[j - s] + Math.max(0, e - (j - s) * l));
+            }
+        }
+        idx = 0;
+        int ans = 0;
+        for (int i = 0; i < V + 10; i++) {
+            ans = Math.max(f[i], ans);
+        }
+        return ans;
     }
 }

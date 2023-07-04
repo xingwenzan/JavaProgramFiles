@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 能量石
+        BackpackModel bp = new BackpackModel();
+        int T = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 1; i <= T; i++) {
+            int N = Integer.parseInt(bufferedReader.readLine());
+            for (int j = 0; j < N; j++) {
+                String[] strings = bufferedReader.readLine().split(" ");
+                bp.add(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+            }
+            System.out.printf("Case #%d: %d\n", i, bp.EnergyStone());
+        }
+
+
+        /*
         // 有依赖的背包问题、背包问题求方案数、背包问题求具体方案
         String[] strings = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(strings[0]), V = Integer.parseInt(strings[1]);
@@ -23,6 +37,8 @@ public class Main {
 //        System.out.println(bp.Dependent(V));   // 有依赖的背包问题
 //        System.out.println(bp.PlanNumber(V));   // 背包问题求方案数
         bp.SpecificPlanOut(V);   // 背包问题求具体方案
+
+         */
 
 
         /*
