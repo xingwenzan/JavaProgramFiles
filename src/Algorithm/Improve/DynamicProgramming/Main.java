@@ -7,6 +7,17 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 大盗阿福
+        int t = Integer.parseInt(bufferedReader.readLine());
+        StateMachineModel sm = new StateMachineModel();
+        for (int i = 0; i < t; i++) {
+            bufferedReader.readLine();
+            String[] strings = bufferedReader.readLine().split(" ");
+            System.out.println(sm.ThiefAlfred(strings));
+        }
+
+
+        /*
         // 能量石
         BackpackModel bp = new BackpackModel();
         int T = Integer.parseInt(bufferedReader.readLine());
@@ -18,6 +29,8 @@ public class Main {
             }
             System.out.printf("Case #%d: %d\n", i, bp.EnergyStone());
         }
+
+         */
 
 
         /*
