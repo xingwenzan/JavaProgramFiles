@@ -26,6 +26,7 @@ public class BackpackModel {
         背包问题求方案数 https://www.acwing.com/problem/content/11/
         背包问题求具体方案 https://www.acwing.com/problem/content/12/
         能量石 https://www.acwing.com/problem/content/736/
+        金明的预算方案 https://www.acwing.com/problem/content/489/    数据存储比较麻烦，不写了
      */
 
     /* 多重背包问题 III
