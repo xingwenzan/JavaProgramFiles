@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] strings = bufferedReader.readLine().split(" ");
+        int k = Integer.parseInt(strings[1]);
+        strings = bufferedReader.readLine().split(" ");
+        StateMachineModel sm = new StateMachineModel();
+        System.out.println(sm.StockTradingIV(strings, k));
+
+
+        /*
         // 大盗阿福
         int t = Integer.parseInt(bufferedReader.readLine());
         StateMachineModel sm = new StateMachineModel();
@@ -15,6 +23,8 @@ public class Main {
             String[] strings = bufferedReader.readLine().split(" ");
             System.out.println(sm.ThiefAlfred(strings));
         }
+
+         */
 
 
         /*
