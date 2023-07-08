@@ -7,11 +7,22 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 股票买卖 V
+        bufferedReader.readLine();
+        StateMachineModel sm = new StateMachineModel();
+        String[] strings = bufferedReader.readLine().split(" ");
+        System.out.println(sm.StockTradingV(strings));
+
+
+        /*
+        // 股票买卖 IV
         String[] strings = bufferedReader.readLine().split(" ");
         int k = Integer.parseInt(strings[1]);
         strings = bufferedReader.readLine().split(" ");
         StateMachineModel sm = new StateMachineModel();
         System.out.println(sm.StockTradingIV(strings, k));
+
+         */
 
 
         /*
