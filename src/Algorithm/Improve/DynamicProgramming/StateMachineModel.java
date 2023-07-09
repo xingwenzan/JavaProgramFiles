@@ -6,6 +6,7 @@ public class StateMachineModel {
     // 大盗阿福 https://www.acwing.com/problem/content/1051/
     // 股票买卖 IV https://www.acwing.com/problem/content/1059/
     // 股票买卖 V https://www.acwing.com/problem/content/1060/
+    // 设计密码 https://www.acwing.com/problem/content/1054/   状态机 + KMP
 
     /*股票买卖
     股票买卖 IV
@@ -59,5 +60,47 @@ public class StateMachineModel {
             f[1] = f[0] + Integer.parseInt(strings[i]);
         }
         return Math.max(f[1], f[2]);
+    }
+
+    public int DesignPassword(@NotNull String s, int n) {
+        int m = s.length();
+        s = " " + s;
+        int[] ne = new int[n + 10];
+        int[][] f = new int[n + 10][m + 10];
+        int mod = (int) 1e9 + 7;
+
+        for (int i = 2, j = 0; i <= m; i++) {
+            while (j != 0 && s.charAt(i) != s.charAt(j + 1)) {
+                j = ne[j];
+            }
+            if (s.charAt(i) == s.charAt(j + 1)) {
+                j++;
+            }
+            ne[i] = j;
+        }
+
+        f[0][0] = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < m; j++) {
+                for (int k = 0; k < 26; k++) {
+                    char letter = (char) (k + 'a');
+                    int u = j;
+                    while (u != 0 && letter != s.charAt(u + 1)) {
+                        u = ne[u];
+                    }
+                    if (letter == s.charAt(u + 1)) {
+                        u++;
+                    }
+                    if (u < m) {
+                        f[i][u] = (f[i][u] + f[i - 1][j]) % mod;
+                    }
+                }
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < m; i++) {
+            ans = (f[n][i] + ans) % mod;
+        }
+        return ans;
     }
 }

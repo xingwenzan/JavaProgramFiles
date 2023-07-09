@@ -7,11 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 设计密码
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String s = bufferedReader.readLine();
+        StateMachineModel sm = new StateMachineModel();
+        System.out.println(sm.DesignPassword(s, n));
+
+
+        /*
         // 股票买卖 V
         bufferedReader.readLine();
         StateMachineModel sm = new StateMachineModel();
         String[] strings = bufferedReader.readLine().split(" ");
         System.out.println(sm.StockTradingV(strings));
+
+         */
 
 
         /*
