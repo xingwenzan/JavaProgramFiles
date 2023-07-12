@@ -7,11 +7,32 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 修复DNA
+        StateMachineModel sm = new StateMachineModel();
+        int t = 1;
+        while (true) {
+            sm.init();
+            int n = Integer.parseInt(bufferedReader.readLine());
+            if (n == 0) {
+                break;
+            }
+            for (int i = 0; i < n; i++) {
+                sm.add(bufferedReader.readLine());
+            }
+            String s = bufferedReader.readLine();
+            System.out.printf("Case %d: %d\n", t++, sm.RepairDNA(s));
+        }
+
+
+
+        /*
         // 设计密码
         int n = Integer.parseInt(bufferedReader.readLine());
         String s = bufferedReader.readLine();
         StateMachineModel sm = new StateMachineModel();
         System.out.println(sm.DesignPassword(s, n));
+
+         */
 
 
         /*
