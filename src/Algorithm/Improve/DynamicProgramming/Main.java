@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 小国王
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), k = Integer.parseInt(strings[1]);
+        StateCompressionDP sc = new StateCompressionDP();
+        System.out.println(sc.LittleKing(n, k));
+
+
+        /*
         // 修复DNA
         StateMachineModel sm = new StateMachineModel();
         int t = 1;
@@ -23,6 +31,7 @@ public class Main {
             System.out.printf("Case %d: %d\n", t++, sm.RepairDNA(s));
         }
 
+         */
 
 
         /*
