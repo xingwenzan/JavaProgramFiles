@@ -7,11 +7,17 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 小国王
+        // 小国王、玉米田
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), k = Integer.parseInt(strings[1]);
         StateCompressionDP sc = new StateCompressionDP();
-        System.out.println(sc.LittleKing(n, k));
+//        System.out.println(sc.LittleKing(n, k));
+        String[][] s = new String[n][k];
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            s[i] = strings;
+        }
+        System.out.println(sc.Cornfield(n, k, s));
 
 
         /*
