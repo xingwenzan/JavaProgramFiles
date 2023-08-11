@@ -7,17 +7,26 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 小国王、玉米田
+        // 小国王、玉米田、炮兵阵地
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), k = Integer.parseInt(strings[1]);
         StateCompressionDP sc = new StateCompressionDP();
-//        System.out.println(sc.LittleKing(n, k));
+        // 以下三者并列
+        // 小国王
+        System.out.println(sc.LittleKing(n, k));
+        // 玉米田
         String[][] s = new String[n][k];
         for (int i = 0; i < n; i++) {
             strings = bufferedReader.readLine().split(" ");
             s[i] = strings;
         }
         System.out.println(sc.Cornfield(n, k, s));
+        // 炮兵阵地
+        String[] ss = new String[n];
+        for (int i = 0; i < n; i++) {
+            ss[i] = bufferedReader.readLine();
+        }
+        System.out.println(sc.ArtilleryEmplacement(n, k, ss));
 
 
         /*
