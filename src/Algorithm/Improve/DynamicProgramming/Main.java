@@ -7,6 +7,22 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 愤怒的小鸟
+        int T = Integer.parseInt(bufferedReader.readLine());
+        while (0 < T--) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            int n = Integer.parseInt(strings[0]);
+            strings = new String[n];
+            for (int i = 0; i < n; i++) {
+                strings[i] = bufferedReader.readLine();
+            }
+            StateCompressionDP sc = new StateCompressionDP();
+            System.out.println(sc.AngryBirds(n, strings));
+        }
+
+
+
+        /*
         // 小国王、玉米田、炮兵阵地
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), k = Integer.parseInt(strings[1]);
@@ -27,6 +43,8 @@ public class Main {
             ss[i] = bufferedReader.readLine();
         }
         System.out.println(sc.ArtilleryEmplacement(n, k, ss));
+
+         */
 
 
         /*

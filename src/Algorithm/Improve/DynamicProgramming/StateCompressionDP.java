@@ -1,12 +1,28 @@
 package Algorithm.Improve.DynamicProgramming;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class StateCompressionDP {
+    /*---------------------** 注释部分 **---------------------*/
+
     // 小国王 https://www.acwing.com/problem/content/1066/
     // 玉米田 https://www.acwing.com/problem/content/329/
     // 炮兵阵地 https://www.acwing.com/problem/content/294/
+    // 愤怒的小鸟 https://www.acwing.com/problem/content/526/
+
+    /*愤怒的小鸟
+    视频 https://www.acwing.com/video/405/
+    注释 https://www.acwing.com/activity/content/code/content/3422510/
+     */
+
+    /*---------------------** 变量定义部分 **---------------------*/
+
+    private final double eps = 1e-8;
+    private final int inf = 0x3f3f3f3f;
+
+    /*---------------------** 私有函数部分 **---------------------*/
 
     // 小国王、玉米田
     private boolean check1(int state) {   // 判断该状态是否合法
@@ -27,6 +43,15 @@ public class StateCompressionDP {
         }
         return ans;
     }
+
+    // 愤怒的小鸟
+    private int cmp(double x, double y) {
+        if (Math.abs(x - y) < eps) return 0;
+        if (x > y) return 1;
+        return -1;
+    }
+
+    /*---------------------** 题目主体函数部分 **---------------------*/
 
     public long LittleKing(int Num, int King) {
         // f[i][j][k]   前 i 行摆好，已经摆放 j 给国王，第 i 行状态 k
@@ -189,5 +214,69 @@ public class StateCompressionDP {
         }
 
         return ans;
+    }
+
+    public int AngryBirds(int pigNum, String[] strings) {
+        // 变量定义
+        int N = 18, M = 1 << 18;
+        PDD[] pigs = new PDD[N];   // 储存小猪
+        // 储存抛物线/经过小猪的覆盖状态，path[i，j] 为该抛物线经过 i、j 号小猪时的状态，1 为此位上对应的小猪被抛物线经过
+        int[][] path = new int[N][N];
+        int[] f = new int[M];   // f[x] 状态 x 时（覆盖了哪些猪，没覆盖哪些）所需的最小抛物线数
+        Arrays.fill(f, inf);
+        f[0] = 0;
+
+        // 读入
+        for (int i = 0; i < pigNum; i++) {
+            String[] s = strings[i].split(" ");
+            double x = Double.parseDouble(s[0]), y = Double.parseDouble(s[1]);
+            pigs[i] = new PDD(x, y);
+        }
+
+        // 预处理，求经过任两只猪（i、j）的抛物线和对应的状态
+        for (int i = 0; i < pigNum; i++) {
+            path[i][i] = 1 << i;
+            for (int j = 0; j < pigNum; j++) {
+                double x1 = pigs[i].x, y1 = pigs[i].y;
+                double x2 = pigs[j].x, y2 = pigs[j].y;
+                if (cmp(x1, x2) == 0) continue;   // 两点在一排，无抛物线
+                double a = (y1 / x1 - y2 / x2) / (x1 - x2);
+                double b = y1 / x1 - a * x1;
+                if (cmp(a, 0) >= 0) continue;
+                int state = 0;
+                for (int k = 0; k < pigNum; k++) {
+                    double x = pigs[k].x, y = pigs[k].y;
+                    if (cmp(y, a * x * x + b * x) == 0) state += 1 << k;
+                }
+                path[i][j] = state;
+            }
+        }
+
+        // DP
+        for (int i = 0; i + 1 < (1 << pigNum); i++) {   // 遍历所有未覆盖全部小猪的状态
+            int x = 0;
+            for (int j = 0; j < pigNum; j++) {
+                if (((i >> j) & 1) == 0) {
+                    x = j;
+                    break;
+                }
+            }
+            for (int j = 0; j < pigNum; j++) {
+                f[i | path[x][j]] = Math.min(f[i | path[x][j]], f[i] + 1);
+            }
+        }
+
+        return f[(1 << pigNum) - 1];
+    }
+
+    /*---------------------** 内部类部分 **---------------------*/
+    // 愤怒的小鸟
+    private static class PDD {
+        double x, y;
+
+        public PDD(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

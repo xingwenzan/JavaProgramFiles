@@ -62,7 +62,7 @@ public class StateMachineModel {
         return 3;
     }
 
-    public void add(String s) {
+    public void add(@NotNull String s) {
         int p = 0;
         for (int i = 0; i < s.length(); i++) {
             int c = get(s.charAt(i));
@@ -181,7 +181,7 @@ public class StateMachineModel {
         return ans;
     }
 
-    public int RepairDNA(String s) {
+    public int RepairDNA(@NotNull String s) {
         int m = s.length();
         build();
         for (int i = 0; i < m; i++) {
