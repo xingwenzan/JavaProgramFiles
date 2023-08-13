@@ -11,10 +11,15 @@ public class StateCompressionDP {
     // 玉米田 https://www.acwing.com/problem/content/329/
     // 炮兵阵地 https://www.acwing.com/problem/content/294/
     // 愤怒的小鸟 https://www.acwing.com/problem/content/526/
+    // 宝藏 https://www.acwing.com/problem/content/531/
 
     /*愤怒的小鸟
     视频 https://www.acwing.com/video/405/
     注释 https://www.acwing.com/activity/content/code/content/3422510/
+     */
+
+    /*宝藏
+    解析（本题暂无视频） https://www.acwing.com/solution/content/4026/
      */
 
     /*---------------------** 变量定义部分 **---------------------*/
@@ -269,7 +274,75 @@ public class StateCompressionDP {
         return f[(1 << pigNum) - 1];
     }
 
+    public int PreciousDeposits(int Num, String[] strings) {
+        // 变量定义
+        int M = 1 << Num;
+        int[][] d = new int[Num][Num];   // d[i,j] 为 i 和 j 之间最小距离
+        int[] g = new int[M];   // g[i] 表示 i 与 g[i] 状态一步相互转移，若 g[i]&j==j 则可由 i 一步到 j
+        int[][] f = new int[M][Num];   // 状态定义：f[i][h],当前生成树的状态是i，且树的深度为h的方案 的最小代价
+
+        // 初始化
+        // d
+        for (int i = 0; i < Num; i++) {
+            Arrays.fill(d[i], inf);
+            d[i][i] = 0;
+        }
+        for (String string : strings) {
+            String[] s = string.split(" ");
+            int a = Integer.parseInt(s[0]) - 1, b = Integer.parseInt(s[1]) - 1, w = Integer.parseInt(s[2]);
+            d[a][b] = d[b][a] = Math.min(d[a][b], w);
+        }
+        // f
+        for (int i = 0; i < M; i++) Arrays.fill(f[i], inf);
+        for (int i = 0; i < Num; i++) f[1 << i][0] = 0;   // 赞助商决定免费赞助他打通一条从地面到某个宝藏屋的通道
+        // g，获取 i 最多可一步到达的状态 g[i]
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < Num; j++) {
+                if (((i >> j) & 1) == 1) {
+                    for (int k = 0; k < Num; k++) {
+                        if (d[j][k] != inf) {
+                            g[i] |= 1 << k;
+                        }
+                    }
+                }
+            }
+        }
+
+        // DP
+        for (int i = 1; i < M; i++) {
+            // 遍历 i 的所有子集 j（不包含 i 和 0，从 i 到 i 没有意义），获取到 i 的最小总代价
+            for (int j = (i - 1) & i; j != 0; j = (j - 1) & i) {
+                if ((g[j] & i) != i) continue;   // 只对可以一步转移到 i 的进行处理
+                int remain = j ^ i;   // 取得 j 到 i 差的位
+                int cost = 0;   //  j 到 i 的花费（1 层）
+                // 遍历所有缺的位 k，获取补全所缺位的最小花费
+                for (int k = 0; k < Num; k++) {
+                    if (((remain >> k) & 1) != 1) continue;
+                    int tmp = inf;
+                    // 获取 j 状态有的所有位 l，并比较 l 到缺的这个位 k 的代价，获取最小值
+                    for (int l = 0; l < Num; l++) {
+                        if (((j >> l) & 1) != 1) continue;
+                        tmp = Math.min(tmp, d[l][k]);
+                    }
+                    cost += tmp;
+                }
+                for (int k = 1; k < Num; k++) {
+                    f[i][k] = Math.min(f[i][k], f[j][k - 1] + cost * k);
+                }
+            }
+        }
+
+        // 获取结果，比较各层级总代价，获取最小总代价
+        int ans = inf;
+        for (int i = 0; i < Num; i++) {
+            ans = Math.min(ans, f[M - 1][i]);
+        }
+
+        return ans;
+    }
+
     /*---------------------** 内部类部分 **---------------------*/
+
     // 愤怒的小鸟
     private static class PDD {
         double x, y;

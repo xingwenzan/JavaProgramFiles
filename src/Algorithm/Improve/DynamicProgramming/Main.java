@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 宝藏
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        StateCompressionDP sc = new StateCompressionDP();
+        strings = new String[m];
+        for (int i = 0; i < m; i++) {
+            strings[i] = bufferedReader.readLine();
+        }
+        System.out.println(sc.PreciousDeposits(n, strings));
+
+
+        /*
         // 愤怒的小鸟
         int T = Integer.parseInt(bufferedReader.readLine());
         while (0 < T--) {
@@ -20,6 +32,7 @@ public class Main {
             System.out.println(sc.AngryBirds(n, strings));
         }
 
+         */
 
 
         /*
