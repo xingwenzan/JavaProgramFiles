@@ -7,6 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 环形石子合并
+        IntervalDP intervalDP = new IntervalDP();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] w = new int[n];
+        for (int i = 0; i < n; i++) {
+            w[i] = Integer.parseInt(strings[i]);
+        }
+        IntervalDP.PII Mm = intervalDP.RingPebblesMerge(w, n);
+        System.out.printf("%d\n%d", Mm.y, Mm.x);
+
+
+        /*
         // 宝藏
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -16,6 +29,8 @@ public class Main {
             strings[i] = bufferedReader.readLine();
         }
         System.out.println(sc.PreciousDeposits(n, strings));
+
+         */
 
 
         /*
