@@ -1,17 +1,21 @@
 package Algorithm.Improve.DynamicProgramming;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 
 public class IntervalDP {
-    /*---------------------** 注释部分 **---------------------*/
+    /* ---------------------** 注释部分 **--------------------- */
 
     // 环形石子合并 https://www.acwing.com/problem/content/1070/
+    // 能量项链 https://www.acwing.com/problem/content/322/
 
-    /*---------------------** 变量定义部分 **---------------------*/
+    /* ---------------------** 变量定义部分 **--------------------- */
 
     private final int INF = 0x3f3f3f3f;
 
-    /*---------------------** 私有函数部分 **---------------------*/
+    /* ---------------------** 私有函数部分 **--------------------- */
 
     /**
      * 双倍前缀和
@@ -21,7 +25,8 @@ public class IntervalDP {
      * @return 两个 lst 拼接后的前缀和，长度是 length 的 2 倍加 1，0 号位是 0，代表前 0 个的前缀和位 0
      * 应用   环形石子合并
      */
-    private int[] prefixSum2(int[] lst, int length) {
+    @Contract(pure = true)
+    private int @NotNull [] prefixSum2(int[] lst, int length) {
         int[] ans = new int[length * 2 + 1];
         for (int i = 1; i < 2 * length; i++) {
             ans[i] = ans[i - 1] + lst[(i - 1) % length];
@@ -29,7 +34,7 @@ public class IntervalDP {
         return ans;
     }
 
-    /*---------------------** 题目主体函数部分 **---------------------*/
+    /* ---------------------** 题目主体函数部分 **--------------------- */
 
     public PII RingPebblesMerge(int[] lst, int length) {
         // 变量设置
@@ -65,7 +70,30 @@ public class IntervalDP {
         return new PII(M, m);
     }
 
-    /*---------------------** 内部类部分 **---------------------*/
+    public int EnergyNecklace(int[] lst, int length) {
+        // 变量初始化
+        int N = 2 * length + 10;
+        int[] w = new int[N];
+        for (int i = 1; i <= length; i++) w[i] = w[i + length] = lst[i - 1];
+        int[][] f = new int[N][N];
+
+        // DP
+        for (int i = 3; i <= length + 1; i++) {
+            for (int l = 1, r = l + i - 1; r <= 2 * length; r = ++l + i - 1) {
+                for (int k = l + 1; k < r; k++) {
+                    f[l][r] = Math.max(f[l][r], f[l][k] + f[k][r] + w[l] * w[k] * w[r]);
+                }
+            }
+        }
+
+        // 取值
+        int ans = 0;
+        for (int i = 1; i <= length; i++) ans = Math.max(ans, f[i][i + length]);
+
+        return ans;
+    }
+
+    /* ---------------------** 内部类部分 **--------------------- */
 
     /**
      * Pair<int,int>

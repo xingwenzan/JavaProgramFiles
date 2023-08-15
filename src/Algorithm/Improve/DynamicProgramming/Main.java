@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 环形石子合并
+        // 环形石子合并、能量项链
         IntervalDP intervalDP = new IntervalDP();
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -15,8 +15,9 @@ public class Main {
         for (int i = 0; i < n; i++) {
             w[i] = Integer.parseInt(strings[i]);
         }
-        IntervalDP.PII Mm = intervalDP.RingPebblesMerge(w, n);
-        System.out.printf("%d\n%d", Mm.y, Mm.x);
+        System.out.println(intervalDP.EnergyNecklace(w, n));   // 能量项链
+        IntervalDP.PII Mm = intervalDP.RingPebblesMerge(w, n);   // 环形石子合并
+        System.out.printf("%d\n%d", Mm.y, Mm.x);   // 环形石子合并
 
 
         /*
