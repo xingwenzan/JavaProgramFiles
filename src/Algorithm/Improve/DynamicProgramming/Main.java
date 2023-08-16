@@ -3,11 +3,13 @@ package Algorithm.Improve.DynamicProgramming;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 环形石子合并、能量项链
+        // 环形石子合并、能量项链、加分二叉树
         IntervalDP intervalDP = new IntervalDP();
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -18,6 +20,15 @@ public class Main {
         System.out.println(intervalDP.EnergyNecklace(w, n));   // 能量项链
         IntervalDP.PII Mm = intervalDP.RingPebblesMerge(w, n);   // 环形石子合并
         System.out.printf("%d\n%d", Mm.y, Mm.x);   // 环形石子合并
+        // 加分二叉树
+        HashMap<Integer, ArrayList<Integer>> BBT = intervalDP.BonusBinaryTree(w, n);
+        for (int i : BBT.keySet()) {
+            System.out.println(i);
+            for (int j : BBT.get(i)) {
+                System.out.printf("%d ", j);
+            }
+            System.out.print("\n");
+        }
 
 
         /*

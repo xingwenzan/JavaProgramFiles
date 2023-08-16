@@ -3,19 +3,22 @@ package Algorithm.Improve.DynamicProgramming;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class IntervalDP {
-    /* ---------------------** 注释部分 **--------------------- */
+    /*---------------------** 注释部分 **---------------------*/
 
     // 环形石子合并 https://www.acwing.com/problem/content/1070/
     // 能量项链 https://www.acwing.com/problem/content/322/
+    // 加分二叉树 https://www.acwing.com/problem/content/481/
 
-    /* ---------------------** 变量定义部分 **--------------------- */
+    /*---------------------** 变量定义部分 **---------------------*/
 
     private final int INF = 0x3f3f3f3f;
 
-    /* ---------------------** 私有函数部分 **--------------------- */
+    /*---------------------** 私有函数部分 **---------------------*/
 
     /**
      * 双倍前缀和
@@ -34,7 +37,26 @@ public class IntervalDP {
         return ans;
     }
 
-    /* ---------------------** 题目主体函数部分 **--------------------- */
+    /**
+     * DFS 获取树的前序遍历
+     *
+     * @param inArray 输入数组
+     * @param l       左端点
+     * @param r       右端点
+     * @param goal    目标列表，作为返回值返回
+     * @return goal
+     * 应用   加分二叉树
+     */
+    private ArrayList<Integer> dfs(int[][] inArray, int l, int r, ArrayList<Integer> goal) {
+        if (l > r) return goal;
+        int k = inArray[l][r];
+        goal.add(k);
+        goal = dfs(inArray, l, k - 1, goal);
+        goal = dfs(inArray, k + 1, r, goal);
+        return goal;
+    }
+
+    /*---------------------** 题目主体函数部分 **---------------------*/
 
     public PII RingPebblesMerge(int[] lst, int length) {
         // 变量设置
@@ -93,7 +115,42 @@ public class IntervalDP {
         return ans;
     }
 
-    /* ---------------------** 内部类部分 **--------------------- */
+    public HashMap<Integer, ArrayList<Integer>> BonusBinaryTree(int[] lst, int length) {
+        // 变量初始化
+        int N = length + 5;
+        int[] w = new int[N];
+        System.arraycopy(lst, 0, w, 1, length);
+        int[][] f = new int[N][N], g = new int[N][N];
+
+        // DP
+        for (int i = 1; i <= length; i++) {
+            for (int l = 1, r = l + i - 1; r <= length; r = ++l + i - 1) {
+                if (l == r) {
+                    f[l][r] = w[l];
+                    g[l][r] = l;
+                } else {
+                    for (int j = l; j <= r; j++) {
+                        int left = j == l ? 1 : f[l][j - 1];
+                        int right = j == r ? 1 : f[j + 1][r];
+                        int score = left * right + w[j];
+                        if (score > f[l][r]) {
+                            f[l][r] = score;
+                            g[l][r] = j;
+                        }
+                    }
+                }
+            }
+        }
+
+        // DFS 输出
+        HashMap<Integer, ArrayList<Integer>> ans = new HashMap<>();
+        ArrayList<Integer> out = new ArrayList<>();
+        out = dfs(g, 1, length, out);
+        ans.put(f[1][length], out);
+        return ans;
+    }
+
+    /*---------------------** 内部类部分 **---------------------*/
 
     /**
      * Pair<int,int>
@@ -108,4 +165,5 @@ public class IntervalDP {
             this.y = y;
         }
     }
+
 }
