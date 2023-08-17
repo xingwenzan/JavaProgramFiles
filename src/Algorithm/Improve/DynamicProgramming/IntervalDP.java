@@ -13,6 +13,11 @@ public class IntervalDP {
     // 环形石子合并 https://www.acwing.com/problem/content/1070/
     // 能量项链 https://www.acwing.com/problem/content/322/
     // 加分二叉树 https://www.acwing.com/problem/content/481/
+    // 凸多边形的划分 https://www.acwing.com/problem/content/1071/
+
+    /* 凸多边形的划分
+    由题划分之后每条边都一定会被用上，故无须把环做成 2 倍链，直接从（1，n）断开即可
+     */
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -54,6 +59,70 @@ public class IntervalDP {
         goal = dfs(inArray, l, k - 1, goal);
         goal = dfs(inArray, k + 1, r, goal);
         return goal;
+    }
+
+    /**
+     * 高精度数字加法
+     *
+     * @param a 高精度数字
+     * @param b 高精度数字
+     * @return a+b
+     */
+    @Contract("_, _ -> new")
+    private @NotNull HighPrecisionNum add(@NotNull HighPrecisionNum a, @NotNull HighPrecisionNum b) {
+        long[] x = a.num, y = b.num, z = new long[35];
+        int length = Math.max(a.length, b.length);
+        long tmp = 0;
+        for (int i = 0; i < length; i++) {
+            tmp += x[i] + y[i];
+            z[i] = tmp % 10;
+            tmp /= 10;
+        }
+        while (tmp > 0) {
+            z[length++] = tmp % 10;
+            tmp /= 10;
+        }
+        return new HighPrecisionNum(z, length);
+    }
+
+    /**
+     * 高精度数字乘法
+     *
+     * @param a 高精度数字
+     * @param b 正常 int
+     * @return a*b
+     */
+    @Contract("_, _ -> new")
+    private @NotNull HighPrecisionNum mul(@NotNull HighPrecisionNum a, int b) {
+        long[] x = a.num, y = new long[35];
+        int length = a.length;
+        long tmp = 0;
+        for (int i = 0; i < length; i++) {
+            tmp += x[i] * b;
+            y[i] = tmp % 10;
+            tmp /= 10;
+        }
+        while (tmp > 0) {
+            y[length++] = tmp % 10;
+            tmp /= 10;
+        }
+        return new HighPrecisionNum(y, length);
+    }
+
+    /**
+     * 比较两高精度数字大小
+     *
+     * @param a 高精度数字
+     * @param b 高精度数字
+     * @return a>b 1   a=b 0   a<b -1
+     */
+    @Contract(pure = true)
+    private int cmp(@NotNull HighPrecisionNum a, @NotNull HighPrecisionNum b) {
+        if (a.length != b.length) return a.length > b.length ? 1 : -1;
+        for (int i = a.length; i >= 0; i--) {
+            if (a.num[i] != b.num[i]) return a.num[i] > b.num[i] ? 1 : -1;
+        }
+        return 0;
     }
 
     /*---------------------** 题目主体函数部分 **---------------------*/
@@ -150,6 +219,38 @@ public class IntervalDP {
         return ans;
     }
 
+    public HighPrecisionNum ConvexPolygonsDivision(int[] lst, int length) {
+        // 变量初始化
+        int N = length + 5;
+        int[] w = new int[N];
+        System.arraycopy(lst, 0, w, 1, length);
+        HighPrecisionNum[][] f = new HighPrecisionNum[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                f[i][j] = new HighPrecisionNum(0);
+            }
+        }
+
+        // DP
+        for (int i = 3; i <= length; i++) {
+            for (int l = 1, r = l + i - 1; r <= length; r = ++l + i - 1) {
+                long[] inf = new long[35];
+                inf[34] = 1;
+                f[l][r] = new HighPrecisionNum(inf, 35);
+                for (int j = l + 1; j <= r - 1; j++) {
+                    HighPrecisionNum tmp = new HighPrecisionNum(w[l]);
+                    tmp = mul(tmp, w[j]);
+                    tmp = mul(tmp, w[r]);
+                    tmp = add(tmp, f[l][j]);
+                    tmp = add(tmp, f[j][r]);
+                    if (cmp(f[l][r], tmp) > 0) f[l][r] = tmp;
+                }
+            }
+        }
+
+        return f[1][length];
+    }
+
     /*---------------------** 内部类部分 **---------------------*/
 
     /**
@@ -166,4 +267,32 @@ public class IntervalDP {
         }
     }
 
+    /**
+     * 高精度数字
+     * (default)   包内所有代码可用
+     * static   本类不依赖 IntervalDP 类对象即可创建
+     */
+    static class HighPrecisionNum {
+        long[] num = new long[35];
+        int length = 0;
+
+        public HighPrecisionNum(int x) {
+            while (x > 0) {
+                num[length++] = x % 10;
+                x /= 10;
+            }
+        }
+
+        public HighPrecisionNum(long[] x, int length) {
+            this.length = length;
+            System.arraycopy(x, 0, num, 0, length);
+        }
+
+        public void outputNum() {
+            for (int i = length - 1; i >= 0; i--) {
+                System.out.printf("%d", num[i]);
+            }
+            System.out.println();
+        }
+    }
 }

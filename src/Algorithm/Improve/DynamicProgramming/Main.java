@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 环形石子合并、能量项链、加分二叉树
+        // 环形石子合并、能量项链、加分二叉树、凸多边形的划分
         IntervalDP intervalDP = new IntervalDP();
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -29,6 +29,9 @@ public class Main {
             }
             System.out.print("\n");
         }
+        // 凸多边形的划分
+        IntervalDP.HighPrecisionNum num = intervalDP.ConvexPolygonsDivision(w, n);
+        num.outputNum();
 
 
         /*
