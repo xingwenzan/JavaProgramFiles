@@ -14,6 +14,7 @@ public class IntervalDP {
     // 能量项链 https://www.acwing.com/problem/content/322/
     // 加分二叉树 https://www.acwing.com/problem/content/481/
     // 凸多边形的划分 https://www.acwing.com/problem/content/1071/
+    // 棋盘分割 https://www.acwing.com/problem/content/323/   太麻烦了，不加了
 
     /* 凸多边形的划分
     由题划分之后每条边都一定会被用上，故无须把环做成 2 倍链，直接从（1，n）断开即可
