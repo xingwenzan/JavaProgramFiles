@@ -39,6 +39,7 @@
             - [状态机模型](src/Algorithm/Improve/DynamicProgramming/StateMachineModel.java)
             - [状态压缩 DP](src/Algorithm/Improve/DynamicProgramming/StateCompressionDP.java)
           - [区间 DP](src/Algorithm/Improve/DynamicProgramming/IntervalDP.java)
+          - [树形 DP](src/Algorithm/Improve/DynamicProgramming/TreeDP.java)
         - [搜索](src/Algorithm/Improve/Search) &#x2002; 包括Flood
           Fill、最短路模型、多源BFS、最小步数模型、双端队列广搜、双向广搜、A*
           、DFS之连通性模型、DFS之搜索顺序、DFS之剪枝与优化、迭代加深、双向DFS、IDA*等内容
