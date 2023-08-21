@@ -20,6 +20,7 @@ public class Main {
             t.add2(a, b, c);
         }
         System.out.println(t.TreeLongestPath());
+        System.out.println(t.TreeCenter(n));
 
 
 
