@@ -22,27 +22,33 @@ public class TreeDP {
     树的遍历   一个约数和可以对应多个数，但一个数只会对应一个约数和，且约数和小于每一个对应它的数，故可建立以约数和为父的有向图，从小到大无重复的遍历，获取最长次长路径后相加比较
      */
 
+    /*二叉苹果树
+    链接   https://www.acwing.com/problem/content/1076/
+    简化版有依赖背包问题   有依赖的背包问题 https://www.acwing.com/problem/content/10/
+    注   本题输入格式中无法确定方向，故使用无向图
+     */
+
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 树的最长路径、树的中心 1e4   数字转换 5e4
-    private final int N = (int) 5e4 + 10;
+    // 树的最长路径、树的中心 1e4   数字转换 5e4   二叉苹果树 100
+    private final int N = 110;
     // 数组模拟邻接表，无向图用 2N，有向图用 N
     private final int[] h = new int[N], e = new int[2 * N], ne = new int[2 * N], w = new int[2 * N];
     private int idx = 0;
     private int ans = 0;   // 树的最长路径、数字转换
     private final TreeCenterClass TC = new TreeCenterClass(N);   // 树的中心
     private DigitalConversionClass DC;   // 数字转换
+    private BinaryAppleTreeClass BAT;   // 二叉苹果树
 
     /*---------------------** 私有函数部分 **---------------------*/
 
     /**
      * 通过 DFS 遍历所有节点获取其最大深度并更新树的直径
+     * 应用   树的最长路径
      *
-     * @param u      起始节点
+     * @param u      起始/当前节点
      * @param father 父节点
      * @return u 的最大深度
-     * <p>
-     * 应用   树的最长路径
      */
     private int dfs(int u, int father) {
         int dist = 0;   // 表示从当前点往下走的最大长度
@@ -65,11 +71,10 @@ public class TreeDP {
 
     /**
      * 通过 DFS 遍历所有节点获取其最大深度并更新树的直径
-     *
-     * @param u 起始节点
-     * @return u 的最大深度
-     * <p>
      * 应用   数字转换
+     *
+     * @param u 起始/当前节点
+     * @return u 的最大深度
      */
     private int dfs(int u) {
         DC.st[u] = true;
@@ -92,13 +97,32 @@ public class TreeDP {
     }
 
     /**
-     * 通过遍历 u 的所有子节点，获取其向下到端点的最大长度和次大长度
+     * 通过 DFS 对有依赖的背包问题（分组背包）的 f 的更新
+     * 应用   二叉苹果树
      *
-     * @param u      起始节点
+     * @param u      起始/当前节点
+     * @param father 父节点
+     */
+    private void dfsDepend(int u, int father) {
+        for (int i = h[u]; i != -1; i = ne[i]) {
+            int son = e[i];
+            if (son == father) continue;
+            dfsDepend(son, u);
+            for (int j = BAT.V; j > 0; j--) {
+                for (int k = 0; k < j; k++) {
+                    BAT.f[u][j] = Math.max(BAT.f[u][j], BAT.f[u][j - k - 1] + BAT.f[son][k] + w[i]);
+                }
+            }
+        }
+    }
+
+    /**
+     * 通过遍历 u 的所有子节点，获取其向下到端点的最大长度和次大长度
+     * 应用   树的中心
+     *
+     * @param u      起始/当前节点
      * @param father 父节点
      * @return u 的向下最大深度
-     * <p>
-     * 应用   树的中心
      */
     private int dfsDown(int u, int father) {
         for (int i = h[u]; i != -1; i = ne[i]) {
@@ -118,11 +142,10 @@ public class TreeDP {
 
     /**
      * 通过遍历 u 的所有子节点，获取其子节点向上到端点的最大长度
+     * 应用   树的中心
      *
-     * @param u      起始节点
+     * @param u      起始/当前节点
      * @param father 父节点
-     *               <p>
-     *               应用   树的中心
      */
     private void dfsUp(int u, int father) {
         for (int i = h[u]; i != -1; i = ne[i]) {
@@ -225,6 +248,12 @@ public class TreeDP {
         return ans;
     }
 
+    public int BinaryAppleTree(int V) {
+        BAT = new BinaryAppleTreeClass(V);
+        dfsDepend(1, -1);
+        return BAT.getMaxAppleNum();
+    }
+
     /*---------------------** 内部类部分 **---------------------*/
 
     /**
@@ -278,6 +307,24 @@ public class TreeDP {
                     sum[i * j] += i;
                 }
             }
+        }
+    }
+
+    /**
+     * 二叉苹果树类
+     * <p>
+     * 用途   减少变量部分及变量间冲突
+     */
+    private static class BinaryAppleTreeClass {
+        int V;   // 剩余树枝数
+        int[][] f = new int[110][110];
+
+        public BinaryAppleTreeClass(int V) {
+            this.V = V;
+        }
+
+        public int getMaxAppleNum() {
+            return f[1][V];
         }
     }
 }

@@ -9,6 +9,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 二叉苹果树
+        TreeDP t = new TreeDP();
+        t.treeInit();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), v = Integer.parseInt(strings[1]);
+        for (int i = 0; i < n - 1; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), c = Integer.parseInt(strings[2]);
+            t.add2(a, b, c);
+        }
+        System.out.println(t.BinaryAppleTree(v));
+
+
+        /*
         // 树的最长路径、树的中心、数字转换
         TreeDP t = new TreeDP();
         t.treeInit();
@@ -23,6 +37,7 @@ public class Main {
         System.out.println(t.TreeLongestPath());   // 树的最长路径
         System.out.println(t.TreeCenter(n));   // 树的中心
 
+         */
 
 
         /*
