@@ -1,5 +1,7 @@
 package Algorithm.Improve.DynamicProgramming;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 
 public class TreeDP {
@@ -28,15 +30,24 @@ public class TreeDP {
     注   本题输入格式中无法确定方向，故使用无向图
      */
 
+    /*皇宫看守
+    链接 https://www.acwing.com/problem/content/1079/
+    DP 图   https://cdn.acwing.com/media/article/image/2022/10/29/197723_510b605257-Screenshot-2022-10-29-133343.jpg
+    由于采用 DFS 从下往上更新，故 dfs(root) 即可
+    每个点都只需要赋一次权，故不在 add 里赋权
+     */
+
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 树的最长路径、树的中心 1e4   数字转换 5e4   二叉苹果树 100
-    private final int N = 110;
+    // 树的最长路径、树的中心 1e4   数字转换 5e4   二叉苹果树 100   皇宫看守 1500
+    private final int N = 1510;
     // 数组模拟邻接表，无向图用 2N，有向图用 N
     private final int[] h = new int[N], e = new int[2 * N], ne = new int[2 * N], w = new int[2 * N];
     private int idx = 0;
     private int ans = 0;   // 树的最长路径、数字转换
+    private final int INF = 0x3f3f3f3f;
     private final TreeCenterClass TC = new TreeCenterClass(N);   // 树的中心
+    private final PalaceGuardClass PG = new PalaceGuardClass();   // 皇宫看守
     private DigitalConversionClass DC;   // 数字转换
     private BinaryAppleTreeClass BAT;   // 二叉苹果树
 
@@ -160,6 +171,29 @@ public class TreeDP {
         }
     }
 
+    /**
+     * 通过 DFS 遍历更新状态机
+     * 应用   皇宫看守
+     *
+     * @param u 起始/当前节点
+     */
+    private void dfsState(int u) {
+        int sum = 0;
+        PG.f[u][2] = w[u];
+        for (int i = h[u]; i != -1; i = ne[i]) {
+            int son = e[i];
+            dfsState(son);
+            PG.f[u][0] += Math.min(PG.f[son][1], PG.f[son][2]);
+            PG.f[u][2] += Math.min(PG.f[son][0], Math.min(PG.f[son][1], PG.f[son][2]));
+            sum += Math.min(PG.f[son][1], PG.f[son][2]);
+        }
+        PG.f[u][1] = INF;
+        for (int i = h[u]; i != -1; i = ne[i]) {
+            int son = e[i];
+            PG.f[u][1] = Math.min(PG.f[u][1], sum - Math.min(PG.f[son][1], PG.f[son][2]) + PG.f[son][2]);
+        }
+    }
+
     /*---------------------** 外/公用非题目主体函数部分 **---------------------*/
 
     /**
@@ -218,6 +252,24 @@ public class TreeDP {
         add1(p2, p1);
     }
 
+    /**
+     * 皇宫看守专用元素添加
+     *
+     * @param strings 输入数组
+     */
+    public void addPalace(String @NotNull [] strings) {
+        int father = Integer.parseInt(strings[0]);
+        w[father] = Integer.parseInt(strings[1]);
+        int num = Integer.parseInt(strings[2]);
+        if (num > 0) {
+            for (int i = 3; i < 3 + num; i++) {
+                int son = Integer.parseInt(strings[i]);
+                add1(father, son);
+                PG.notRoot[son] = true;
+            }
+        }
+    }
+
     /*---------------------** 题目主体函数部分 **---------------------*/
 
     public int TreeLongestPath() {
@@ -252,6 +304,12 @@ public class TreeDP {
         BAT = new BinaryAppleTreeClass(V);
         dfsDepend(1, -1);
         return BAT.getMaxAppleNum();
+    }
+
+    public int PalaceGuard() {
+        int root = PG.getRoot();
+        dfsState(root);
+        return PG.getPalaceGuard();
     }
 
     /*---------------------** 内部类部分 **---------------------*/
@@ -326,5 +384,29 @@ public class TreeDP {
         public int getMaxAppleNum() {
             return f[1][V];
         }
+    }
+
+    /**
+     * 皇宫看守类
+     * <p>
+     * 用途   减少变量部分及变量间冲突
+     */
+    private static class PalaceGuardClass {
+        boolean[] notRoot = new boolean[1510];   // 不是根，默认否
+        int[][] f = new int[1510][3];
+
+        public int getRoot() {
+            int x = 1;
+            while (notRoot[x]) {
+                x++;
+            }
+            return x;
+        }
+
+        public int getPalaceGuard() {
+            int root = getRoot();
+            return Math.min(f[root][1], f[root][2]);
+        }
+
     }
 }

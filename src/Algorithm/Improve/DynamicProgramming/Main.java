@@ -9,6 +9,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 皇宫看守
+        TreeDP t = new TreeDP();
+        t.treeInit();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < n; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            t.addPalace(strings);
+        }
+        System.out.println(t.PalaceGuard());
+
+
+        /*
         // 二叉苹果树
         TreeDP t = new TreeDP();
         t.treeInit();
@@ -20,6 +32,8 @@ public class Main {
             t.add2(a, b, c);
         }
         System.out.println(t.BinaryAppleTree(v));
+
+         */
 
 
         /*
