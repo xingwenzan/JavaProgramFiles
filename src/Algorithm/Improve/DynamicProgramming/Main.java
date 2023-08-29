@@ -9,6 +9,16 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 度的数量
+        DigitalDP d = new DigitalDP();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int l = Integer.parseInt(strings[0]), r = Integer.parseInt(strings[1]);
+        int k = Integer.parseInt(bufferedReader.readLine());
+        int b = Integer.parseInt(bufferedReader.readLine());
+        System.out.println(d.NumberOfDegrees(l, r, b, k));
+
+
+        /*
         // 皇宫看守
         TreeDP t = new TreeDP();
         t.treeInit();
@@ -18,6 +28,8 @@ public class Main {
             t.addPalace(strings);
         }
         System.out.println(t.PalaceGuard());
+
+         */
 
 
         /*
