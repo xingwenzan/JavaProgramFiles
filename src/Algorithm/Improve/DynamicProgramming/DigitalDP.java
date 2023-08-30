@@ -1,6 +1,7 @@
 package Algorithm.Improve.DynamicProgramming;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * 数位 DP 套路
@@ -15,11 +16,12 @@ public class DigitalDP {
     /*---------------------** 注释部分 **---------------------*/
 
     // 度的数量 https://www.acwing.com/problem/content/1083/
+    // 数字游戏 https://www.acwing.com/problem/content/1084/   视频 https://www.acwing.com/video/488/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 度的数量 35
-    private final int N = 35;
+    // 度的数量 35   数字游戏 15
+    private final int N = 15;
 
     /*---------------------** 私有函数部分 **---------------------*/
 
@@ -39,7 +41,35 @@ public class DigitalDP {
         return f;
     }
 
-    private int DP(int n, int b, int k) {
+    /**
+     * DP 获取 f[i,j]
+     *
+     * @return f[i, j] 最高位为 j，共 i 位的不降数数量
+     */
+    private int[][] FijDP() {
+        int[][] f = new int[N][N];
+        // 一位数
+        Arrays.fill(f[1], 1);
+        // 多位数
+        for (int i = 2; i < N; i++) {
+            for (int j = 0; j <= 9; j++) {
+                for (int k = j; k <= 9; k++) {
+                    f[i][j] += f[i - 1][k];
+                }
+            }
+        }
+        return f;
+    }
+
+    /**
+     * 度的数量 DP
+     *
+     * @param n 数字上限
+     * @param b b 进制
+     * @param k k 个 1
+     * @return [0, n] 内所有符合题目的数的数量
+     */
+    private int DP1(int n, int b, int k) {
         // 边界情况
         if (n == 0) return 0;
         // 将 x 换成 b 进制表示，其中索引高者表示高位
@@ -70,9 +100,45 @@ public class DigitalDP {
         return ans;
     }
 
+    /**
+     * 数字游戏 DP
+     *
+     * @param n 数字上限
+     * @return [0, n] 内所有符合题目的数的数量
+     */
+    private int DP2(int n) {
+        // 边界情况
+        if (n == 0) return 1;   // 理论上不需要特判，但下方拆位的时候如果 n 是 0 可能为空列表
+        // 拆位
+        ArrayList<Integer> num = new ArrayList<>();
+        while (n > 0) {
+            num.add(n % 10);
+            n /= 10;
+        }
+        // 正式 DP
+        int[][] f = FijDP();
+        int ans = 0, last = 0;   // 本题 last 代表 num 正在处理位的上一位数字
+        for (int i = num.size() - 1; i >= 0; i--) {   // 从高到低遍历位
+            int x = num.get(i);   // 该位对应数字
+            for (int j = last; j < x; j++) {   // 遍历该位可能放的数字（左树）
+                ans += f[i + 1][j];
+            }
+            // 本位数 < 上一位数，右树没了，循环停止
+            if (x < last) break;
+            last = x;
+            // 安全到达最后一位，说明 num 本身符合要求
+            if (i == 0) ans++;
+        }
+        return ans;
+    }
+
     /*---------------------** 题目主体函数部分 **---------------------*/
 
     public int NumberOfDegrees(int l, int r, int b, int k) {
-        return DP(r, b, k) - DP(l - 1, b, k);
+        return DP1(r, b, k) - DP1(l - 1, b, k);
+    }
+
+    public int NumbersGame(int l, int r) {
+        return DP2(r) - DP2(l - 1);
     }
 }
