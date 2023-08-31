@@ -17,10 +17,11 @@ public class DigitalDP {
 
     // 度的数量 https://www.acwing.com/problem/content/1083/
     // 数字游戏 https://www.acwing.com/problem/content/1084/   视频 https://www.acwing.com/video/488/
+    // Windy数 https://www.acwing.com/problem/content/1085/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 度的数量 35   数字游戏 15
+    // 度的数量 35   数字游戏、Windy数 15
     private final int N = 15;
 
     /*---------------------** 私有函数部分 **---------------------*/
@@ -43,10 +44,11 @@ public class DigitalDP {
 
     /**
      * DP 获取 f[i,j]
+     * 应用   数字游戏
      *
      * @return f[i, j] 最高位为 j，共 i 位的不降数数量
      */
-    private int[][] FijDP() {
+    private int[][] FijNG() {
         int[][] f = new int[N][N];
         // 一位数
         Arrays.fill(f[1], 1);
@@ -55,6 +57,29 @@ public class DigitalDP {
             for (int j = 0; j <= 9; j++) {
                 for (int k = j; k <= 9; k++) {
                     f[i][j] += f[i - 1][k];
+                }
+            }
+        }
+        return f;
+    }
+
+    /**
+     * DP 获取 f[i,j]
+     * 应用   Windy数
+     *
+     * @return f[i, j] 最高位为 j，共 i 位的 Windy数 数量
+     */
+    private int[][] FijWN() {
+        int[][] f = new int[N][N];
+        // 一位数
+        Arrays.fill(f[1], 1);
+        // 多位数
+        for (int i = 2; i < N; i++) {
+            for (int j = 0; j <= 9; j++) {
+                for (int k = 0; k <= 9; k++) {
+                    if (Math.abs(j - k) >= 2) {
+                        f[i][j] += f[i - 1][k];
+                    }
                 }
             }
         }
@@ -116,7 +141,7 @@ public class DigitalDP {
             n /= 10;
         }
         // 正式 DP
-        int[][] f = FijDP();
+        int[][] f = FijNG();
         int ans = 0, last = 0;   // 本题 last 代表 num 正在处理位的上一位数字
         for (int i = num.size() - 1; i >= 0; i--) {   // 从高到低遍历位
             int x = num.get(i);   // 该位对应数字
@@ -132,6 +157,48 @@ public class DigitalDP {
         return ans;
     }
 
+    /**
+     * Windy 数 DP
+     * 分情况讨论前导 0 原因   假如size = 5，每个数都是从位数5开始枚举，但其实00013也是windy数，（这个前导0导致res没加）但其实13也在范围内
+     *
+     * @param n 数字上限
+     * @return [1, n] 内所有符合题目的数的数量
+     */
+    private int DP3(int n) {
+        // 边界情况
+        if (n == 0) return 0;
+        // 拆位
+        ArrayList<Integer> num = new ArrayList<>();
+        while (n > 0) {
+            num.add(n % 10);
+            n /= 10;
+        }
+        // 正式 DP
+        int[][] f = FijWN();
+        int ans = 0, last = -2;   // 本题 last 代表 num 正在处理位的上一位数字
+        // 含前导 0 情况
+        for (int i = num.size() - 1; i >= 0; i--) {   // 从高到低遍历位
+            int x = num.get(i);   // 该位对应数字
+            for (int j = (i == num.size() - 1 ? 1 : 0); j < x; j++) {   // 遍历该位可能放的数字（左树）
+                if (Math.abs(j - last) >= 2) {
+                    ans += f[i + 1][j];
+                }
+            }
+            // 本位数 < 上一位数，右树没了，循环停止
+            if (Math.abs(x - last) < 2) break;
+            last = x;
+            // 安全到达最后一位，说明 num 本身符合要求
+            if (i == 0) ans++;
+        }
+        // 特殊处理不该含前导 0 情况
+        for (int i = 1; i < num.size(); i++) {
+            for (int j = 1; j <= 9; j++) {
+                ans += f[i][j];
+            }
+        }
+        return ans;
+    }
+
     /*---------------------** 题目主体函数部分 **---------------------*/
 
     public int NumberOfDegrees(int l, int r, int b, int k) {
@@ -140,5 +207,9 @@ public class DigitalDP {
 
     public int NumbersGame(int l, int r) {
         return DP2(r) - DP2(l - 1);
+    }
+
+    public int WindyNumber(int l, int r) {
+        return DP3(r) - DP3(l - 1);
     }
 }

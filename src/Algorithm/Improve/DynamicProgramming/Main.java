@@ -3,12 +3,13 @@ package Algorithm.Improve.DynamicProgramming;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-// import java.util.ArrayList;
-// import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+
+        /*
         // 数字游戏
         DigitalDP d = new DigitalDP();
         String str = "";
@@ -19,17 +20,17 @@ public class Main {
             System.out.println(d.NumbersGame(l, r));
         }
 
+         */
 
-        /*
-        // 度的数量
+
+        // 度的数量、Windy数
         DigitalDP d = new DigitalDP();
         String[] strings = bufferedReader.readLine().split(" ");
         int l = Integer.parseInt(strings[0]), r = Integer.parseInt(strings[1]);
+        System.out.println(d.WindyNumber(l, r));   // Windy数
         int k = Integer.parseInt(bufferedReader.readLine());
         int b = Integer.parseInt(bufferedReader.readLine());
         System.out.println(d.NumberOfDegrees(l, r, b, k));
-
-         */
 
 
         /*
