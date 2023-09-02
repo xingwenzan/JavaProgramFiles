@@ -18,13 +18,25 @@ public class DigitalDP {
     // 度的数量 https://www.acwing.com/problem/content/1083/
     // 数字游戏 https://www.acwing.com/problem/content/1084/   视频 https://www.acwing.com/video/488/
     // Windy数 https://www.acwing.com/problem/content/1085/
+    // 数字游戏 II https://www.acwing.com/problem/content/1086/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 度的数量 35   数字游戏、Windy数 15
+    // 度的数量 35   数字游戏、Windy数、数字游戏 II 15
     private final int N = 15;
 
     /*---------------------** 私有函数部分 **---------------------*/
+
+    /**
+     * 取模且余数皆 >= 0
+     *
+     * @param x 被除数
+     * @param y 除数
+     * @return 余数
+     */
+    private int mod(int x, int y) {
+        return (x % y + y) % y;
+    }
 
     /**
      * 获取 C_a^b
@@ -79,6 +91,30 @@ public class DigitalDP {
                 for (int k = 0; k <= 9; k++) {
                     if (Math.abs(j - k) >= 2) {
                         f[i][j] += f[i - 1][k];
+                    }
+                }
+            }
+        }
+        return f;
+    }
+
+    /**
+     * DP 获取 f[i,j,k]
+     * 应用   数字游戏 II
+     *
+     * @param p 取 p 的模
+     * @return f[i, j, k] 最高位为 j，余数是 k，共 i 位的目标数数量
+     */
+    private int[][][] Fijk(int p) {
+        int[][][] f = new int[N][10][p + 10];
+        // 一位数
+        for (int i = 0; i <= 9; i++) f[1][i][i % p]++;
+        // 多位数
+        for (int i = 2; i < N; i++) {   // 位数
+            for (int j0 = 0; j0 <= 9; j0++) {   // 最高位
+                for (int k = 0; k < p; k++) {   // 余数
+                    for (int j1 = 0; j1 <= 9; j1++) {   // 次高位
+                        f[i][j0][k] += f[i - 1][j1][mod(k - j0, p)];   // 带上 i 号位模为 k，不带则为 k-j0
                     }
                 }
             }
@@ -199,6 +235,37 @@ public class DigitalDP {
         return ans;
     }
 
+    /**
+     * 数字游戏 II DP
+     *
+     * @param n 数字上限
+     * @param p 除数
+     * @return [1, n] 内所有符合题目的数的数量
+     */
+    private int DP4(int n, int p) {
+        // 边界情况
+        if (n == 0) return 1;
+        // 拆位
+        ArrayList<Integer> num = new ArrayList<>();
+        while (n > 0) {
+            num.add(n % 10);
+            n /= 10;
+        }
+        // 正式 DP
+        int[][][] f = Fijk(p);
+        int ans = 0, last = 0;   // 本题代表 num 前几位之和
+        for (int i = num.size() - 1; i >= 0; i--) {   // 从高到低遍历位
+            int x = num.get(i);   // 该位对应数字
+            for (int j = 0; j < x; j++) {
+                ans += f[i + 1][j][mod(-last, p)];   // 带上前 i 位模为 0，不带则为 -last
+            }
+            last += x;
+            // 安全到达最后一位，且 num 本身符合要求
+            if (i == 0 && last % p == 0) ans++;
+        }
+        return ans;
+    }
+
     /*---------------------** 题目主体函数部分 **---------------------*/
 
     public int NumberOfDegrees(int l, int r, int b, int k) {
@@ -211,5 +278,9 @@ public class DigitalDP {
 
     public int WindyNumber(int l, int r) {
         return DP3(r) - DP3(l - 1);
+    }
+
+    public int NumbersGameII(int l, int r, int p) {
+        return DP4(r, p) - DP4(l - 1, p);
     }
 }

@@ -7,22 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
-
-        /*
-        // 数字游戏
+        // 数字游戏、数字游戏 II
         DigitalDP d = new DigitalDP();
         String str = "";
         while ((str = bufferedReader.readLine()) != null) {
             String[] arr = str.split(" ");
             int l = Integer.parseInt(arr[0]);
             int r = Integer.parseInt(arr[1]);
-            System.out.println(d.NumbersGame(l, r));
+            System.out.println(d.NumbersGame(l, r));   // 数字游戏
+            // 数字游戏 II
+            int p = Integer.parseInt(arr[2]);
+            System.out.println(d.NumbersGameII(l, r, p));
         }
 
-         */
 
-
+        /*
         // 度的数量、Windy数
         DigitalDP d = new DigitalDP();
         String[] strings = bufferedReader.readLine().split(" ");
@@ -31,6 +30,8 @@ public class Main {
         int k = Integer.parseInt(bufferedReader.readLine());
         int b = Integer.parseInt(bufferedReader.readLine());
         System.out.println(d.NumberOfDegrees(l, r, b, k));
+
+         */
 
 
         /*
