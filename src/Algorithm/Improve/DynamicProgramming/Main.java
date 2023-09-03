@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 不要62
+        DigitalDP d = new DigitalDP();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int l = Integer.parseInt(strings[0]);
+        int r = Integer.parseInt(strings[1]);
+        while (l != 0 || r != 0) {
+            System.out.println(d.DoNot62(l, r));
+            strings = bufferedReader.readLine().split(" ");
+            l = Integer.parseInt(strings[0]);
+            r = Integer.parseInt(strings[1]);
+        }
+
+
+        /*
         // 数字游戏、数字游戏 II
         DigitalDP d = new DigitalDP();
         String str = "";
@@ -19,6 +33,8 @@ public class Main {
             int p = Integer.parseInt(arr[2]);
             System.out.println(d.NumbersGameII(l, r, p));
         }
+
+         */
 
 
         /*

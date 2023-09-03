@@ -19,11 +19,12 @@ public class DigitalDP {
     // 数字游戏 https://www.acwing.com/problem/content/1084/   视频 https://www.acwing.com/video/488/
     // Windy数 https://www.acwing.com/problem/content/1085/
     // 数字游戏 II https://www.acwing.com/problem/content/1086/
+    // 不要62 https://www.acwing.com/problem/content/1087/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
-    // 度的数量 35   数字游戏、Windy数、数字游戏 II 15
-    private final int N = 15;
+    // 度的数量 35   数字游戏、Windy数、数字游戏 II、不要62 11
+    private final int N = 11;
 
     /*---------------------** 私有函数部分 **---------------------*/
 
@@ -116,6 +117,30 @@ public class DigitalDP {
                     for (int j1 = 0; j1 <= 9; j1++) {   // 次高位
                         f[i][j0][k] += f[i - 1][j1][mod(k - j0, p)];   // 带上 i 号位模为 k，不带则为 k-j0
                     }
+                }
+            }
+        }
+        return f;
+    }
+
+    /**
+     * DP 获取 f[i,j]
+     * 应用   不要62
+     *
+     * @return f[i, j] 最高位为 j，共 i 位的目标数数量
+     */
+    private int[][] Fij62() {
+        int[][] f = new int[N][N];
+        // 一位数
+        Arrays.fill(f[1], 1);
+        f[1][4] = 0;
+        // 多位数
+        for (int i = 2; i < N; i++) {
+            for (int j = 0; j <= 9; j++) {   // 最高位
+                if (j == 4) continue;
+                for (int k = 0; k <= 9; k++) {   // 次高位
+                    if (k == 4 || (j == 6 && k == 2)) continue;
+                    f[i][j] += f[i - 1][k];
                 }
             }
         }
@@ -266,6 +291,41 @@ public class DigitalDP {
         return ans;
     }
 
+    /**
+     * 不要 62 DP
+     *
+     * @param n 数字上限
+     * @return [1, n] 内所有符合题目的数的数量
+     */
+    private int DP5(int n) {
+        // 边界情况
+        if (n == 0) return 1;
+        // 拆位
+        ArrayList<Integer> num = new ArrayList<>();
+        while (n > 0) {
+            num.add(n % 10);
+            n /= 10;
+        }
+        // 正式 DP
+        int[][] f = Fij62();
+        int ans = 0, last = 0;   // 本题 last 代表 num 正在处理位的上一位数字
+        // 含前导 0 情况
+        for (int i = num.size() - 1; i >= 0; i--) {   // 从高到低遍历位
+            int x = num.get(i);   // 该位对应数字
+            for (int j = 0; j < x; j++) {   // 遍历该位可能放的数字（左树）
+                if (j == 4 || (last == 6 && j == 2)) continue;
+                ans += f[i + 1][j];
+            }
+            // 本位数 < 上一位数，右树没了，循环停止
+            if (x == 4 || (last == 6 && x == 2)) break;
+            last = x;
+            // 安全到达最后一位，说明 num 本身符合要求
+            if (i == 0) ans++;
+        }
+
+        return ans;
+    }
+
     /*---------------------** 题目主体函数部分 **---------------------*/
 
     public int NumberOfDegrees(int l, int r, int b, int k) {
@@ -282,5 +342,9 @@ public class DigitalDP {
 
     public int NumbersGameII(int l, int r, int p) {
         return DP4(r, p) - DP4(l - 1, p);
+    }
+
+    public int DoNot62(int l, int r) {
+        return DP5(r) - DP5(l - 1);
     }
 }
