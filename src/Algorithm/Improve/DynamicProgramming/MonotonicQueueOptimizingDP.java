@@ -7,6 +7,7 @@ public class MonotonicQueueOptimizingDP {
     /*---------------------** 注释部分 **---------------------*/
 
     // 最大子序和 https://www.acwing.com/problem/content/137/
+    // 修剪草坪 https://www.acwing.com/problem/content/1089/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -45,6 +46,20 @@ public class MonotonicQueueOptimizingDP {
             q.add(i);
         }
         return ans;
+    }
+
+    public long MowingLawn(int @NotNull [] lst, int length) {
+        int n = lst.length;
+        MyQueue q = new MyQueue(100010);
+        q.add(0);
+        MowingLawnClass ml = new MowingLawnClass(lst);
+        for (int i = 1; i <= n; i++) {
+            if (q.head() < i - length) q.pollHead();
+            ml.f[i] = Math.max(ml.f[i - 1], ml.g(q.head()) + ml.s[i]);
+            while (q.notEmpty() && ml.g(q.tail()) <= ml.g(i)) q.pollTail();
+            q.add(i);
+        }
+        return ml.ans();
     }
 
     /*---------------------** 内部类部分 **---------------------*/
@@ -87,6 +102,31 @@ public class MonotonicQueueOptimizingDP {
 
         public void add(int x) {
             queue[++tt] = x;
+        }
+    }
+
+    /**
+     * 修剪草坪专用类
+     */
+    private static class MowingLawnClass {
+        long[] f, s;
+
+        public MowingLawnClass(int[] lst) {
+            int n = lst.length;
+            s = new long[n + 1];
+            for (int i = 0; i < n; i++) {
+                s[i + 1] = s[i] + lst[i];
+            }
+            f = new long[n + 1];
+        }
+
+        public long g(int x) {
+            if (x == 0) return 0;
+            return f[x - 1] - s[x];
+        }
+
+        public long ans() {
+            return f[f.length - 1];
         }
     }
 }

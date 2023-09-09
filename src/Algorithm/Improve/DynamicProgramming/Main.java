@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 修剪草坪
+        MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        int[] ints = new int[n];
+        for (int i = 0; i < n; i++) {
+            ints[i] = Integer.parseInt(bufferedReader.readLine());
+        }
+        System.out.println(mqo.MowingLawn(ints, m));
+
+
+        /*
         // 最大子序和
         MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
         String[] strings = bufferedReader.readLine().split(" ");
@@ -17,6 +29,8 @@ public class Main {
             ints[i] = Integer.parseInt(strings[i]);
         }
         System.out.println(mqo.MaximumSubsequenceSum(ints, m));
+
+         */
 
 
         /*
