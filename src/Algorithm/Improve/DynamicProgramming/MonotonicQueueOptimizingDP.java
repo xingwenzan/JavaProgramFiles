@@ -8,6 +8,7 @@ public class MonotonicQueueOptimizingDP {
 
     // 最大子序和 https://www.acwing.com/problem/content/137/
     // 修剪草坪 https://www.acwing.com/problem/content/1089/
+    // 烽火传递 https://www.acwing.com/problem/content/1091/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -60,6 +61,24 @@ public class MonotonicQueueOptimizingDP {
             q.add(i);
         }
         return ml.ans();
+    }
+
+    public int BeaconRelay(int[] lst, int length) {
+        int n = lst.length;
+        MyQueue q = new MyQueue(n + 10);
+        q.add(0);
+        int[] f = new int[n + 10];
+        for (int i = 1; i <= n; i++) {
+            if (q.head() < i - length) q.pollHead();
+            f[i] = f[q.head()] + lst[i - 1];
+            while (q.notEmpty() && f[q.tail()] >= f[i]) q.pollTail();
+            q.add(i);
+        }
+        int ans = INF;
+        for (int i = n; i >= n - length + 1; i--) {
+            ans = Math.min(ans, f[i]);
+        }
+        return ans;
     }
 
     /*---------------------** 内部类部分 **---------------------*/
