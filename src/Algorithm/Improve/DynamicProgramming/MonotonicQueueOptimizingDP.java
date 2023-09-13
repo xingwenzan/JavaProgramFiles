@@ -9,6 +9,7 @@ public class MonotonicQueueOptimizingDP {
     // 最大子序和 https://www.acwing.com/problem/content/137/
     // 修剪草坪 https://www.acwing.com/problem/content/1089/
     // 烽火传递 https://www.acwing.com/problem/content/1091/
+    // 绿色通道 https://www.acwing.com/problem/content/1092/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -31,6 +32,31 @@ public class MonotonicQueueOptimizingDP {
             ints[i + 1] = ints[i] + lst[i];
         }
         return ints;
+    }
+
+    /**
+     * 使用单调队列判定是否合适
+     *
+     * @param lst  输入的 ai 数组
+     * @param lim  判定该数是否符合结果
+     * @param time 判定条件
+     * @return 是否
+     */
+    private boolean checkDP(int @NotNull [] lst, int lim, int time) {
+        int n = lst.length;
+        MyQueue q = new MyQueue(n + 10);
+        q.add(0);
+        int[] f = new int[n + 10];
+        for (int i = 1; i <= n; i++) {
+            if (q.head() < i - lim - 1) q.pollHead();
+            f[i] = f[q.head()] + lst[i - 1];
+            while (q.notEmpty() && f[q.tail()] >= f[i]) q.pollTail();
+            q.add(i);
+        }
+        for (int i = n - lim; i <= n; i++) {
+            if (f[i] <= time) return true;
+        }
+        return false;
     }
 
     /*---------------------** 题目主体函数部分 **---------------------*/
@@ -63,7 +89,7 @@ public class MonotonicQueueOptimizingDP {
         return ml.ans();
     }
 
-    public int BeaconRelay(int[] lst, int length) {
+    public int BeaconRelay(int @NotNull [] lst, int length) {
         int n = lst.length;
         MyQueue q = new MyQueue(n + 10);
         q.add(0);
@@ -79,6 +105,16 @@ public class MonotonicQueueOptimizingDP {
             ans = Math.min(ans, f[i]);
         }
         return ans;
+    }
+
+    public int GreenChannel(int @NotNull [] lst, int time) {
+        int l = 0, r = lst.length;
+        while (l < r) {
+            int mid = (l + r) >> 1;
+            if (checkDP(lst, mid, time)) r = mid;
+            else l++;
+        }
+        return r;
     }
 
     /*---------------------** 内部类部分 **---------------------*/

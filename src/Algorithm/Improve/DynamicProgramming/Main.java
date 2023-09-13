@@ -21,7 +21,7 @@ public class Main {
          */
 
 
-        // 最大子序和、烽火传递
+        // 最大子序和、烽火传递、绿色通道
         MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -30,6 +30,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             ints[i] = Integer.parseInt(strings[i]);
         }
+        System.out.println(mqo.GreenChannel(ints, m));   // 绿色通道
         System.out.println(mqo.BeaconRelay(ints, m));   // 烽火传递
         System.out.println(mqo.MaximumSubsequenceSum(ints, m));   // 最大子序和
 
