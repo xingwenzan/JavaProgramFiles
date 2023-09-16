@@ -3,6 +3,8 @@ package Algorithm.Improve.DynamicProgramming;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class MonotonicQueueOptimizingDP {
     /*---------------------** 注释部分 **---------------------*/
 
@@ -10,6 +12,7 @@ public class MonotonicQueueOptimizingDP {
     // 修剪草坪 https://www.acwing.com/problem/content/1089/
     // 烽火传递 https://www.acwing.com/problem/content/1091/
     // 绿色通道 https://www.acwing.com/problem/content/1092/
+    // 理想的正方形 https://www.acwing.com/problem/content/1093/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -57,6 +60,46 @@ public class MonotonicQueueOptimizingDP {
             if (f[i] <= time) return true;
         }
         return false;
+    }
+
+    /**
+     * 滑动窗口获取最大值数组
+     *
+     * @param lst    输入数组
+     * @param length 数组长度
+     * @param window 窗口长度
+     * @return 最大值数组
+     */
+    private int @NotNull [] getMax(int[] lst, int length, int window) {
+        int[] ans = new int[length];
+        MyQueue q = new MyQueue(length + 10);
+        for (int i = 0; i < length; i++) {
+            if (q.notEmpty() && q.head() <= i - window) q.pollHead();
+            while (q.notEmpty() && lst[q.tail()] <= lst[i]) q.pollTail();
+            q.add(i);
+            ans[i] = lst[q.head()];
+        }
+        return ans;
+    }
+
+    /**
+     * 滑动窗口获取最小值数组
+     *
+     * @param lst    输入数组
+     * @param length 数组长度
+     * @param window 窗口长度
+     * @return 最小值数组
+     */
+    private int @NotNull [] getMin(int[] lst, int length, int window) {
+        int[] ans = new int[length];
+        MyQueue q = new MyQueue(length + 10);
+        for (int i = 0; i < length; i++) {
+            if (q.notEmpty() && q.head() <= i - window) q.pollHead();
+            while (q.notEmpty() && lst[q.tail()] >= lst[i]) q.pollTail();
+            q.add(i);
+            ans[i] = lst[q.head()];
+        }
+        return ans;
     }
 
     /*---------------------** 题目主体函数部分 **---------------------*/
@@ -115,6 +158,32 @@ public class MonotonicQueueOptimizingDP {
             else l++;
         }
         return r;
+    }
+
+    public int IdealSquare(int[][] w, int n, int m, int k) {
+        int ans = INF;
+        ArrayList<int[]> rowMax = new ArrayList<>(), rowMin = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            rowMax.add(getMax(w[i], m, k));
+            rowMin.add(getMin(w[i], m, k));
+        }
+        int[] tmp;
+        for (int i = k - 1; i < m; i++) {
+            tmp = new int[n];
+            for (int j = 0; j < n; j++) {
+                tmp[j] = rowMax.get(j)[i];
+            }
+            int[] colMax = getMax(tmp, n, k);
+            tmp = new int[n];
+            for (int j = 0; j < n; j++) {
+                tmp[j] = rowMin.get(j)[i];
+            }
+            int[] colMin = getMin(tmp, n, k);
+            for (int j = k - 1; j < n; j++) {
+                ans = Math.min(ans, colMax[j] - colMin[j]);
+            }
+        }
+        return ans;
     }
 
     /*---------------------** 内部类部分 **---------------------*/

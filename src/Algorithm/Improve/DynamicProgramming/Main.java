@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 理想的正方形
+        MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]), k = Integer.parseInt(strings[2]);
+        int[][] ints = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j < m; j++) {
+                ints[i][j] = Integer.parseInt(strings[j]);
+            }
+        }
+        System.out.println(mqo.IdealSquare(ints, n, m, k));
+
+
         /*
         // 修剪草坪
         MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
@@ -21,6 +35,7 @@ public class Main {
          */
 
 
+        /*
         // 最大子序和、烽火传递、绿色通道
         MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
         String[] strings = bufferedReader.readLine().split(" ");
@@ -33,6 +48,8 @@ public class Main {
         System.out.println(mqo.GreenChannel(ints, m));   // 绿色通道
         System.out.println(mqo.BeaconRelay(ints, m));   // 烽火传递
         System.out.println(mqo.MaximumSubsequenceSum(ints, m));   // 最大子序和
+
+         */
 
 
         /*
