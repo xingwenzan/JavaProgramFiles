@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 任务安排1
+        SlopeOptimizedDP so = new SlopeOptimizedDP();
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int s = Integer.parseInt(bufferedReader.readLine());
+        String[] strings;
+        int[] c = new int[n], t = new int[n];
+        for (int i = 0; i < n; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            t[i] = Integer.parseInt(strings[0]);
+            c[i] = Integer.parseInt(strings[1]);
+        }
+        System.out.println(so.Task1(n, s, c, t));
+
+
+        /*
         // 理想的正方形
         MonotonicQueueOptimizingDP mqo = new MonotonicQueueOptimizingDP();
         String[] strings = bufferedReader.readLine().split(" ");
@@ -19,6 +34,8 @@ public class Main {
             }
         }
         System.out.println(mqo.IdealSquare(ints, n, m, k));
+
+         */
 
 
         /*

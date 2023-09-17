@@ -42,6 +42,7 @@
           - [树形 DP](src/Algorithm/Improve/DynamicProgramming/TreeDP.java)
           - [数位 DP](src/Algorithm/Improve/DynamicProgramming/DigitalDP.java)
           - [单调队列优化 DP](src/Algorithm/Improve/DynamicProgramming/MonotonicQueueOptimizingDP.java)
+          - [斜率优化 DP](src/Algorithm/Improve/DynamicProgramming/SlopeOptimizedDP.java)
         - [搜索](src/Algorithm/Improve/Search) &#x2002; 包括Flood
           Fill、最短路模型、多源BFS、最小步数模型、双端队列广搜、双向广搜、A*
           、DFS之连通性模型、DFS之搜索顺序、DFS之剪枝与优化、迭代加深、双向DFS、IDA*等内容
