@@ -9,6 +9,7 @@ public class SlopeOptimizedDP {
     /*---------------------** 注释部分 **---------------------*/
 
     // 任务安排1 https://www.acwing.com/problem/content/302/
+    // 任务安排2 https://www.acwing.com/problem/content/303/
 
     /*---------------------** 变量定义部分 **---------------------*/
 
@@ -46,6 +47,25 @@ public class SlopeOptimizedDP {
             for (int j = 0; j < i; j++) {
                 f[i] = Math.min(f[i], f[j] + (long) T[i] * (C[i] - C[j]) + (long) s * (C[n] - C[j]));
             }
+        }
+        return f[n];
+    }
+
+    public long Task2(int n, int s, int[] c, int[] t) {
+        long[] f = new long[n + 10];
+        f[0] = 0;
+        int[] C = prefixSum(c);
+        int[] T = prefixSum(t);
+        int[] q = new int[n + 10];
+        q[0] = 0;
+        int hh = 0, tt = 0;
+        for (int i = 1; i <= n; i++) {
+            while (hh < tt && (f[q[hh + 1]] - f[q[hh]]) <= (long) (T[i] + s) * (C[q[hh + 1]] - C[q[hh]])) hh++;
+            int j = q[hh];
+            f[i] = f[j] - (long) (T[i] + s) * T[j] + (long) T[i] * C[i] + (long) s * C[n];
+            while (hh < tt && (f[q[tt]] - f[q[tt - 1]]) * (C[i] - C[q[tt - 1]]) >= (f[i] - f[q[tt - 1]]) * (C[q[tt]] - C[q[tt - 1]]))
+                tt--;
+            q[++tt] = i;
         }
         return f[n];
     }

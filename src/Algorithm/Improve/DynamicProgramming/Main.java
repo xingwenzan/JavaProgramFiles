@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // 任务安排1
+        // 任务安排1、任务安排2
         SlopeOptimizedDP so = new SlopeOptimizedDP();
         int n = Integer.parseInt(bufferedReader.readLine());
         int s = Integer.parseInt(bufferedReader.readLine());
@@ -18,7 +18,8 @@ public class Main {
             t[i] = Integer.parseInt(strings[0]);
             c[i] = Integer.parseInt(strings[1]);
         }
-        System.out.println(so.Task1(n, s, c, t));
+        System.out.println(so.Task1(n, s, c, t));   // 任务安排1
+        System.out.println(so.Task2(n, s, c, t));   // 任务安排2
 
 
         /*
