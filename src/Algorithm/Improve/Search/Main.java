@@ -1,7 +1,5 @@
 package Algorithm.Improve.Search;
 
-import Algorithm.Improve.Search.FloodFill.PeaksAndValleys;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[][] lst = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            for (int j = 0; j < n; j++) {
+                lst[i][j] = Integer.parseInt(strings[j]);
+            }
+        }
+        MazeProblem mp = new MazeProblem(n, lst);
+        mp.output();
+
+
+        /*
         // 山峰和山谷
         int n = Integer.parseInt(bufferedReader.readLine());
         int[][] lst = new int[n][n];
@@ -21,6 +32,7 @@ public class Main {
         PeaksAndValleys pv = new PeaksAndValleys(n, lst);
         System.out.printf("%d %d", pv.getPeaks(), pv.getValleys());
 
+         */
 
 
         /*

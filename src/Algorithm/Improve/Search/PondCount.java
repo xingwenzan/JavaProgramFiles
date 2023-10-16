@@ -1,4 +1,4 @@
-package Algorithm.Improve.Search.FloodFill;
+package Algorithm.Improve.Search;
 
 
 /**
