@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 武士风度的牛
+        String[] strings = bufferedReader.readLine().split(" ");
+        int c = Integer.parseInt(strings[0]), r = Integer.parseInt(strings[1]);
+        String[] lst = new String[r];
+        for (int i = 0; i < r; i++) {
+            lst[i] = bufferedReader.readLine();
+        }
+        SamuraiStyleCow ssc = new SamuraiStyleCow(r, c, lst);
+        System.out.println(ssc.bfs());
+
+
+
+        /*
+        // 迷宫问题
         int n = Integer.parseInt(bufferedReader.readLine());
         int[][] lst = new int[n][n];
         for (int i = 0; i < n; i++) {
@@ -17,6 +31,8 @@ public class Main {
         }
         MazeProblem mp = new MazeProblem(n, lst);
         mp.output();
+
+         */
 
 
         /*
