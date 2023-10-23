@@ -10,3 +10,4 @@
 - 最短路模型
   - [迷宫问题](MazeProblem.java)
   - [武士风度的牛](SamuraiStyleCow.java)
+  - [抓住那头牛](CatchThatCow.java)

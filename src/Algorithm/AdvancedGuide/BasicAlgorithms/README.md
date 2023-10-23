@@ -5,3 +5,5 @@
   - [64位整数乘法](BitOF64IntegerMultiplication.java)
   - [最短Hamilton路径](ShortestHamiltonPath.java)
   - [起床困难综合症](DTOS.java)
+- 递推与递归
+  - [递归实现指数型枚举](ExponentialEnumeration.java)

@@ -7,6 +7,12 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 递归实现指数型枚举
+        int n = Integer.parseInt(bufferedReader.readLine());
+        ExponentialEnumeration ee = new ExponentialEnumeration(n);
+        ee.allOutput();
+
+        /*
         // 起床困难综合症
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -20,6 +26,7 @@ public class Main {
         DTOS dtos = new DTOS(n, m, op, num);
         System.out.println(dtos.getHurt());
 
+         */
 
         /*
         // 最短Hamilton路径

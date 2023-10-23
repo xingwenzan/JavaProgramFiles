@@ -7,6 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 抓住那头牛
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), k = Integer.parseInt(strings[1]);
+        CatchThatCow ctc = new CatchThatCow(n, k);
+        System.out.println(ctc.getAns());
+
+
+        /*
         // 武士风度的牛
         String[] strings = bufferedReader.readLine().split(" ");
         int c = Integer.parseInt(strings[0]), r = Integer.parseInt(strings[1]);
@@ -17,6 +25,7 @@ public class Main {
         SamuraiStyleCow ssc = new SamuraiStyleCow(r, c, lst);
         System.out.println(ssc.bfs());
 
+         */
 
 
         /*
