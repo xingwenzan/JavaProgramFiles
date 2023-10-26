@@ -7,3 +7,4 @@
   - [起床困难综合症](DTOS.java)
 - 递推与递归
   - [递归实现指数型枚举](ExponentialEnumeration.java)
+  - [递归实现组合型枚举](CombinationEnumeration.java)
