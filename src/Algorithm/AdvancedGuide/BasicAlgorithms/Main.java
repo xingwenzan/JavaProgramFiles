@@ -7,11 +7,19 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 递归实现排列型枚举
+        int n = Integer.parseInt(bufferedReader.readLine());
+        ArrangedEnumeration ae = new ArrangedEnumeration(n);
+        ae.allOutput();
+
+        /*
         // 递归实现组合型枚举
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
         CombinationEnumeration ce = new CombinationEnumeration(n, m);
         ce.allOutput();
+
+         */
 
         /*
         // 递归实现指数型枚举
