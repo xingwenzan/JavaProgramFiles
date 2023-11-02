@@ -7,6 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 双端队列广搜
+        int n = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < n; i++) {
+            String[] strings = bufferedReader.readLine().split(" ");
+            int r = Integer.parseInt(strings[0]), c = Integer.parseInt(strings[1]);
+            String[] lst = new String[r];
+            for (int j = 0; j < r; j++) {
+                lst[j] = bufferedReader.readLine();
+            }
+            DoubleEndedQueueSearch DEQS = new DoubleEndedQueueSearch(r, c, lst);
+            int ans = DEQS.getAns();
+            if (ans == -1) System.out.println("NO SOLUTION");
+            else System.out.println(ans);
+        }
+
+
+        /*
         // 矩阵距离
         String[] strings = bufferedReader.readLine().split(" ");
         int r = Integer.parseInt(strings[0]), c = Integer.parseInt(strings[1]);
@@ -22,6 +39,8 @@ public class Main {
             }
             System.out.println();
         }
+
+         */
 
 
         /*

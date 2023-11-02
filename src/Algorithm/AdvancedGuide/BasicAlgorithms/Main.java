@@ -7,10 +7,33 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 费解的开关
+        int n = Integer.parseInt(bufferedReader.readLine());
+        char[][] state = new char[5][5];
+        for (int i = 0; i < n; i++) {
+            if (i != 0) bufferedReader.readLine();
+            for (int j = 0; j < 5; j++) {
+                String s = bufferedReader.readLine();
+                for (int k = 0; k < 5; k++) {
+                    state[j][k] = s.charAt(k);
+                }
+            }
+
+            ConfusingSwitch cs = new ConfusingSwitch(state);
+            int ans = cs.getMinStep();
+            if (ans > 6) System.out.println(-1);
+            else System.out.println(ans);
+        }
+
+
+
+        /*
         // 递归实现排列型枚举
         int n = Integer.parseInt(bufferedReader.readLine());
         ArrangedEnumeration ae = new ArrangedEnumeration(n);
         ae.allOutput();
+
+         */
 
         /*
         // 递归实现组合型枚举
