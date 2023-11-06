@@ -10,3 +10,4 @@
   - [递归实现组合型枚举](CombinationEnumeration.java)
   - [递归实现排列型枚举](ArrangedEnumeration.java)
   - [费解的开关](ConfusingSwitch.java)
+  - [奇怪的汉诺塔](WeirdHanoiTower.java)

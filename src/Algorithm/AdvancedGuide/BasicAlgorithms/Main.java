@@ -1,12 +1,19 @@
 package Algorithm.AdvancedGuide.BasicAlgorithms;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 奇怪的汉诺塔
+        WeirdHanoiTower wht = new WeirdHanoiTower(12);
+        int[] ans = wht.getF();
+        for (int i = 1; i <= 12; i++) {
+            System.out.println(ans[i]);
+        }
+
+
+        /*
         // 费解的开关
         int n = Integer.parseInt(bufferedReader.readLine());
         char[][] state = new char[5][5];
@@ -25,7 +32,7 @@ public class Main {
             else System.out.println(ans);
         }
 
-
+         */
 
         /*
         // 递归实现排列型枚举
