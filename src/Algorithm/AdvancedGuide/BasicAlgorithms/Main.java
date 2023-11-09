@@ -1,10 +1,19 @@
 package Algorithm.AdvancedGuide.BasicAlgorithms;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 约数之和
+        String[] s = bufferedReader.readLine().split(" ");
+        int A = Integer.parseInt(s[0]), B = Integer.parseInt(s[1]);
+        DivisorsSum ds = new DivisorsSum(A, B);
+        System.out.println(ds.getAns());
+
+        /*
         // 奇怪的汉诺塔
         WeirdHanoiTower wht = new WeirdHanoiTower(12);
         int[] ans = wht.getF();
@@ -12,6 +21,7 @@ public class Main {
             System.out.println(ans[i]);
         }
 
+         */
 
         /*
         // 费解的开关
