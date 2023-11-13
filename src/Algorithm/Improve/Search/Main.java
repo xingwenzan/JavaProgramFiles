@@ -7,6 +7,13 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 八数码
+        String s = String.join("", bufferedReader.readLine().split(" "));
+        EightDigits ed = new EightDigits(s);
+        System.out.println(ed.getAns());
+
+
+        /*
         // 双端队列广搜
         int n = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < n; i++) {
@@ -21,6 +28,8 @@ public class Main {
             if (ans == -1) System.out.println("NO SOLUTION");
             else System.out.println(ans);
         }
+
+         */
 
 
         /*

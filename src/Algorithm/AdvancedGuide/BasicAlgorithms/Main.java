@@ -7,11 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 分形之城
+        int n = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < n; i++) {
+            String[] s = bufferedReader.readLine().split(" ");
+            long N = Long.parseLong(s[0]), A = Long.parseLong(s[1]), B = Long.parseLong(s[2]);
+            FractalsCity fc = new FractalsCity(N, A, B);
+            System.out.println(fc.getAns());
+        }
+
+        /*
         // 约数之和
         String[] s = bufferedReader.readLine().split(" ");
         int A = Integer.parseInt(s[0]), B = Integer.parseInt(s[1]);
         DivisorsSum ds = new DivisorsSum(A, B);
         System.out.println(ds.getAns());
+
+         */
 
         /*
         // 奇怪的汉诺塔

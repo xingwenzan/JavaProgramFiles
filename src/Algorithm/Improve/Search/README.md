@@ -13,3 +13,6 @@
   - [抓住那头牛](CatchThatCow.java)
 - [多源BFS](MultiSourceBFS.java)
 - [双端队列广搜](DoubleEndedQueueSearch.java)
+- A*(A Star)
+    - [第K短路](https://www.acwing.com/problem/content/180/) &#x2002;没看明白，待定
+    - [八数码](EightDigits.java)
