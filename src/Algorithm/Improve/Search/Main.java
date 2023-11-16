@@ -7,10 +7,29 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 迷宫
+        int k = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < k; i++) {
+            int n = Integer.parseInt(bufferedReader.readLine());
+            String[] s = new String[n];
+            for (int j = 0; j < n; j++) {
+                s[j] = bufferedReader.readLine();
+            }
+            Maze maze = new Maze(n, s);
+            s = bufferedReader.readLine().split(" ");
+            int x1 = Integer.parseInt(s[0]), y1 = Integer.parseInt(s[1]), x2 = Integer.parseInt(s[2]), y2 = Integer.parseInt(s[3]);
+            if (maze.dfs(x1, y1, x2, y2)) System.out.println("YES");
+            else System.out.println("NO");
+        }
+
+
+        /*
         // 八数码
         String s = String.join("", bufferedReader.readLine().split(" "));
         EightDigits ed = new EightDigits(s);
         System.out.println(ed.getAns());
+
+         */
 
 
         /*

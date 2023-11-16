@@ -13,3 +13,5 @@
   - [奇怪的汉诺塔](WeirdHanoiTower.java)
   - [约数之和](DivisorsSum.java)
   - [分形之城](FractalsCity.java)
+- 前缀和与差分
+  - [激光炸弹](LaserBomb.java)

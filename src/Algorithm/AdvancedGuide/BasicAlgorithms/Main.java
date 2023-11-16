@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 激光炸弹
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]), r = Integer.parseInt(s[1]);
+        LaserBomb lb = new LaserBomb(r);
+        for (int i = 0; i < n; i++) {
+            s = bufferedReader.readLine().split(" ");
+            int x = Integer.parseInt(s[0]), y = Integer.parseInt(s[1]), w = Integer.parseInt(s[2]);
+            lb.add(x, y, w);
+        }
+        System.out.println(lb.count());
+
+        /*
         // 分形之城
         int n = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < n; i++) {
@@ -15,6 +27,8 @@ public class Main {
             FractalsCity fc = new FractalsCity(N, A, B);
             System.out.println(fc.getAns());
         }
+
+         */
 
         /*
         // 约数之和
