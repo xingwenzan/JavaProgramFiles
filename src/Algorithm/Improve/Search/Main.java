@@ -7,6 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 红与黑
+        while (true) {
+            String[] wh = bufferedReader.readLine().split(" ");
+            int w = Integer.parseInt(wh[0]), h = Integer.parseInt(wh[1]);
+            if (w == 0 && h == 0) break;
+            String[] s = new String[h];
+            for (int i = 0; i < h; i++) {
+                s[i] = bufferedReader.readLine();
+            }
+            RedAndBlack rab = new RedAndBlack(w, h, s);
+            System.out.println(rab.getAns());
+        }
+
+
+        /*
         // 迷宫
         int k = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < k; i++) {
@@ -21,6 +36,8 @@ public class Main {
             if (maze.dfs(x1, y1, x2, y2)) System.out.println("YES");
             else System.out.println("NO");
         }
+
+         */
 
 
         /*

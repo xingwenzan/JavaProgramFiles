@@ -15,3 +15,4 @@
   - [分形之城](FractalsCity.java)
 - 前缀和与差分
   - [激光炸弹](LaserBomb.java)
+  - [增减序列](IncDec.java)

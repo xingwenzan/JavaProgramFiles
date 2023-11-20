@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 增减序列
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[] s = new int[n];
+        for (int i = 0; i < n; i++) {
+            s[i] = Integer.parseInt(bufferedReader.readLine());
+        }
+        IncDec idc = new IncDec(n, s);
+        System.out.println(idc.getCnt());
+        System.out.println(idc.getAns());
+
+
+        /*
         // 激光炸弹
         String[] s = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(s[0]), r = Integer.parseInt(s[1]);
@@ -17,6 +29,8 @@ public class Main {
             lb.add(x, y, w);
         }
         System.out.println(lb.count());
+
+         */
 
         /*
         // 分形之城
