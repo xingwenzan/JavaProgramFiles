@@ -7,6 +7,16 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 马走日
+        int t = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < t; i++) {
+            String[] s = bufferedReader.readLine().split(" ");
+            int n = Integer.parseInt(s[0]), m = Integer.parseInt(s[1]), x = Integer.parseInt(s[2]), y = Integer.parseInt(s[3]);
+            HorseWalkingDay hwd = new HorseWalkingDay(n, m, x, y);
+            System.out.println(hwd.getAns());
+        }
+
+        /*
         // 红与黑
         while (true) {
             String[] wh = bufferedReader.readLine().split(" ");
@@ -20,6 +30,7 @@ public class Main {
             System.out.println(rab.getAns());
         }
 
+         */
 
         /*
         // 迷宫
@@ -39,7 +50,6 @@ public class Main {
 
          */
 
-
         /*
         // 八数码
         String s = String.join("", bufferedReader.readLine().split(" "));
@@ -47,7 +57,6 @@ public class Main {
         System.out.println(ed.getAns());
 
          */
-
 
         /*
         // 双端队列广搜
@@ -66,7 +75,6 @@ public class Main {
         }
 
          */
-
 
         /*
         // 矩阵距离
@@ -87,7 +95,6 @@ public class Main {
 
          */
 
-
         /*
         // 抓住那头牛
         String[] strings = bufferedReader.readLine().split(" ");
@@ -96,7 +103,6 @@ public class Main {
         System.out.println(ctc.getAns());
 
          */
-
 
         /*
         // 武士风度的牛
@@ -110,7 +116,6 @@ public class Main {
         System.out.println(ssc.bfs());
 
          */
-
 
         /*
         // 迷宫问题
@@ -127,7 +132,6 @@ public class Main {
 
          */
 
-
         /*
         // 山峰和山谷
         int n = Integer.parseInt(bufferedReader.readLine());
@@ -142,7 +146,6 @@ public class Main {
         System.out.printf("%d %d", pv.getPeaks(), pv.getValleys());
 
          */
-
 
         /*
         // 城堡问题
@@ -160,7 +163,6 @@ public class Main {
         System.out.println(cp.getArea());
 
          */
-
 
         /*
         // 池塘计数

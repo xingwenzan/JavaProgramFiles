@@ -7,6 +7,22 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最高的牛
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]), h = Integer.parseInt(s[2]), m = Integer.parseInt(s[3]);
+        TallestCow tc = new TallestCow(n, h);
+        for (int i = 0; i < m; i++) {
+            s = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(s[0]), b = Integer.parseInt(s[1]);
+            if (a > b) tc.add(b, a);
+            else tc.add(a, b);
+        }
+        int[] ans = tc.getCow();
+        for (int i = 1; i <= n; i++) {
+            System.out.println(ans[i]);
+        }
+
+        /*
         // 增减序列
         int n = Integer.parseInt(bufferedReader.readLine());
         int[] s = new int[n];
@@ -17,6 +33,7 @@ public class Main {
         System.out.println(idc.getCnt());
         System.out.println(idc.getAns());
 
+         */
 
         /*
         // 激光炸弹

@@ -19,3 +19,5 @@
 - DFS之连通性模型
   - [迷宫](Maze.java)
   - [红与黑](RedAndBlack.java)
+- DFS之搜索顺序
+  - [马走日](HorseWalkingDay.java)
