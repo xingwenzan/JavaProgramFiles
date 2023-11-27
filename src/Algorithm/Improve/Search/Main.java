@@ -7,6 +7,17 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 单词接龙
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] s = new String[n];
+        for (int i = 0; i < n; i++) {
+            s[i] = bufferedReader.readLine();
+        }
+        char st = bufferedReader.readLine().charAt(0);
+        WordSolitaire ws = new WordSolitaire(n, st, s);
+        System.out.println(ws.getAns());
+
+        /*
         // 马走日
         int t = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < t; i++) {
@@ -15,6 +26,8 @@ public class Main {
             HorseWalkingDay hwd = new HorseWalkingDay(n, m, x, y);
             System.out.println(hwd.getAns());
         }
+
+         */
 
         /*
         // 红与黑
