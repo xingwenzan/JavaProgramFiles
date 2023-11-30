@@ -22,3 +22,4 @@
 - DFS之搜索顺序
   - [马走日](HorseWalkingDay.java)
   - [单词接龙](WordSolitaire.java)
+  - [分成互质组](https://www.acwing.com/problem/content/description/1120/)&#x2002;太麻烦了，不写了

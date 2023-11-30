@@ -19,3 +19,4 @@
   - [最高的牛](TallestCow.java)
 - 二分
     - [最佳牛围栏](BestCattleFence.java)
+    - [特殊排序](https://www.acwing.com/problem/content/115/)&#x2002;交互式问题，不本地保留了
