@@ -23,3 +23,5 @@
   - [马走日](HorseWalkingDay.java)
   - [单词接龙](WordSolitaire.java)
   - [分成互质组](https://www.acwing.com/problem/content/description/1120/)&#x2002;太麻烦了，不写了
+- DFS之剪枝与优化
+  - [小猫爬山](KittenClimbingMountain.java)

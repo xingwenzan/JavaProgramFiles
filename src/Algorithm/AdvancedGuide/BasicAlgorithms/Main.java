@@ -7,6 +7,28 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 电影
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] strings = bufferedReader.readLine().split(" ");
+        int[] p = new int[n];
+        for (int i = 0; i < n; i++) {
+            p[i] = Integer.parseInt(strings[i]);
+        }
+        int m = Integer.parseInt(bufferedReader.readLine());
+        int[] b = new int[m], c = new int[m];
+        strings = bufferedReader.readLine().split(" ");
+        for (int i = 0; i < m; i++) {
+            b[i] = Integer.parseInt(strings[i]);
+        }
+        strings = bufferedReader.readLine().split(" ");
+        for (int i = 0; i < m; i++) {
+            c[i] = Integer.parseInt(strings[i]);
+        }
+        Movie movie = new Movie(p, b, c, m);
+        System.out.println(movie.getAns());
+
+
+        /*
         // 最佳牛围栏
         String[] s = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(s[0]), m = Integer.parseInt(s[1]);
@@ -16,6 +38,8 @@ public class Main {
         }
         BestCattleFence bcf = new BestCattleFence(n, m, lst);
         System.out.println((int) (bcf.getAns() * 1000));
+
+         */
 
         /*
         // 最高的牛

@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 小猫爬山
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]), w = Integer.parseInt(s[1]);
+        int[] c = new int[n];
+        for (int i = 0; i < n; i++) {
+            c[i] = Integer.parseInt(bufferedReader.readLine().split(" ")[0]);
+        }
+        KittenClimbingMountain kcm = new KittenClimbingMountain(n, w, c);
+        System.out.println(kcm.getAns());
+
+
+        /*
         // 单词接龙
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] s = new String[n];
@@ -16,6 +28,8 @@ public class Main {
         char st = bufferedReader.readLine().charAt(0);
         WordSolitaire ws = new WordSolitaire(n, st, s);
         System.out.println(ws.getAns());
+
+         */
 
         /*
         // 马走日
