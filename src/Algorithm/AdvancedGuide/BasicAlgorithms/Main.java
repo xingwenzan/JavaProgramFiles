@@ -3,10 +3,41 @@ package Algorithm.AdvancedGuide.BasicAlgorithms;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 七夕祭
+        String[] s = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(s[0]), m = Integer.parseInt(s[1]), t = Integer.parseInt(s[2]);
+        TanabataFestival tf = new TanabataFestival(n, m, t);
+        for (int i = 0; i < t; i++) {
+            s = bufferedReader.readLine().split(" ");
+            n = Integer.parseInt(s[0]);
+            m = Integer.parseInt(s[1]);
+            tf.add(n, m);
+        }
+        HashMap<String, Long> ans = tf.getAns();
+        for (String string : ans.keySet()) {
+            if (ans.get(string) == -1) System.out.println(string);
+            else System.out.printf("%s %d", string, ans.get(string));
+        }
+
+        /*
+        // 货仓选址
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] s = bufferedReader.readLine().split(" ");
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(s[i]);
+        }
+        WarehouseLocationSelection wls = new WarehouseLocationSelection(n, a);
+        System.out.println(wls.getAns());
+
+         */
+
+        /*
         // 电影
         int n = Integer.parseInt(bufferedReader.readLine());
         String[] strings = bufferedReader.readLine().split(" ");
@@ -27,6 +58,7 @@ public class Main {
         Movie movie = new Movie(p, b, c, m);
         System.out.println(movie.getAns());
 
+         */
 
         /*
         // 最佳牛围栏

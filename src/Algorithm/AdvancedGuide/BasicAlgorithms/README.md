@@ -22,3 +22,5 @@
     - [特殊排序](https://www.acwing.com/problem/content/115/)&#x2002;交互式问题，不本地保留了
 - 排序
   - [电影](Movie.java)
+  - [货仓选址](WarehouseLocationSelection.java)
+  - [七夕祭](TanabataFestival.java)

@@ -7,6 +7,30 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 木棒
+        while (true) {
+            int n = Integer.parseInt(bufferedReader.readLine());
+            if (n == 0) break;
+            String[] s = bufferedReader.readLine().split(" ");
+            int[] w = new int[n];
+            for (int i = 0; i < n; i++) w[i] = Integer.parseInt(s[i]);
+
+            WoodenStick ws = new WoodenStick(n, w);
+            System.out.println(ws.getL_one());
+        }
+
+        /*
+        // 数独
+        Sudoku sudoku = new Sudoku();
+        while (true) {
+            String s = bufferedReader.readLine();
+            if (s.equals("end")) break;
+            System.out.println(sudoku.getAns(s));
+        }
+
+         */
+
+        /*
         // 小猫爬山
         String[] s = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(s[0]), w = Integer.parseInt(s[1]);
@@ -17,6 +41,7 @@ public class Main {
         KittenClimbingMountain kcm = new KittenClimbingMountain(n, w, c);
         System.out.println(kcm.getAns());
 
+         */
 
         /*
         // 单词接龙
