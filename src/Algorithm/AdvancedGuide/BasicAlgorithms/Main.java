@@ -1,13 +1,31 @@
 package Algorithm.AdvancedGuide.BasicAlgorithms;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
+        // 动态中位数
+        int N = scanner.nextInt();
+        for (int i = 0; i < N; i++) {
+            int n = scanner.nextInt(), m = scanner.nextInt();
+            int mm = (m + 1) / 2;
+            System.out.printf("%d %d\n", n, mm);
+
+            int[] ints = new int[m];
+            for (int j = 0; j < m; j++) {
+                ints[j] = scanner.nextInt();
+            }
+            DynamicMedian dm = new DynamicMedian(m, ints);
+            int[] ans = dm.getAns();
+            for (int j = 0; j < mm; j++) {
+                System.out.printf("%d ", ans[j]);
+                if ((j + 1) % 10 == 0 || j == mm - 1) System.out.print("\n");
+            }
+        }
+        /*
         // 七夕祭
         String[] s = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(s[0]), m = Integer.parseInt(s[1]), t = Integer.parseInt(s[2]);
@@ -23,6 +41,8 @@ public class Main {
             if (ans.get(string) == -1) System.out.println(string);
             else System.out.printf("%s %d", string, ans.get(string));
         }
+
+         */
 
         /*
         // 货仓选址

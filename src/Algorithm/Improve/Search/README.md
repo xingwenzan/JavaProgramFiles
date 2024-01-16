@@ -27,3 +27,4 @@
   - [小猫爬山](KittenClimbingMountain.java)
   - [数独](Sudoku.java)
   - [木棒](WoodenStick.java)
+  - [生日蛋糕](BirthdayCake.java)

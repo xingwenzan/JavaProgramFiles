@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 生日蛋糕
+        int n = Integer.parseInt(bufferedReader.readLine()), m = Integer.parseInt(bufferedReader.readLine());
+        BirthdayCake bc = new BirthdayCake(n, m);
+        System.out.println(bc.getAns());
+        /*
         // 木棒
         while (true) {
             int n = Integer.parseInt(bufferedReader.readLine());
@@ -18,6 +23,8 @@ public class Main {
             WoodenStick ws = new WoodenStick(n, w);
             System.out.println(ws.getL_one());
         }
+
+         */
 
         /*
         // 数独
