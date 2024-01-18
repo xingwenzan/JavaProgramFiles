@@ -7,10 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 迭代加深
+        while (true) {
+            int n = Integer.parseInt(bufferedReader.readLine());
+            if (n == 0) break;
+            IterativeDeepening id = new IterativeDeepening(n);
+            int[] ans = id.getAns();
+            for (int i : ans) System.out.printf("%d ", i);
+            System.out.println();
+        }
+        /*
         // 生日蛋糕
         int n = Integer.parseInt(bufferedReader.readLine()), m = Integer.parseInt(bufferedReader.readLine());
         BirthdayCake bc = new BirthdayCake(n, m);
         System.out.println(bc.getAns());
+
+         */
+
         /*
         // 木棒
         while (true) {

@@ -23,6 +23,7 @@ public class BirthdayCake {
     }
 
     /**
+     * dfs 搜索目标层数与目标体积下的最小面积
      * @param u 当前层数
      * @param v 当前层数之下（即 u+1、u+2……m 层）总体积
      * @param s 当前层数之下（即 u+1、u+2……m 层）总面积，含底面积

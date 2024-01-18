@@ -7,6 +7,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 超快速排序
+        while (true) {
+            int n = scanner.nextInt();
+            if (n == 0) break;
+            int[] ints = new int[n];
+            for (int i = 0; i < n; i++) ints[i] = scanner.nextInt();
+            SuperQuickSort sqs = new SuperQuickSort(ints, n);
+            System.out.println(sqs.getAns());
+        }
+        /*
         // 动态中位数
         int N = scanner.nextInt();
         for (int i = 0; i < N; i++) {
@@ -25,6 +35,9 @@ public class Main {
                 if ((j + 1) % 10 == 0 || j == mm - 1) System.out.print("\n");
             }
         }
+
+         */
+
         /*
         // 七夕祭
         String[] s = bufferedReader.readLine().split(" ");

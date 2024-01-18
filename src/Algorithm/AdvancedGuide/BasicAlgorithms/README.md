@@ -25,3 +25,4 @@
     - [货仓选址](WarehouseLocationSelection.java)
     - [七夕祭](TanabataFestival.java)
     - [动态中位数](DynamicMedian.java)
+  - [超快速排序](SuperQuickSort.java)

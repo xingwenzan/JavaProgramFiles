@@ -28,3 +28,4 @@
   - [数独](Sudoku.java)
   - [木棒](WoodenStick.java)
   - [生日蛋糕](BirthdayCake.java)
+- [迭代加深](IterativeDeepening.java)
