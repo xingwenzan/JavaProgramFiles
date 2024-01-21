@@ -26,3 +26,4 @@
     - [七夕祭](TanabataFestival.java)
     - [动态中位数](DynamicMedian.java)
   - [超快速排序](SuperQuickSort.java)
+  - [奇数码问题](OddNumbers.java)

@@ -7,6 +7,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 奇数码问题
+        while (scanner.hasNext()) {
+            int n = scanner.nextInt();
+            int[] A = new int[n * n], B = new int[n * n];
+            A[0] = B[0] = 0;
+            int i = 1;
+            for (int j = 0; j < n * n; j++) {
+                int tmp = scanner.nextInt();
+                if (tmp != 0) A[i++] = tmp;
+            }
+            i = 1;
+            for (int j = 0; j < n * n; j++) {
+                int tmp = scanner.nextInt();
+                if (tmp != 0) B[i++] = tmp;
+            }
+            OddNumbers on = new OddNumbers(n, A, B);
+            if (on.judge()) System.out.println("TAK");
+            else System.out.println("NIE");
+        }
+
+        /*
         // 超快速排序
         while (true) {
             int n = scanner.nextInt();
@@ -16,6 +37,9 @@ public class Main {
             SuperQuickSort sqs = new SuperQuickSort(ints, n);
             System.out.println(sqs.getAns());
         }
+
+         */
+
         /*
         // 动态中位数
         int N = scanner.nextInt();
