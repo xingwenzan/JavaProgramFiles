@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 排书
+        int t = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < t; i++) {
+            int n = Integer.parseInt(bufferedReader.readLine());
+            String[] strings = bufferedReader.readLine().split(" ");
+            int[] ints = new int[n];
+            for (int j = 0; j < n; j++) ints[j] = Integer.parseInt(strings[j]);
+            Layout layout = new Layout(n, ints);
+            int ans = layout.getDepth();
+            if (ans == -1) System.out.println("5 or more");
+            else System.out.println(ans);
+        }
+
+        /*
         // 迭代加深
         while (true) {
             int n = Integer.parseInt(bufferedReader.readLine());
@@ -16,6 +30,9 @@ public class Main {
             for (int i : ans) System.out.printf("%d ", i);
             System.out.println();
         }
+
+         */
+
         /*
         // 生日蛋糕
         int n = Integer.parseInt(bufferedReader.readLine()), m = Integer.parseInt(bufferedReader.readLine());

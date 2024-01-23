@@ -7,6 +7,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 倍增
+        int N = scanner.nextInt();
+        for (int i = 0; i < N; i++) {
+            int n = scanner.nextInt(), m = scanner.nextInt();
+            long t = scanner.nextLong();
+            int[] lst = new int[n];
+            for (int j = 0; j < n; j++) lst[j] = scanner.nextInt();
+            Multiply my = new Multiply(n, m, t, lst);
+            System.out.println(my.getAns());
+        }
+
+        /*
         // 奇数码问题
         while (scanner.hasNext()) {
             int n = scanner.nextInt();
@@ -26,6 +38,8 @@ public class Main {
             if (on.judge()) System.out.println("TAK");
             else System.out.println("NIE");
         }
+
+         */
 
         /*
         // 超快速排序
