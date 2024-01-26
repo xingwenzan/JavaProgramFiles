@@ -28,3 +28,5 @@
   - [超快速排序](SuperQuickSort.java)
   - [奇数码问题](OddNumbers.java)
 - [倍增](Multiply.java)
+- 贪心
+    - [股票买卖 II](StockJobbingII.java)

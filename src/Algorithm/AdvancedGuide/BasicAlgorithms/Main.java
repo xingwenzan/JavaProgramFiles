@@ -7,6 +7,14 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 股票买卖 II
+        int n = scanner.nextInt();
+        int[] lst = new int[n];
+        for (int i = 0; i < n; i++) lst[i] = scanner.nextInt();
+        StockJobbingII sj = new StockJobbingII(n, lst);
+        System.out.println(sj.getAns());
+
+        /*
         // 倍增
         int N = scanner.nextInt();
         for (int i = 0; i < N; i++) {
@@ -17,6 +25,8 @@ public class Main {
             Multiply my = new Multiply(n, m, t, lst);
             System.out.println(my.getAns());
         }
+
+         */
 
         /*
         // 奇数码问题

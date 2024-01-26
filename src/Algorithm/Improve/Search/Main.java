@@ -3,10 +3,24 @@ package Algorithm.Improve.Search;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 回转游戏
+        int[] lst = new int[24];
+        while (true) {
+            String s = bufferedReader.readLine();
+            if (Objects.equals(s, "0")) break;
+            String[] strings = s.split(" ");
+            for (int i = 0; i < 24; i++) lst[i] = Integer.parseInt(strings[i]);
+            SlalomGame sg = new SlalomGame(lst);
+            System.out.println(sg.getAns());
+            System.out.println(sg.getCenterNum());
+        }
+
+        /*
         // 排书
         int t = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < t; i++) {
@@ -19,6 +33,8 @@ public class Main {
             if (ans == -1) System.out.println("5 or more");
             else System.out.println(ans);
         }
+
+         */
 
         /*
         // 迭代加深
