@@ -1,18 +1,37 @@
 package Algorithm.AdvancedGuide.BasicAlgorithms;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 防晒
+        int c = scanner.nextInt(), l = scanner.nextInt();
+        ArrayList<int[]> cows = new ArrayList<>();
+        for (int i = 0; i < c; i++) {
+            int m = scanner.nextInt(), M = scanner.nextInt();
+            cows.add(new int[]{m, M});
+        }
+        int[] spf = new int[1005];
+        for (int i = 0; i < l; i++) {
+            int spfNum = scanner.nextInt(), cover = scanner.nextInt();
+            spf[spfNum] += cover;
+        }
+        SunProtection sp = new SunProtection(c, cows, spf);
+        System.out.println(sp.getAns());
+
+        /*
         // 股票买卖 II
         int n = scanner.nextInt();
         int[] lst = new int[n];
         for (int i = 0; i < n; i++) lst[i] = scanner.nextInt();
         StockJobbingII sj = new StockJobbingII(n, lst);
         System.out.println(sj.getAns());
+
+         */
 
         /*
         // 倍增
