@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 信使
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        Messenger messenger = new Messenger(n);
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), c = Integer.parseInt(strings[2]);
+            messenger.add(a, b, c);
+        }
+        System.out.println(messenger.getAns());
+
+        /*
         // 热浪
         String[] strings = bufferedReader.readLine().split(" ");
         int t = Integer.parseInt(strings[0]), c = Integer.parseInt(strings[1]), st = Integer.parseInt(strings[2]), ed = Integer.parseInt(strings[3]);
@@ -17,5 +29,7 @@ public class Main {
             hw.add2(a, b, w);
         }
         System.out.println(hw.getAns());
+
+         */
     }
 }

@@ -1,13 +1,25 @@
 package Algorithm.AdvancedGuide.BasicAlgorithms;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 畜栏预定
+        int n = scanner.nextInt();
+        int[][] lst = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            lst[i][0] = scanner.nextInt();
+            lst[i][1] = scanner.nextInt();
+        }
+        CorralBooking cb = new CorralBooking(n, lst);
+        System.out.println(cb.getCnt());
+        int[] ans = cb.getAns();
+        for (int i = 0; i < n; i++) System.out.println(ans[i]);
+
+        /*
         // 防晒
         int c = scanner.nextInt(), l = scanner.nextInt();
         ArrayList<int[]> cows = new ArrayList<>();
@@ -22,6 +34,8 @@ public class Main {
         }
         SunProtection sp = new SunProtection(c, cows, spf);
         System.out.println(sp.getAns());
+
+         */
 
         /*
         // 股票买卖 II
