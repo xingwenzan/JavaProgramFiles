@@ -7,6 +7,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
+        // 雷达设备
+        int n = scanner.nextInt(), d = scanner.nextInt();
+        int[][] lst = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            lst[i][0] = scanner.nextInt();
+            lst[i][1] = scanner.nextInt();
+        }
+        RadarEquipment re = new RadarEquipment(n, d, lst);
+        System.out.println(re.getAns());
+
+        /*
         // 畜栏预定
         int n = scanner.nextInt();
         int[][] lst = new int[n][2];
@@ -18,6 +29,8 @@ public class Main {
         System.out.println(cb.getCnt());
         int[] ans = cb.getAns();
         for (int i = 0; i < n; i++) System.out.println(ans[i]);
+
+         */
 
         /*
         // 防晒

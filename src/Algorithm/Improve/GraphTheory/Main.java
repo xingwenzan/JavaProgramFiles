@@ -7,6 +7,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 香甜的黄油
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), p = Integer.parseInt(strings[1]), c = Integer.parseInt(strings[2]);
+        int[] cows = new int[n];
+        for (int i = 0; i < n; i++) cows[i] = Integer.parseInt(bufferedReader.readLine());
+        SweetButter sb = new SweetButter(p, c, cows);
+        for (int i = 0; i < c; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), w = Integer.parseInt(strings[2]);
+            sb.add2(a, b, w);
+        }
+        System.out.println(sb.getAns());
+
+        /*
         // 信使
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
@@ -17,6 +31,8 @@ public class Main {
             messenger.add(a, b, c);
         }
         System.out.println(messenger.getAns());
+
+         */
 
         /*
         // 热浪
