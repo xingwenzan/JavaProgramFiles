@@ -7,6 +7,23 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // 最小花费
+        String[] strings = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(strings[0]), m = Integer.parseInt(strings[1]);
+        MinimumCost mc = new MinimumCost(n);
+        for (int i = 0; i < m; i++) {
+            strings = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(strings[0]), b = Integer.parseInt(strings[1]), c = Integer.parseInt(strings[2]);
+            mc.add(a, b, c);
+        }
+        strings = bufferedReader.readLine().split(" ");
+        int s = Integer.parseInt(strings[0]), t = Integer.parseInt(strings[1]);
+        mc.setStart(s);
+        mc.setEnd(t);
+
+        System.out.printf("%.8f", 100.0 / mc.getAns());
+
+        /*
         // 香甜的黄油
         String[] strings = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(strings[0]), p = Integer.parseInt(strings[1]), c = Integer.parseInt(strings[2]);
@@ -19,6 +36,8 @@ public class Main {
             sb.add2(a, b, w);
         }
         System.out.println(sb.getAns());
+
+         */
 
         /*
         // 信使

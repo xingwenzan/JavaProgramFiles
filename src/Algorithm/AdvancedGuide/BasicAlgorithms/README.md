@@ -33,3 +33,5 @@
   - [防晒](SunProtection.java)
   - [畜栏预定](CorralBooking.java)
   - [雷达设备](RadarEquipment.java)
+  - [国王游戏](https://www.acwing.com/problem/content/116/)
+    &#x2002;高精度，太麻烦，不写了，[解析](https://www.acwing.com/solution/content/1062/) 如下
