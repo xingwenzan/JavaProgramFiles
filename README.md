@@ -8,4 +8,5 @@
 - [入门实验](src/IntroductoryExperiment)
   - [学生成绩管理系统](src/IntroductoryExperiment/StudentManagment)
   - [进度条模拟](src/IntroductoryExperiment/ProgressBar.java)
-- [命卡决斗](src/FateCardDuel/README.md)
+- [命卡决斗](https://github.com/xingwenzan/FateCardDuelProgram)&#x2002; （目前）私有项目，是对小说《让你印卡，没让你弑神》设定中的命卡决斗游戏的实现尝试
+- 
